@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Form | CoCreate</title>
+  
+    <link rel="stylesheet" href="https://server.cocreate.app/CoCreate-yjs/codemirror/node_modules/codemirror/addon/fold/foldgutter.css" type="text/css" />
+    <link rel="stylesheet" href="https://server.cocreate.app/CoCreate-yjs/codemirror/node_modules/codemirror/addon/scroll/simplescrollbars.css" type="text/css" />
+    <link rel=stylesheet href="https://codemirror.net/lib/codemirror.css"  async defer>
+  
+    <link rel=stylesheet href="https://server.cocreate.app/CoCreate-yjs/quill/quill.css" async defer>
+    <link rel=stylesheet href="//cdn.quilljs.com/1.3.6/quill.snow.css" async defer>
+  
+    <!--<link rel="stylesheet" href="https://server.cocreate.app/css/CoCreateUI.min.css" type="text/css" />-->
+    <link rel="stylesheet" href="https://cdn.cocreate.app/CoCreate.min.css" type="text/css" />
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" crossorigin="anonymous" />    
+  
+  </head>
+  <body class="padding-20px">
+  
+    <form data-collection="module_activities" data-form_id="test_form">
+      
+      <input data-realtime="true" type="text"  class="floating-label" placeholder="Text" name="name"  data-collection="module_activities" data-document_id="5e4802ce3ed96d38e71fc7e5">
+      <input data-save_value="false" data-realtime="false" type="text" class="floating-label" placeholder="Text" name="name1"  data-collection="module_activities" data-document_id="5e4802ce3ed96d38e71fc7e5">
+      <input type="text" class="floating-label" placeholder="color" name="color" id="color"  data-document_id="5e98b4d23f45fd4b0bc7d3f8">
+      <input type="search" class="floating-label" placeholder="Search" name="search" id="search" data-get_value="text"  data-document_id="5e4802ce3ed96d38e71fc7e5">
+      <input type="date" class="floating-label" placeholder="Date" name="date" id="date"  data-document_id="5e4802ce3ed96d38e71fc7e5">
+      <input type="time" class="floating-label" placeholder="Time" name="time" id="time"  data-document_id="5e4802ce3ed96d38e71fc7e5">
+      <input type="datetime-local" class="floating-label" placeholder="Date Time" name="date-time" id="date-time"  data-document_id="5e4802ce3ed96d38e71fc7e5">
+      <textarea class="floating-label" data-realtime="" placeholder="Text Area" name='text_area' id="text_area"  data-document_id="5e4802ce3ed96d38e71fc7e5"></textarea>
+      <!--<div class="codemirror" data-realtime="" data-collection="module_activity" placeholder="Text Area" name='saveFetch1' data-document_id="5e78cacb1c1bd413d9714d9a"></div>-->
+      
+    	<!--<div class="saveFetch" data-realtime="" data-collection="module_activity"  data-document_id="5e78cacb1c1bd413d9714d9a" name='saveFetch1' data-pass_id="me1234">-->
+    		 
+    	<!--	<div class="sortable padding-top-50px" data-group_name="test">-->
+    	<!--		<div class="text-align-center bg-light-gray"><input data-collection="module_activity" data-realtime="true" data-document_id="5e78cacb1c1bd413d9714d9a" name="text" class="floating-label"></div>-->
+    	<!--		<div class="text-align-center bg-light-gray margin-top-10px">Test - 2 </div>-->
+    	<!--		<div class="text-align-center bg-light-gray margin-top-10px">Test - 3 </div>-->
+    	<!--	</div><!-- sortable project -->-->
+    
+    	<!--</div><!-- saveFetch -->-->
+  
+  
+  ------------ Multiple Documents ------------
+  
+      <div data-realtime="true" data-save_value="false" data-collection="test" data-document_id="5e9531b3a762440eed55c2ed"  name="selectField1" class="select--field sortable floating-label" placeholder="Select 1" data-limit_selectable="3" multiple>
+        <input class="template-search" placeholder="Search" data-template_id="selectable1">
+          <ul data-fetch_collection="users" data-template_id="selectable1" data-pass_to="me1234" class="template-wrapper selectable--list cocreate-scroll">
+    				<li class="selectable template" data-pass_id="me1234">
+    				  <h3 data-collection="users" data-document_id="" name="name" data-pass_id="me1234">First name</h3>
+    				  <h5 data-collection="users" data-document_id="" name="_id" data-pass_id="me1234"></h5>
+    				</li>
+        </ul>
+      </div>
+  
+  ------------ Multiple Options ------------
+      <div data-realtime="true" data-collection="test" data-document_id="5e9531b3a762440eed55c2ed"  name="selectField2" class="select--field sortable floating-label" placeholder="Select 2" multiple>
+        <input class="option-search" placeholder="Search">
+        <ul class="selectable--list cocreate-scroll">
+  				<li class="selectable" data-value="value 1">
+  				  <h3 >value 1</h3>
+  				</li>
+  				<li class="selectable" data-value="value 2">
+  				  <h3 >value 2</h3>
+  				</li>
+  				<li class="selectable" data-value="value 3">
+  				  <h3 >value 3</h3>
+  				</li>
+        </ul>
+      </div>
+  
+  ------------ Single  Document ------------
+      <div class="select--field sortable floating-label" data-realtime="" data-collection="test" name="selectField3" data-document_id="5e8ff00e8c3af32574df80cb" placeholder="Select 3">
+        <input class="template-search" placeholder="Search">
+        <ul data-fetch_collection="users" data-template_id="selectable3" data-pass_to="me1234" class="template-wrapper selectable--list  cocreate-scroll">
+  				<li class="selectable template" data-value="" data-pass_id="me1234">
+  				  <h3 data-document_id="" name="name" data-pass_id="me1234" >First name</h3>
+  				  <h5 data-document_id="" name="name" data-pass_id="me1234" ></h5>
+  				</li>
+        </ul>
+      </div>
+  
+  ------------ Single  Options ------------
+      <div class="select--field sortable floating-label" name="selectField4" data-collection="test" data-document_id="5e8ff00e8c3af32574df80cb" placeholder="Select 4">
+        <input class="option-search" placeholder="Search">
+        <ul class="selectable--list  cocreate-scroll">
+  				<li class="selectable"  data-value="value 1">
+  				  <h3 >value 1</h3>
+  				</li>
+  				<li class="selectable"  data-value="value 2">
+  				  <h3 >value 2</h3>
+  				</li>
+  				<li class="selectable"  data-value="value 3">
+  				  <h3 >value 3</h3>
+  				</li>
+        </ul>
+      </div>
+  
+  ------------ Fetch array string ------------
+      <div class="select--field sortable floating-label" name="selectField5" data-collection="test" data-document_id="5e8ff00e8c3af32574df80cb"  placeholder="Select 5" data-limit_selectable="3" multiple>
+        <input class="option-search" placeholder="Search" data-template_id="tempplate5">
+        <ul data-fetch_collection="test" data-fetch_document_id="5e8ff00e8c3af32574df80cb" data-fetch_name="selectField2" id="array01"
+            data-template_id="template5" data-pass_to="me1234" class="template-wrapper-array selectable--list cocreate-scroll"
+            >
+    			<li class="template selectable" data-pass_id="me1234">
+    			  <h3 data-pass_id="me1234" raw>Organization Name</h3>
+    			</li>
+        </ul>
+      </div>
+  
+  ------------ Fetch array _id ------------
+      <div class="select--field sortable floating-label" name="selectField6" data-collection="test" data-document_id="5e8ff00e8c3af32574df80cb"  placeholder="Select 6" data-limit_selectable="3" multiple>
+        <input class="option-search" placeholder="Search" data-template_id="tempplate6">
+        <ul data-fetch_collection="test" data-fetch_document_id="5e8ff00e8c3af32574df80cb" data-fetch_name="selectField1" id="array02"
+          data-template_id="template6" data-pass_to="me1234" class="template-wrapper-array selectable--list cocreate-scroll"
+            >
+    			<li class="template selectable" data-pass_id="me1234">
+    			  <h3 data-collection="users" data-document_id="" name="name" data-pass_id="me1234" >Organization Name</h3>
+    			  <h5 data-collection="users" data-document_id="" name="_id" data-pass_id="me1234" >id</h5>
+    			</li>
+        </ul>
+      </div>
+  
+  ------------ Collection Select ------------
+      <div class="select--field sortable floating-label" data-collection="test" data-document_id="5e8ff00e8c3af32574df80cb" name="selectField7" placeholder="Select 7" multiple>
+        <input class="option-search" placeholder="Search">
+        <ul data-fetch_collection_list="true" data-template_id="collection-list" class="template-wrapper selectable--list cocreate-scroll" data-pass_to="me1234">
+  				<li class="selectable template" data-template_id="collection-list" data-value="" data-pass_id="me1234" >
+  				  <a data-pass_to="document-select" data-pass_collection="" data-pass_id="me1234" >
+  				    <h5 name="name" data-pass_id="me1234" raw></h5>
+  				  </a>
+  				</li>
+        </ul>
+      </div>
+     
+   	<button class="submitBtn position-fixed bottom-15px right-15px bg-blue grow-hover round"><i class="far fa-save"></i></button>
+  
+    </form>
+
+    <script>
+      var config = {
+        apiKey: 'c2b08663-06e3-440c-ef6f-13978b42883a',
+        securityKey: 'f26baf68-e3a9-45fc-effe-502e47116265',
+        organization_Id: '5de0387b12e200ea63204d6c'
+      }
+    </script>
+   
+    <script src="https://server.cocreate.app/js/CoCreate.min.js"></script>
+    <!--<script src="https://cdn.cocreate.app/CoCreate.min.js"></script>-->
+   
+    <!--<script src="https://server.cocreate.app/js/socket.io.js"></script>-->
+    <!--<script src="https://server.cocreate.app/js/CoCreate-logic.js"></script>-->
+    <!--<script src="https://server.cocreate.app/js/CoCreate-utils.js"></script>-->
+    <!--<script src="https://server.cocreate.app/js/CoCreate.js"></script>-->
+  
+    <!--<script src="https://server.cocreate.app/CoCreate-yjs/y-client/dist/CoCreate-y.js"></script>-->
+  
+    <!--<script src="https://server.cocreate.app/js/CoCreate-document_id.js"></script>-->
+    <!--<script src="https://server.cocreate.app/js/CoCreate-form.js"></script>-->
+    <!--<script src="https://server.cocreate.app/js/CoCreate-filter.js"></script> -->
+    <!--<script src="https://server.cocreate.app/js/CoCreate-templating.js"></script>-->
+    
+    <!--<script src="https://server.cocreate.app/js/CoCreate-savefetch.js"></script>-->
+    <!--<script src="https://server.cocreate.app/js/CoCreate-clone.js"></script>-->
+    <!--<script src="https://server.cocreate.app/js/CoCreate-dom.js"></script>-->
+    
+    <!--<script src="https://server.cocreate.app/js/CoCreate-htmltags.js"></script>-->
+    <!--<script src="https://server.cocreate.app/js/CoCreate-input.js"></script>-->
+    <!--<script src="https://server.cocreate.app/js/CoCreate-sort.js"></script>-->
+  
+    <!--<script src="https://server.cocreate.app/js/CoCreate-cursors.js"></script>-->
+    <!--<script src="https://server.cocreate.app/js/CoCreate-text.js"></script>-->
+  
+    <script src="https://cdn.cocreate.app/CoCreateUI.min.js"></script>
+    <script src="https://server.cocreate.app/CoCreate-plugins/CoCreate-select/CoCreate-select.js"></script>
+    <!--<script src="https://server.cocreate.app/js/morphdom.min.js"></script>-->
+    <!--<script type="text/javascript" src="https://server.cocreate.app/CoCreate-plugins/CoCreate-yjs/quill/dist/CoCreate-quill.js" async></script>-->
+    <!--<script type="text/javascript" src="https://server.cocreate.app/CoCreate-plugins/CoCreate-yjs/codemirror/dist/CoCreate-codemirror.js" async></script>-->
+    
+  </body>
+</html>
