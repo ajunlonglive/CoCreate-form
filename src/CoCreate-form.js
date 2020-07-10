@@ -48,9 +48,9 @@ var CoCreateForm = {
 	},
 	
 	initAttribute: function(form) {
-		if (!form.getAttribute('data-collection')) {
-			return;
-		}
+		// if (!form.getAttribute('data-collection')) {
+		// 	return;
+		// }
 		const collection = form.getAttribute('data-collection') || ""; 
 		const dataRealTime = form.getAttribute('data-realtime');
 		let elements = form.querySelectorAll('[name], [data-pass_to]')
@@ -65,12 +65,12 @@ var CoCreateForm = {
 				// if (!['INPUT', 'TEXTAREA'].indexOf(el.tagName)) {
 		      el.setAttribute('data-realtime', dataRealTime);
 				// }
-	    }
-			if (el.getAttribute('name') && !CoCreateUtils.existAttribute(el, 'data-collection')) {
+	    	}
+			if (el.getAttribute('name') && !CoCreateUtils.existAttribute(el, 'data-collection') && collection) {
 				el.setAttribute('data-collection', collection);
 			}
 			
-			if (el.getAttribute('data-pass_to') && !CoCreateUtils.existAttribute(el, 'data-pass_collection')) {
+			if (el.getAttribute('data-pass_to') && !CoCreateUtils.existAttribute(el, 'data-pass_collection') &&  collection) {
 				el.setAttribute('data-pass_collection', collection);
 			}
 		})
