@@ -17,10 +17,10 @@ var CoCreateForm = {
 		}
 		
 		forms.forEach((form) => {
-			// if (CoCreateUtils.getInitialized(form)) {
+			// if (CoCreateInit.getInitialized(form)) {
 			// 	return;
 			// }
-			// CoCreateUtils.setInitialized(form);
+			// CoCreateInit.setInitialized(form);
 
 			self.initForm(form)
 		})
@@ -31,7 +31,7 @@ var CoCreateForm = {
 		
 		this.initAttribute(form);
 		this.setFormData(form)
-		CoCreateUtils.disableAutoFill(form);
+		this.disableAutoFill(form);
 		
 		if (submitBtn) {
 			this.setSubmitEvent(form, submitBtn)
@@ -66,11 +66,11 @@ var CoCreateForm = {
 		      el.setAttribute('data-realtime', dataRealTime);
 				// }
 	    }
-			if (el.getAttribute('name') && !CoCreateUtils.existAttribute(el, 'data-collection')) {
+			if (el.getAttribute('name') && !el.hasAttribute('data-collection')) {
 				el.setAttribute('data-collection', collection);
 			}
 			
-			if (el.getAttribute('data-pass_to') && !CoCreateUtils.existAttribute(el, 'data-pass_collection')) {
+			if (el.getAttribute('data-pass_to') && !el.hasAttribute('data-pass_collection')) {
 				el.setAttribute('data-pass_collection', collection);
 			}
 		})

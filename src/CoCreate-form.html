@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" crossorigin="anonymous" />    
   
   </head>
-  <body class="padding-20px">
+  <body class="padding:20px">
   
     <form data-collection="module_activities" data-form_id="test_form">
       
@@ -38,10 +38,10 @@
       
     	<!--<div class="saveFetch" data-realtime="" data-collection="module_activity"  data-document_id="5e78cacb1c1bd413d9714d9a" name='saveFetch1' data-pass_id="me1234">-->
     		 
-    	<!--	<div class="sortable padding-top-50px" data-group_name="test">-->
+    	<!--	<div class="sortable padding-top:50px" data-group_name="test">-->
     	<!--		<div class="text-align-center bg-light-gray"><input data-collection="module_activity" data-realtime="true" data-document_id="5e78cacb1c1bd413d9714d9a" name="text" class="floating-label"></div>-->
-    	<!--		<div class="text-align-center bg-light-gray margin-top-10px">Test - 2 </div>-->
-    	<!--		<div class="text-align-center bg-light-gray margin-top-10px">Test - 3 </div>-->
+    	<!--		<div class="text-align-center bg-light-gray margin-top:10px">Test - 2 </div>-->
+    	<!--		<div class="text-align-center bg-light-gray margin-top:10px">Test - 3 </div>-->
     	<!--	</div><!-- sortable project -->-->
     
     	<!--</div><!-- saveFetch -->-->
@@ -58,7 +58,16 @@
     				</li>
         </ul>
       </div>
-  
+      
+      <div data-realtime="true" data-save_value="false" data-collection="test" data-document_id="5e9531b3a762440eed55c2ed"  name="selectField1" class="select--field sortable floating-label" placeholder="Select 1" data-limit_selectable="3" multiple>
+        <input class="template-search" placeholder="Search" data-template_id="selecttable-jin">
+          <ul data-fetch_collection="users" data-template_id="selecttable-jin" data-fetch_value="5f08b722a588c11bf8ead495" data-fetch_value_type="array" data-pass_to="me1234" class="template-wrapper selectable--list cocreate-scroll">
+    				<li class="selectable template" data-pass_id="me1234">
+    				  <h5 data-collection="users" data-document_id="" name="name" data-pass_id="me1234"></h5>
+    				</li>
+        </ul>
+      </div>
+  <!--5f08b722a588c11bf8ead495-->
   ------------ Multiple Options ------------
       <div data-realtime="true" data-collection="test" data-document_id="5e9531b3a762440eed55c2ed"  name="selectField2" class="select--field sortable floating-label" placeholder="Select 2" multiple>
         <input class="option-search" placeholder="Search">
@@ -139,7 +148,7 @@
         </ul>
       </div>
      
-   	<button class="submitBtn position-fixed bottom-15px right-15px bg-blue grow-hover round"><i class="far fa-save"></i></button>
+   	<button class="submitBtn position:fixed bottom:15px right:15px bg-blue grow-hover round"><i class="far fa-save"></i></button>
   
     </form>
 
@@ -152,7 +161,7 @@
     </script>
    
     <script src="https://server.cocreate.app/js/CoCreate.min.js"></script>
-    <!--<script src="https://cdn.cocreate.app/CoCreate.min.js"></script>-->
+    <!--<script src="https://server.cocreate.app/js/CoCreate.min.js"></script>-->
    
     <!--<script src="https://server.cocreate.app/js/CoCreate.min.js"></script>-->
     <!--<script src="https://server.cocreate.app/CoCreateJS/src/CoCreate-socket.js"></script>-->

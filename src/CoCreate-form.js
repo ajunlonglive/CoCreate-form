@@ -1,8 +1,6 @@
 
-var CoCreateForm = {
+const CoCreateForm = {
 
-	data: {},
-	
 	init: function(container) {
 		const __container = container || document
 		
@@ -17,10 +15,10 @@ var CoCreateForm = {
 		}
 		
 		forms.forEach((form) => {
-			// if (CoCreateUtils.getInitialized(form)) {
+			// if (CoCreateInit.getInitialized(form)) {
 			// 	return;
 			// }
-			// CoCreateUtils.setInitialized(form);
+			// CoCreateInit.setInitialized(form);
 
 			self.initForm(form)
 		})
@@ -30,8 +28,7 @@ var CoCreateForm = {
 		const  submitBtn = form.querySelector('.submitBtn, .registerBtn');
 		
 		this.initAttribute(form);
-		this.setFormData(form)
-		CoCreateUtils.disableAutoFill(form);
+		this.disableAutoFill(form);
 		
 		if (submitBtn) {
 			this.setSubmitEvent(form, submitBtn)
@@ -63,28 +60,19 @@ var CoCreateForm = {
 			if (el.getAttribute('data-realtime') == null && dataRealTime) {
 				
 				// if (!['INPUT', 'TEXTAREA'].indexOf(el.tagName)) {
-		      el.setAttribute('data-realtime', dataRealTime);
+				el.setAttribute('data-realtime', dataRealTime);
 				// }
-	    	}
-			if (el.getAttribute('name') && !CoCreateUtils.existAttribute(el, 'data-collection') && collection) {
+			}
+			if (el.getAttribute('name') && !el.hasAttribute('data-collection') && collection) {
 				el.setAttribute('data-collection', collection);
 			}
 			
-			if (el.getAttribute('data-pass_to') && !CoCreateUtils.existAttribute(el, 'data-pass_collection') &&  collection) {
+			if (el.getAttribute('data-pass_to') && !el.hasAttribute('data-pass_collection') &&  collection) {
 				el.setAttribute('data-pass_collection', collection);
 			}
 		})
 	},
-	
-	setFormData: function(form) {
-		var form_id = form.getAttribute('data-form_id');
-		if (form_id) {
-			this.data[form_id] = {
-				validates: []
-			}
-		}
-	},
-	
+
 	setSubmitEvent: function(form, submitBtn) {
 		let _this = this;
 		
@@ -136,20 +124,9 @@ var CoCreateForm = {
 	},
 	
 	checkFormValidate: function(form) {
-		const form_id = form.getAttribute('data-form_id');
-		
-		if (!form_id)  {
-			return true;
+		if (CoCreateUnique) {
+			return CoCreateUnique.checkValidate(form)
 		}
-
-		const validates = this.data[form_id]['validates'];
-		
-		for (var i = 0; i < validates.length; i++) {
-			if (!validates[i]['unique']) {
-				return false;
-			}
-		}
-		
 		return true;
 	},
 	
@@ -165,7 +142,16 @@ var CoCreateForm = {
 		}
 		
 		return false;
-	}
+	},
+	disableAutoFill: function(element) {
+		if (element.tagName == "TEXTAREA") {
+			element.value = "";
+			element.setAttribute("autocomplete","off")
+		}
+		if (!element.hasAttribute("autocomplete")) {
+			element.setAttribute('autocomplete', "off");
+		}
+	},
 }
 
 CoCreateForm.initFormsByLoad();
