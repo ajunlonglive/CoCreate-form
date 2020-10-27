@@ -1,7 +1,16 @@
 
 const CoCreateForm = {
 
-	init: function(container) {
+	init: function() {
+		const forms = document.querySelectorAll('form');
+		const self = this;
+		
+		forms.forEach((form) => {
+			self.__initAttribute(form)
+		})
+	},
+	
+	initElement: function(container) {
 		const __container = container || document
 		
 		if (!__container.querySelectorAll) {
@@ -20,36 +29,38 @@ const CoCreateForm = {
 			// }
 			// CoCreateInit.setInitialized(form);
 
-			self.initForm(form)
+			self.__initForm(form)
 		})
 	},
 	
-	initForm: function(form) {
-		const  submitBtn = form.querySelector('.submitBtn, .registerBtn');
-		
-		this.initAttribute(form);
-		this.disableAutoFill(form);
-		
-		if (submitBtn) {
-			this.setSubmitEvent(form, submitBtn)
+	disableAutoFill: function(element) {
+		if (element.tagName == "TEXTAREA") {
+			element.value = "";
+			element.setAttribute("autocomplete","off")
+		}
+		if (!element.hasAttribute("autocomplete")) {
+			element.setAttribute('autocomplete', "off");
 		}
 	},
 	
-	initFormsByLoad: function() {
-		const  forms = document.querySelectorAll('form');
-		let _this = this;
+	__initForm: function(form) {
+		const  submitBtn = form.querySelector('.submitBtn, .registerBtn');
 		
-		forms.forEach((form) => {
-			_this.initAttribute(form)
-		})
+		this.__initAttribute(form);
+		this.disableAutoFill(form);
+		
+		if (submitBtn) {
+			this.__setSubmitEvent(form, submitBtn)
+		}
 	},
 	
-	initAttribute: function(form) {
+	__initAttribute: function(form) {
 		// if (!form.getAttribute('data-collection')) {
 		// 	return;
 		// }
 		const collection = form.getAttribute('data-collection') || ""; 
 		const dataRealTime = form.getAttribute('data-realtime');
+		const document_id = form.getAttribute('data-document_id') || "";
 		let elements = form.querySelectorAll('[name], [data-pass_to]')
 		
 					
@@ -70,11 +81,15 @@ const CoCreateForm = {
 			if (el.getAttribute('data-pass_to') && !el.hasAttribute('data-pass_collection') &&  collection) {
 				el.setAttribute('data-pass_collection', collection);
 			}
+			
+			if (el.getAttribute('name') && !el.getAttribute('data-document_id') && document_id) {
+				el.setAttribute('data-document_id', document_id)
+			}
 		})
 	},
 
-	setSubmitEvent: function(form, submitBtn) {
-		let _this = this;
+	__setSubmitEvent: function(form, submitBtn) {
+		let self = this;
 		
 		var dataRealTime = form.getAttribute('data-realtime') || "true";
 		
@@ -84,7 +99,7 @@ const CoCreateForm = {
 			
 			const elements = form.querySelectorAll(g_moduleSelectors.join(","));
 			
-			if (!_this.checkFormValidate(form)) {
+			if (!self.__checkFormValidate(form)) {
 				alert('Values are not unique');
 				return;
 			}
@@ -106,14 +121,19 @@ const CoCreateForm = {
 					continue;
 				}
 				
-				if (CoCreateUtils.isRealTime(el, dataRealTime)) {
+				if (CoCreateInput.isUsageY(el)) {
 					continue;
 				}
 
-				if (_this.isTemplateInput(el)) return;
+				if (self.__isTemplateInput(el)) return;
 
 				var new_event = new CustomEvent("clicked-submitBtn", {detail: { type: "submitBtn" }});
 				el.dispatchEvent(new_event);  
+				
+				el.dispatchEvent(new CustomEvent('CoCreateForm-run', {
+					eventType: 'submitBtn', 
+					item: el
+				}))
 			}
 			
 			if (request_document_id) {
@@ -123,14 +143,15 @@ const CoCreateForm = {
 		
 	},
 	
-	checkFormValidate: function(form) {
-		if (CoCreateUnique) {
+	__checkFormValidate: function(form) {
+		
+		if (typeof CoCreateUnique !== 'undefined') {
 			return CoCreateUnique.checkValidate(form)
 		}
 		return true;
 	},
 	
-	isTemplateInput: function (input) {
+	__isTemplateInput: function (input) {
 		if (input.classList.contains('template')) return true;
 		
 		let node = input.parentNode;
@@ -143,17 +164,10 @@ const CoCreateForm = {
 		
 		return false;
 	},
-	disableAutoFill: function(element) {
-		if (element.tagName == "TEXTAREA") {
-			element.value = "";
-			element.setAttribute("autocomplete","off")
-		}
-		if (!element.hasAttribute("autocomplete")) {
-			element.setAttribute('autocomplete', "off");
-		}
-	},
+	
 }
 
-CoCreateForm.initFormsByLoad();
-CoCreate.registerSocketInit(CoCreateForm.init, CoCreateForm);
-CoCreateInit.register('CoCreateForm', CoCreateForm, CoCreateForm.init);
+CoCreateForm.init();
+CoCreate.registerSocketInit(CoCreateForm.initElement, CoCreateForm);
+
+CoCreateInit.register('CoCreateForm', CoCreateForm, CoCreateForm.initElement);
