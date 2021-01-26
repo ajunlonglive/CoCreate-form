@@ -24,10 +24,10 @@ const CoCreateForm = {
 		}
 		
 		forms.forEach((form) => {
-			// if (CoCreateInit.getInitialized(form)) {
+			// if (CoCreateObserver.getInitialized(form)) {
 			// 	return;
 			// }
-			// CoCreateInit.setInitialized(form);
+			// CoCreateObserver.setInitialized(form);
 
 			self.__initForm(form)
 		})
@@ -48,16 +48,10 @@ const CoCreateForm = {
 		
 		this.__initAttribute(form);
 		this.disableAutoFill(form);
-		
-		if (submitBtn) {
-			this.__setSubmitEvent(form, submitBtn)
-		}
 	},
 	
 	__initAttribute: function(form) {
-		// if (!form.getAttribute('data-collection')) {
-		// 	return;
-		// }
+		
 		const collection = form.getAttribute('data-collection') || ""; 
 		const dataRealTime = form.getAttribute('data-realtime');
 		const document_id = form.getAttribute('data-document_id') || "";
@@ -85,61 +79,65 @@ const CoCreateForm = {
 			if (el.getAttribute('name') && !el.getAttribute('data-document_id') && document_id) {
 				el.setAttribute('data-document_id', document_id)
 			}
+			if (!el.hasAttribute("data-document_id") && document_id != null) {
+				el.setAttribute('data-document_id', document_id)
+			}
+
 		})
 	},
 
 	__setSubmitEvent: function(form, submitBtn) {
 		let self = this;
 		
-		var dataRealTime = form.getAttribute('data-realtime') || "true";
+		// var dataRealTime = form.getAttribute('data-realtime') || "true";
 		
-		submitBtn.addEventListener('click', function(e) {
-			e.preventDefault();
-			e.stopPropagation()
+		// submitBtn.addEventListener('click', function(e) {
+		// 	e.preventDefault();
+		// 	// e.stopPropagation()
 			
-			const elements = form.querySelectorAll(g_moduleSelectors.join(","));
+		// 	const elements = form.querySelectorAll(g_moduleSelectors.join(","));
 			
-			if (!self.__checkFormValidate(form)) {
-				alert('Values are not unique');
-				return;
-			}
+		// 	if (!self.__checkFormValidate(form)) {
+		// 		alert('Values are not unique');
+		// 		return;
+		// 	}
 			
-			let request_document_id = false;    
+		// 	let request_document_id = false;    
 			
-			for (var i = 0; i < elements.length; i++) {
-				let el = elements[i];        
-				const data_document_id = el.getAttribute('data-document_id');
+		// 	for (var i = 0; i < elements.length; i++) {
+		// 		let el = elements[i];        
+		// 		const data_document_id = el.getAttribute('data-document_id');
 
-				if (el.getAttribute('data-save_value') == 'false') {
-					continue;
-				}
+		// 		if (el.getAttribute('data-save_value') == 'false') {
+		// 			continue;
+		// 		}
 
-				if (!data_document_id) {
-					if (el.getAttribute('name')) {
-						request_document_id = true;
-					}
-					continue;
-				}
+		// 		if (!data_document_id) {
+		// 			if (el.getAttribute('name')) {
+		// 				request_document_id = true;
+		// 			}
+		// 			continue;
+		// 		}
 				
-				if (CoCreateInput.isUsageY(el)) {
-					continue;
-				}
+		// 		if (CoCreateInput.isUsageY(el)) {
+		// 			continue;
+		// 		}
 
-				if (self.__isTemplateInput(el)) return;
+		// 		if (self.__isTemplateInput(el)) return;
 
-				var new_event = new CustomEvent("clicked-submitBtn", {detail: { type: "submitBtn" }});
-				el.dispatchEvent(new_event);  
+		// 		var new_event = new CustomEvent("clicked-submitBtn", {detail: { type: "submitBtn" }});
+		// 		el.dispatchEvent(new_event);  
 				
-				el.dispatchEvent(new CustomEvent('CoCreateForm-run', {
-					eventType: 'submitBtn', 
-					item: el
-				}))
-			}
+		// 		el.dispatchEvent(new CustomEvent('CoCreateForm-run', {
+		// 			eventType: 'submitBtn', 
+		// 			item: el
+		// 		}))
+		// 	}
 			
-			if (request_document_id) {
-				CoCreateDocument.requestDocumentIdOfForm(form)
-			}
-		});
+		// 	if (request_document_id) {
+		// 		CoCreateDocument.requestDocumentIdOfForm(form)
+		// 	}
+		// });
 		
 	},
 	
@@ -170,4 +168,15 @@ const CoCreateForm = {
 CoCreateForm.init();
 CoCreate.registerSocketInit(CoCreateForm.initElement, CoCreateForm);
 
-CoCreateInit.register('CoCreateForm', CoCreateForm, CoCreateForm.initElement);
+// CoCreateInit.register('CoCreateForm', CoCreateForm, CoCreateForm.initElement);
+
+CoCreateObserver.add({ 
+	name: 'CoCreateForm', 
+	observe: ['subtree', 'childList'],
+	include: 'form', 
+	task: function(mutation) {
+		CoCreateForm.initElement(mutation.target)
+	}
+})
+
+export default CoCreateForm;
