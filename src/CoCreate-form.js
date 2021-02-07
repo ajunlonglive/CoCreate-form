@@ -1,5 +1,9 @@
 
 const CoCreateForm = {
+	
+	selectors: [],
+	
+	modules: [],
 
 	init: function() {
 		const forms = document.querySelectorAll('form');
@@ -24,10 +28,10 @@ const CoCreateForm = {
 		}
 		
 		forms.forEach((form) => {
-			// if (CoCreateObserver.getInitialized(form)) {
+			// if (CoCreate.observer.getInitialized(form)) {
 			// 	return;
 			// }
-			// CoCreateObserver.setInitialized(form);
+			// CoCreate.observer.setInitialized(form);
 
 			self.__initForm(form)
 		})
@@ -89,62 +93,14 @@ const CoCreateForm = {
 	__setSubmitEvent: function(form, submitBtn) {
 		let self = this;
 		
-		// var dataRealTime = form.getAttribute('data-realtime') || "true";
-		
-		// submitBtn.addEventListener('click', function(e) {
-		// 	e.preventDefault();
-		// 	// e.stopPropagation()
-			
-		// 	const elements = form.querySelectorAll(g_moduleSelectors.join(","));
-			
-		// 	if (!self.__checkFormValidate(form)) {
-		// 		alert('Values are not unique');
-		// 		return;
-		// 	}
-			
-		// 	let request_document_id = false;    
-			
-		// 	for (var i = 0; i < elements.length; i++) {
-		// 		let el = elements[i];        
-		// 		const data_document_id = el.getAttribute('data-document_id');
 
-		// 		if (el.getAttribute('data-save_value') == 'false') {
-		// 			continue;
-		// 		}
-
-		// 		if (!data_document_id) {
-		// 			if (el.getAttribute('name')) {
-		// 				request_document_id = true;
-		// 			}
-		// 			continue;
-		// 		}
-				
-		// 		if (CoCreateInput.isUsageY(el)) {
-		// 			continue;
-		// 		}
-
-		// 		if (self.__isTemplateInput(el)) return;
-
-		// 		var new_event = new CustomEvent("clicked-submitBtn", {detail: { type: "submitBtn" }});
-		// 		el.dispatchEvent(new_event);  
-				
-		// 		el.dispatchEvent(new CustomEvent('CoCreateForm-run', {
-		// 			eventType: 'submitBtn', 
-		// 			item: el
-		// 		}))
-		// 	}
-			
-		// 	if (request_document_id) {
-		// 		CoCreateDocument.requestDocumentIdOfForm(form)
-		// 	}
-		// });
 		
 	},
 	
 	__checkFormValidate: function(form) {
 		
-		if (typeof CoCreateUnique !== 'undefined') {
-			return CoCreateUnique.checkValidate(form)
+		if (typeof CoCreate.unique !== 'undefined') {
+			return CoCreate.unique.checkValidate(form)
 		}
 		return true;
 	},
@@ -163,18 +119,67 @@ const CoCreateForm = {
 		return false;
 	},
 	
+	getFormData: function(form) {
+		const self = this; 
+		const selectors = this.modules.map(m => m.selector);
+		const elements = form.querySelectorAll(selectors.join(','));
+		
+		let request_document_id = false;
+		let dataList = [];
+		
+		
+		elements.forEach(el => {
+			let collection = el.getAttribute('data-collection')
+			let document_id = el.getAttribute('data-document_id')
+			let name = el.getAttribute('name')
+			
+			if (el.getAttribute('data-save_value') == 'false') {
+				return;
+			}
+			
+			if (!document_id && name) {
+				request_document_id = true;
+				return;
+			}
+			
+			let data = dataList.find(d => d.collection == collection && d.document_id == document_id);
+				
+		})
+	},
+	
+	//. add information of modules
+	//. { selector, .... }
+	add: function({name, selector, getValueFunc}) {
+		
+		this.modules.push({
+			name,
+			selector,
+			getValueFunc
+		});
+		
+		if (selector) {
+			this.selectors.push(selector);
+		}
+	},
+	
+	get: function() {
+		return {
+			selectors: this.selectors
+		}
+	}
+	
 }
 
 CoCreateForm.init();
-CoCreate.registerSocketInit(CoCreateForm.initElement, CoCreateForm);
+CoCreate.core.registerInit(CoCreateForm.initElement, CoCreateForm);
 
-// CoCreateInit.register('CoCreateForm', CoCreateForm, CoCreateForm.initElement);
+// CoCreate.init.register('CoCreateForm', CoCreateForm, CoCreateForm.initElement);
 
-CoCreateObserver.add({ 
+CoCreate.observer.add({ 
 	name: 'CoCreateForm', 
 	observe: ['subtree', 'childList'],
 	include: 'form', 
-	task: function(mutation) {
+	callback: function(mutation) {
 		CoCreateForm.initElement(mutation.target)
 	}
 })
