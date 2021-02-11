@@ -5,9 +5,11 @@ const CoCreateForm = {
 	
 	modules: [],
 
-	init: function() {
+	__init: function() {
 		const forms = document.querySelectorAll('form');
 		const self = this;
+		
+		this.__setSubmitEvent();
 		
 		forms.forEach((form) => {
 			self.__initAttribute(form)
@@ -33,7 +35,8 @@ const CoCreateForm = {
 			// }
 			// CoCreate.observer.setInitialized(form);
 
-			self.__initForm(form)
+			self.__initAttribute(form);
+			self.disableAutoFill(form);
 		})
 	},
 	
@@ -46,14 +49,7 @@ const CoCreateForm = {
 			element.setAttribute('autocomplete', "off");
 		}
 	},
-	
-	__initForm: function(form) {
-		const  submitBtn = form.querySelector('.submitBtn, .registerBtn');
-		
-		this.__initAttribute(form);
-		this.disableAutoFill(form);
-	},
-	
+
 	__initAttribute: function(form) {
 		
 		const collection = form.getAttribute('data-collection') || ""; 
@@ -90,10 +86,19 @@ const CoCreateForm = {
 		})
 	},
 
-	__setSubmitEvent: function(form, submitBtn) {
+	__setSubmitEvent: function() {
 		let self = this;
 		
+		document.addEventListener('clicked-submitBtn', function(event) {
+			const {element} = event.detail;
 
+			self.modules.forEach(({selector, callback}) => {
+				if (callback && element.matches(selector)) {
+					callback.call(null, element);
+				}
+			})
+		})
+		
 		
 	},
 	
@@ -149,12 +154,12 @@ const CoCreateForm = {
 	
 	//. add information of modules
 	//. { selector, .... }
-	add: function({name, selector, getValueFunc}) {
+	init: function({name, selector, callback}) {
 		
 		this.modules.push({
 			name,
 			selector,
-			getValueFunc
+			callback
 		});
 		
 		if (selector) {
@@ -170,10 +175,8 @@ const CoCreateForm = {
 	
 }
 
-CoCreateForm.init();
+CoCreateForm.__init();
 CoCreate.core.registerInit(CoCreateForm.initElement, CoCreateForm);
-
-// CoCreate.init.register('CoCreateForm', CoCreateForm, CoCreateForm.initElement);
 
 CoCreate.observer.add({ 
 	name: 'CoCreateForm', 
