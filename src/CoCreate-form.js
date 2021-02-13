@@ -178,7 +178,7 @@ const CoCreateForm = {
 CoCreateForm.__init();
 CoCreate.core.registerInit(CoCreateForm.initElement, CoCreateForm);
 
-CoCreate.observer.add({ 
+CoCreate.observer.init({ 
 	name: 'CoCreateForm', 
 	observe: ['subtree', 'childList'],
 	include: 'form', 
