@@ -1,13 +1,13 @@
-import observer from '../../CoCreate-observer/src'
-import ccutils from '../../../CoCreateJS/src/utils';
+import observer from '@cocreate/observer'
+import ccutils from '@cocreate/utils';
 import {socket, crud, core} from '../../../CoCreateJS/src'
-import action from '../../CoCreate-action/src'
+import action from '@cocreate/action'
 import utils from "./utils" 
 
 
 
-// import crdt from '../../CoCreate-crdt/src'
-// import text from '../../CoCreate-text/src'
+// import crdt from '@cocreate/crdt'
+// import text from '@cocreate/text'
 
 
 
