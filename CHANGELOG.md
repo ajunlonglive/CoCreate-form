@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.1...v1.0.2) (2021-03-30)
+
+
+### Bug Fixes
+
+* cocreatejs from npm ([eaa9dcf](https://github.com/CoCreate-app/CoCreate-form/commit/eaa9dcfb3f72a7de55dfe3b52565acbc1f373e30))
+
 ## [1.0.1](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.0...v1.0.1) (2021-03-29)
 
 
