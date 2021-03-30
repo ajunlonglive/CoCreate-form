@@ -1,15 +1,8 @@
 import observer from '@cocreate/observer'
 import ccutils from '@cocreate/utils';
-import {socket, crud, core} from '@cocreate/cocreatejs'
+import crud from '@cocreate/crud'
 import action from '@cocreate/action'
 import utils from "./utils" 
-
-
-
-// import crdt from '@cocreate/crdt'
-// import text from '@cocreate/text'
-
-
 
 const CoCreateForm = {
 	
@@ -89,7 +82,7 @@ const CoCreateForm = {
 	
 	__initEvent: function() {
 		const self = this;
-		socket.listen('createDocument', function(data) {
+		crud.listen('createDocument', function(data) {
 			const {metadata} = data;
 			self.__receivedDocumentId(data);
 			if (metadata == "createDocument-action") {
@@ -97,7 +90,7 @@ const CoCreateForm = {
 			}
 		})
 		
-		socket.listen('deleteDocument', function(data) {
+		crud.listen('deleteDocument', function(data) {
 			const {metadata} = data
 			if (metadata === "deleteDocument-action") {
 				//.dispatch End Action
@@ -338,7 +331,7 @@ const CoCreateForm = {
 }
 
 CoCreateForm.__init();
-core.registerInit(CoCreateForm.initElement, CoCreateForm);
+// core.registerInit(CoCreateForm.initElement, CoCreateForm);
 
 observer.init({ 
 	name: 'CoCreateForm', 
