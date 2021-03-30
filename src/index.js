@@ -1,6 +1,6 @@
 import observer from '@cocreate/observer'
 import ccutils from '@cocreate/utils';
-import {socket, crud, core} from '../../../CoCreateJS/src'
+import {socket, crud, core} from '@cocreate/cocreatejs'
 import action from '@cocreate/action'
 import utils from "./utils" 
 
