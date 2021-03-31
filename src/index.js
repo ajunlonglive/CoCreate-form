@@ -1,5 +1,5 @@
 import observer from '@cocreate/observer'
-import ccutils from '@cocreate/utils';
+import ccutils from '@cocreate/utils'
 import crud from '@cocreate/crud'
 import action from '@cocreate/action'
 import utils from "./utils" 
