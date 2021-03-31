@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.3...v1.0.4) (2021-03-31)
+
+
+### Bug Fixes
+
+* remove yarn.lock and package-lock.json ([e66c405](https://github.com/CoCreate-app/CoCreate-form/commit/e66c4057e0d013755ddfc93ffc8bf8f864128667))
+
 ## [1.0.3](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.2...v1.0.3) (2021-03-30)
 
 
