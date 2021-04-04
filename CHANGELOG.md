@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.4...v1.0.5) (2021-04-04)
+
+
+### Bug Fixes
+
+* update socket to socket-lient and crud to crud client" ([74d8b6a](https://github.com/CoCreate-app/CoCreate-form/commit/74d8b6a0c51a88a77c1822d85793c838b45cad12))
+
 ## [1.0.4](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.3...v1.0.4) (2021-03-31)
 
 
