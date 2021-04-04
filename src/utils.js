@@ -1,3 +1,4 @@
+import crud from '@cocreate/crud-client'
 
 const Utils = {
 
@@ -12,10 +13,9 @@ const Utils = {
 	},
 
 	setAttribute: function(form) {
+		const { collection, document_id, name } = crud.getAttr(form)
 		
-		const collection = form.getAttribute('data-collection') || ""; 
 		const dataRealTime = form.getAttribute('data-realtime');
-		const document_id = form.getAttribute('data-document_id') || "";
 		let elements = form.querySelectorAll('[name], [data-pass_to]')
 		
 					

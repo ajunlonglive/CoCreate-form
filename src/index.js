@@ -1,6 +1,6 @@
 import observer from '@cocreate/observer'
 import ccutils from '@cocreate/utils'
-import crud from '@cocreate/crud'
+import crud from '@cocreate/crud-client'
 import action from '@cocreate/action'
 import utils from "./utils" 
 
@@ -108,12 +108,11 @@ const CoCreateForm = {
 	},
 
 	__deleteDocumentAction: function(btn) {
-		const collection = btn.getAttribute('data-collection');
-		const document_id = btn.getAttribute('data-document_id')
+		const { collection, document_id } = crud.getAttr(btn)
 		if (ccutils.checkValue(collection) && ccutils.checkValue(document_id)) {
-			crud.deleteDocument({
-				'collection': collection, 
-				'document_id': document_id,
+			crud.deleteDocument({ 
+				collection, 
+				document_id, 
 				'metadata': 'deleteDocument-action' 
 			});
 			
@@ -124,7 +123,7 @@ const CoCreateForm = {
 	},
 	
 	__deleteDocumentsAction: function(btn) {
-		const collection = btn.getAttribute('data-collection');
+		const { collection, document_id } = crud.getAttr(btn)
 		const selector = btn.getAttribute('data-document_target');
 		if (!selector) return;
 		
@@ -132,8 +131,8 @@ const CoCreateForm = {
 		
 		if (utils.checkValue(collection)) {
 			selectedEls.forEach((el) => {
-				const document_id = el.getAttribute('data-document_id');
-				if (ccutils.checkValue(document_id)) {
+				const document_id =  el.getAttribute('data-document_id');
+				if (crud.checkValue(document_id)) {
 					crud.deleteDocument({
 						'collection': collection,
 						'document_id': document_id,
@@ -187,22 +186,16 @@ const CoCreateForm = {
 		let request_document_id = false;
 		for (var i = 0; i < elements.length; i++) {
 			let el = elements[i];
-			const data_document_id = el.getAttribute('data-document_id');
+			const { document_id, name } = crud.getAttr(el)
+			const is_save = crud.isSaveAttr(el)
+			if (!is_save) continue;
 
-			if (el.getAttribute('data-save_value') == 'false') {
-				continue;
-			}
-
-			if (!data_document_id) {
-				if (el.getAttribute('name')) {
-					request_document_id = true;
-				}
+			if (!crud.checkValue(document_id)) {
+				if (name) request_document_id = true;
 				continue;
 			}
 			
-			if (input.isUsageY(el)) {
-				continue;
-			}
+			if (crud.isCRDT(el)) continue;
 
 			if (utils.isTemplateInput(el)) return;
 
@@ -224,13 +217,10 @@ const CoCreateForm = {
 	},
 	
 	__requestDocumentId: function(element, nameAttr = "name", value = null) {
-		const collection = element.getAttribute('data-collection')
-		const name = element.getAttribute(nameAttr)
-		
+		const { collection, name }  = crud.getAttr(element)
 		if (!collection || !name) return 
 
 		const request_id = ccutils.generateUUID();
-
 		element.setAttribute(this.requestAttr, request_id);
 		
 		crud.createDocument({
