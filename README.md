@@ -9,7 +9,7 @@ A simple form component in vanilla javascript. Easily configured using HTML5 dat
 
 ![CoCreate-form](https://cdn.cocreate.app/docs/CoCreate-form.gif)
 
-## [Docs & Demo](https://cocreate.app/docs/clone)
+## [Docs & Demo](https://cocreate.app/docs/form)
 
 For a complete guide and working demo refer to the [doumentation](https://cocreate.app/docs/form)
 
