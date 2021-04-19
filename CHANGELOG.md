@@ -1,3 +1,11 @@
+## [1.0.8](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.7...v1.0.8) (2021-04-19)
+
+
+### Bug Fixes
+
+* ci and build process ([b932281](https://github.com/CoCreate-app/CoCreate-form/commit/b932281c864cd63087264c19c1547c3dcbed1655))
+* npm publish and cdn deployment ([a2a67dd](https://github.com/CoCreate-app/CoCreate-form/commit/a2a67dd3a59b970be3916e1b0bb23b5329c68366))
+
 ## [1.0.7](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.6...v1.0.7) (2021-04-15)
 
 
