@@ -1,3 +1,10 @@
+## [1.0.11](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.10...v1.0.11) (2021-04-23)
+
+
+### Bug Fixes
+
+* readme and documentation. Removed securitykeys ([11c0c91](https://github.com/CoCreate-app/CoCreate-form/commit/11c0c91b5e380a9fadd10ff70f36fcf1aabdf254))
+
 ## [1.0.10](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.9...v1.0.10) (2021-04-19)
 
 
