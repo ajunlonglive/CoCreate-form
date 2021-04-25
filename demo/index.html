@@ -5,20 +5,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="https://cdn.cocreate.app/favicon.ico" type="image/ico" sizes="16x16">
-    <title>Form | CoCreate</title>
-  
-    <link rel="stylesheet" href="https://server.cocreate.app/CoCreate-yjs/codemirror/node_modules/codemirror/addon/fold/foldgutter.css" type="text/css" />
-    <link rel="stylesheet" href="https://server.cocreate.app/CoCreate-yjs/codemirror/node_modules/codemirror/addon/scroll/simplescrollbars.css" type="text/css" />
-    <link rel=stylesheet href="https://codemirror.net/lib/codemirror.css"  async defer>
-  
-    <link rel=stylesheet href="https://server.cocreate.app/CoCreate-yjs/quill/quill.css" async defer>
-    <link rel=stylesheet href="//cdn.quilljs.com/1.3.6/quill.snow.css" async defer>
-  
-    <link rel="stylesheet" href="https://cdn.cocreate.app/latest/CoCreate.min.css" type="text/css"/>
     
-       
-  
+    <link rel="icon" href="https://cdn.cocreate.app/favicon.ico" type="image/ico" sizes="16x16">
+    <title> Form | CoCreateJS </title>
+    
   </head>
   <body class="padding:20px">
   
@@ -32,20 +22,9 @@
       <input type="time" class="floating-label" placeholder="Time" name="time" id="time"  data-document_id="5e4802ce3ed96d38e71fc7e5">
       <input type="datetime-local" class="floating-label" placeholder="Date Time" name="date-time" id="date-time"  data-document_id="5e4802ce3ed96d38e71fc7e5">
       <textarea class="floating-label" data-realtime="" placeholder="Text Area" name='text_area' id="text_area"  data-document_id="5e4802ce3ed96d38e71fc7e5"></textarea>
-      <!--<div class="codemirror" data-realtime="" data-collection="module_activity" placeholder="Text Area" name='saveFetch1' data-document_id="5e78cacb1c1bd413d9714d9a"></div>-->
-      
-    	<!--<div class="saveFetch" data-realtime="" data-collection="module_activity"  data-document_id="5e78cacb1c1bd413d9714d9a" name='saveFetch1' data-pass_id="me1234">-->
-    		 
-    	<!--	<div class="sortable padding-top:50px" data-group_name="test">-->
-    	<!--		<div class="text-align-center bg-light-gray"><input data-collection="module_activity" data-realtime="true" data-document_id="5e78cacb1c1bd413d9714d9a" name="text" class="floating-label"></div>-->
-    	<!--		<div class="text-align-center bg-light-gray margin-top:10px">Test - 2 </div>-->
-    	<!--		<div class="text-align-center bg-light-gray margin-top:10px">Test - 3 </div>-->
-    	<!--	</div><!-- sortable project -->-->
-    
-    	<!--</div><!-- saveFetch -->-->
   
   
-  ------------ Multiple Documents ------------
+  <!-------------- Multiple Documents -------------->
   
       <div data-realtime="true" data-save_value="false" data-collection="test" data-document_id="5e9531b3a762440eed55c2ed"  name="selectField1" class="select--field sortable floating-label" placeholder="Select 1" data-limit_selectable="3" multiple>
         <input class="template-search" placeholder="Search" data-template_id="selectable1">
@@ -66,7 +45,8 @@
         </ul>
       </div>
   <!--5f08b722a588c11bf8ead495-->
-  ------------ Multiple Options ------------
+  
+  <!-------------- Multiple Options -------------->
       <div data-realtime="true" data-collection="test" data-document_id="5e9531b3a762440eed55c2ed"  name="selectField2" class="select--field sortable floating-label" placeholder="Select 2" multiple>
         <input class="option-search" placeholder="Search">
         <ul class="selectable--list cocreate-scroll">
@@ -82,7 +62,7 @@
         </ul>
       </div>
   
-  ------------ Single  Document ------------
+  <!-------------- Single  Document -------------->
       <div class="select--field sortable floating-label" data-realtime="" data-collection="test" name="selectField3" data-document_id="5e8ff00e8c3af32574df80cb" placeholder="Select 3">
         <input class="template-search" placeholder="Search">
         <ul data-fetch_collection="users" data-template_id="selectable3" data-pass_to="me1234" class="template-wrapper selectable--list  cocreate-scroll">
@@ -93,7 +73,7 @@
         </ul>
       </div>
   
-  ------------ Single  Options ------------
+  <!-------------- Single  Options -------------->
       <div class="select--field sortable floating-label" name="selectField4" data-collection="test" data-document_id="5e8ff00e8c3af32574df80cb" placeholder="Select 4">
         <input class="option-search" placeholder="Search">
         <ul class="selectable--list  cocreate-scroll">
@@ -109,7 +89,7 @@
         </ul>
       </div>
   
-  ------------ Fetch array string ------------
+  <!-------------- Fetch array string -------------->
       <div class="select--field sortable floating-label" name="selectField5" data-collection="test" data-document_id="5e8ff00e8c3af32574df80cb"  placeholder="Select 5" data-limit_selectable="3" multiple>
         <input class="option-search" placeholder="Search" data-template_id="tempplate5">
         <ul data-fetch_collection="test" data-fetch_document_id="5e8ff00e8c3af32574df80cb" data-fetch_name="selectField2" id="array01"
@@ -121,7 +101,7 @@
         </ul>
       </div>
   
-  ------------ Fetch array _id ------------
+  <!-------------- Fetch array _id -------------->
       <div class="select--field sortable floating-label" name="selectField6" data-collection="test" data-document_id="5e8ff00e8c3af32574df80cb"  placeholder="Select 6" data-limit_selectable="3" multiple>
         <input class="option-search" placeholder="Search" data-template_id="tempplate6">
         <ul data-fetch_collection="test" data-fetch_document_id="5e8ff00e8c3af32574df80cb" data-fetch_name="selectField1" id="array02"
@@ -134,7 +114,7 @@
         </ul>
       </div>
   
-  ------------ Collection Select ------------
+  <!-------------- Collection Select -------------->
       <div class="select--field sortable floating-label" data-collection="test" data-document_id="5e8ff00e8c3af32574df80cb" name="selectField7" placeholder="Select 7" multiple>
         <input class="option-search" placeholder="Search">
         <ul data-fetch_collection_list="true" data-template_id="collection-list" class="template-wrapper selectable--list cocreate-scroll" data-pass_to="me1234">
@@ -157,7 +137,9 @@
       }
     </script>
    
-    <script src="https://cdn.cocreate.app/latest/CoCreate.min.js" ></script>
+   
+    <!-- CoCreate JS CDN -->
+    <script src="https://cdn.cocreate.app/form/latest/CoCreate-form.min.js" ></script>
 
   </body>
 </html>
