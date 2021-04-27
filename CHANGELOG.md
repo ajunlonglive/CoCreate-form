@@ -1,3 +1,10 @@
+## [1.0.13](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.12...v1.0.13) (2021-04-27)
+
+
+### Bug Fixes
+
+* add host in docs ([d6ced6b](https://github.com/CoCreate-app/CoCreate-form/commit/d6ced6b1467f35f5460524e3e94e6a6e6d7dcb69))
+
 ## [1.0.12](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.11...v1.0.12) (2021-04-27)
 
 
