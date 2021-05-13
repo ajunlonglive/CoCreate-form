@@ -21,20 +21,20 @@
   
   <!-------------- Multiple Documents -------------->
   
-      <div data-realtime="true" data-save_value="false" data-collection="test" data-document_id="5e9531b3a762440eed55c2ed"  name="selectField1" class="select--field sortable floating-label" placeholder="Select 1" data-limit_selectable="3" multiple>
-        <input class="template-search" placeholder="Search" data-template_id="selectable1">
-          <ul data-fetch_collection="users" data-template_id="selectable1" data-pass_to="me1234" class="template-wrapper selectable--list cocreate-scroll">
-    				<li class="selectable template" data-pass_id="me1234">
+      <div data-realtime="true" data-save_value="false" data-collection="test" data-document_id="5e9531b3a762440eed55c2ed"  name="selectField1" class="select--field sortable floating-label" placeholder="Select 1" data-limit_option="3" multiple>
+        <input class="template-search" placeholder="Search" data-template_id="option1">
+          <ul data-fetch_collection="users" data-template_id="option1" data-pass_to="me1234" class="template-wrapper options overflow:overlay">
+    				<li class="option template" data-pass_id="me1234">
     				  <h3 data-collection="users" data-document_id="" name="name" data-pass_id="me1234">First name</h3>
     				  <h5 data-collection="users" data-document_id="" name="_id" data-pass_id="me1234"></h5>
     				</li>
         </ul>
       </div>
       
-      <div data-realtime="true" data-save_value="false" data-collection="test" data-document_id="5e9531b3a762440eed55c2ed"  name="selectField1" class="select--field sortable floating-label" placeholder="Select 1" data-limit_selectable="3" multiple>
+      <div data-realtime="true" data-save_value="false" data-collection="test" data-document_id="5e9531b3a762440eed55c2ed"  name="selectField1" class="select--field sortable floating-label" placeholder="Select 1" data-limit_option="3" multiple>
         <input class="template-search" placeholder="Search" data-template_id="selecttable-jin">
-          <ul data-fetch_collection="users" data-template_id="selecttable-jin" data-fetch_value="5f08b722a588c11bf8ead495" data-fetch_value_type="array" data-pass_to="me1234" class="template-wrapper selectable--list cocreate-scroll">
-    				<li class="selectable template" data-pass_id="me1234">
+          <ul data-fetch_collection="users" data-template_id="selecttable-jin" data-fetch_value="5f08b722a588c11bf8ead495" data-fetch_value_type="array" data-pass_to="me1234" class="template-wrapper options overflow:overlay">
+    				<li class="option template" data-pass_id="me1234">
     				  <h5 data-collection="users" data-document_id="" name="name" data-pass_id="me1234"></h5>
     				</li>
         </ul>
@@ -44,14 +44,14 @@
   <!-------------- Multiple Options -------------->
       <div data-realtime="true" data-collection="test" data-document_id="5e9531b3a762440eed55c2ed"  name="selectField2" class="select--field sortable floating-label" placeholder="Select 2" multiple>
         <input class="option-search" placeholder="Search">
-        <ul class="selectable--list cocreate-scroll">
-  				<li class="selectable" data-value="value 1">
+        <ul class="options overflow:overlay">
+  				<li class="option" data-value="value 1">
   				  <h3 >value 1</h3>
   				</li>
-  				<li class="selectable" data-value="value 2">
+  				<li class="option" data-value="value 2">
   				  <h3 >value 2</h3>
   				</li>
-  				<li class="selectable" data-value="value 3">
+  				<li class="option" data-value="value 3">
   				  <h3 >value 3</h3>
   				</li>
         </ul>
@@ -60,8 +60,8 @@
   <!-------------- Single  Document -------------->
       <div class="select--field sortable floating-label" data-realtime="" data-collection="test" name="selectField3" data-document_id="5e8ff00e8c3af32574df80cb" placeholder="Select 3">
         <input class="template-search" placeholder="Search">
-        <ul data-fetch_collection="users" data-template_id="selectable3" data-pass_to="me1234" class="template-wrapper selectable--list  cocreate-scroll">
-  				<li class="selectable template" data-value="" data-pass_id="me1234">
+        <ul data-fetch_collection="users" data-template_id="option3" data-pass_to="me1234" class="template-wrapper options  overflow:overlay">
+  				<li class="option template" data-value="" data-pass_id="me1234">
   				  <h3 data-document_id="" name="name" data-pass_id="me1234" >First name</h3>
   				  <h5 data-document_id="" name="name" data-pass_id="me1234" ></h5>
   				</li>
@@ -71,38 +71,38 @@
   <!-------------- Single  Options -------------->
       <div class="select--field sortable floating-label" name="selectField4" data-collection="test" data-document_id="5e8ff00e8c3af32574df80cb" placeholder="Select 4">
         <input class="option-search" placeholder="Search">
-        <ul class="selectable--list  cocreate-scroll">
-  				<li class="selectable"  data-value="value 1">
+        <ul class="options  overflow:overlay">
+  				<li class="option"  data-value="value 1">
   				  <h3 >value 1</h3>
   				</li>
-  				<li class="selectable"  data-value="value 2">
+  				<li class="option"  data-value="value 2">
   				  <h3 >value 2</h3>
   				</li>
-  				<li class="selectable"  data-value="value 3">
+  				<li class="option"  data-value="value 3">
   				  <h3 >value 3</h3>
   				</li>
         </ul>
       </div>
   
   <!-------------- Fetch array string -------------->
-      <div class="select--field sortable floating-label" name="selectField5" data-collection="test" data-document_id="5e8ff00e8c3af32574df80cb"  placeholder="Select 5" data-limit_selectable="3" multiple>
+      <div class="select--field sortable floating-label" name="selectField5" data-collection="test" data-document_id="5e8ff00e8c3af32574df80cb"  placeholder="Select 5" data-limit_option="3" multiple>
         <input class="option-search" placeholder="Search" data-template_id="tempplate5">
         <ul data-fetch_collection="test" data-fetch_document_id="5e8ff00e8c3af32574df80cb" data-fetch_name="selectField2" id="array01"
-            data-template_id="template5" data-pass_to="me1234" class="template-wrapper-array selectable--list cocreate-scroll"
+            data-template_id="template5" data-pass_to="me1234" class="template-wrapper-array options overflow:overlay"
             >
-    			<li class="template selectable" data-pass_id="me1234">
+    			<li class="template option" data-pass_id="me1234">
     			  <h3 data-pass_id="me1234" raw>Organization Name</h3>
     			</li>
         </ul>
       </div>
   
   <!-------------- Fetch array _id -------------->
-      <div class="select--field sortable floating-label" name="selectField6" data-collection="test" data-document_id="5e8ff00e8c3af32574df80cb"  placeholder="Select 6" data-limit_selectable="3" multiple>
+      <div class="select--field sortable floating-label" name="selectField6" data-collection="test" data-document_id="5e8ff00e8c3af32574df80cb"  placeholder="Select 6" data-limit_option="3" multiple>
         <input class="option-search" placeholder="Search" data-template_id="tempplate6">
         <ul data-fetch_collection="test" data-fetch_document_id="5e8ff00e8c3af32574df80cb" data-fetch_name="selectField1" id="array02"
-          data-template_id="template6" data-pass_to="me1234" class="template-wrapper-array selectable--list cocreate-scroll"
+          data-template_id="template6" data-pass_to="me1234" class="template-wrapper-array options overflow:overlay"
             >
-    			<li class="template selectable" data-pass_id="me1234">
+    			<li class="template option" data-pass_id="me1234">
     			  <h3 data-collection="users" data-document_id="" name="name" data-pass_id="me1234" >Organization Name</h3>
     			  <h5 data-collection="users" data-document_id="" name="_id" data-pass_id="me1234" >id</h5>
     			</li>
@@ -112,8 +112,8 @@
   <!-------------- Collection Select -------------->
       <div class="select--field sortable floating-label" data-collection="test" data-document_id="5e8ff00e8c3af32574df80cb" name="selectField7" placeholder="Select 7" multiple>
         <input class="option-search" placeholder="Search">
-        <ul data-fetch_collection_list="true" data-template_id="collection-list" class="template-wrapper selectable--list cocreate-scroll" data-pass_to="me1234">
-  				<li class="selectable template" data-template_id="collection-list" data-value="" data-pass_id="me1234" >
+        <ul data-fetch_collection_list="true" data-template_id="collection-list" class="template-wrapper options overflow:overlay" data-pass_to="me1234">
+  				<li class="option template" data-template_id="collection-list" data-value="" data-pass_id="me1234" >
   				  <a data-pass_to="document-select" data-pass_collection="" data-pass_id="me1234" >
   				    <h5 name="name" data-pass_id="me1234" raw></h5>
   				  </a>
