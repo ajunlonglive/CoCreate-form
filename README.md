@@ -1,6 +1,6 @@
 # CoCreate-form
 
-A simple form component in vanilla javascript. Easily configured using HTML5 data-attributes and/or JavaScript API. Take it for a spin in our [playground!](https://cocreate.app/docs/form)
+A JavaScript API for adding custom components to a CoCreate form. Components added work in unison and controls CRUD capabilities as a group. Configurable using data-attributes and/or JavaScript API. Take it for a spin in our [playground!](https://cocreate.app/docs/form)
 
 ![GitHub file size in bytes](https://img.shields.io/github/size/CoCreate-app/CoCreate-form/dist/CoCreate-form.min.js?label=minified%20size&style=for-the-badge)
 ![GitHub latest release](https://img.shields.io/github/v/release/CoCreate-app/CoCreate-form?style=for-the-badge)
