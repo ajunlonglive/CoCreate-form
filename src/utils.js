@@ -16,6 +16,7 @@ const Utils = {
 		const { collection, document_id, name } = crud.getAttr(form)
 		
 		const dataRealTime = form.getAttribute('data-realtime');
+		const is_flat = form.getAttribute('data-flat')
 		let elements = form.querySelectorAll('[name], [data-pass_to]')
 		
 					
@@ -42,6 +43,10 @@ const Utils = {
 			}
 			if (!el.hasAttribute("data-document_id") && document_id != null) {
 				el.setAttribute('data-document_id', document_id)
+			}
+			
+			if (!el.hasAttribute('data-flat') && is_flat != null) {
+				el.setAttribute('data-flat', is_flat);
 			}
 
 		})

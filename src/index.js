@@ -3,6 +3,7 @@ import ccutils from '@cocreate/utils'
 import crud from '@cocreate/crud-client'
 import action from '@cocreate/action'
 import utils from "./utils" 
+import uuid from '@cocreate/uuid'
 
 const CoCreateForm = {
 	
@@ -220,7 +221,7 @@ const CoCreateForm = {
 		const { collection, name }  = crud.getAttr(element)
 		if (!collection || !name) return 
 
-		const request_id = ccutils.generateUUID();
+		const request_id = uuid.generate();
 		element.setAttribute(this.requestAttr, request_id);
 		
 		crud.createDocument({
@@ -249,7 +250,7 @@ const CoCreateForm = {
 				!collections.includes(collection) && 
 				(!self.checkID(el, 'data-document_id') && !self.checkID(el, 'data-pass_document_id'))
 			) {
-				const request_id = ccutils.generateUUID();
+				const request_id = uuid.generate();
 				collections.push(collection);
 
 				el.setAttribute(this.requestAttr, request_id);
