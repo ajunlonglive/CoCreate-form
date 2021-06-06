@@ -1,3 +1,10 @@
+## [1.0.15](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.14...v1.0.15) (2021-06-06)
+
+
+### Bug Fixes
+
+* update packages, add uuid, add data-parse to demos ([0c1eaca](https://github.com/CoCreate-app/CoCreate-form/commit/0c1eaca4e4eecba83aaa49fa927db736e2167365))
+
 ## [1.0.14](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.13...v1.0.14) (2021-05-08)
 
 
