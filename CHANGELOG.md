@@ -1,3 +1,10 @@
+## [1.0.16](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.15...v1.0.16) (2021-06-06)
+
+
+### Bug Fixes
+
+* add cocreate-uuid ([033db3a](https://github.com/CoCreate-app/CoCreate-form/commit/033db3ab7e98a5cf7c7182a47ee2537db21a5eca))
+
 ## [1.0.15](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.14...v1.0.15) (2021-06-06)
 
 
