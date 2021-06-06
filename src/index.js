@@ -184,7 +184,9 @@ const CoCreateForm = {
 		const selectors = this.selectors || [];
 		const elements = form.querySelectorAll(selectors.join(','));
 		
+		// Deprecaite due to async await crud
 		let request_document_id = false;
+	
 		for (var i = 0; i < elements.length; i++) {
 			let el = elements[i];
 			const { document_id, name } = crud.getAttr(el)
@@ -192,7 +194,10 @@ const CoCreateForm = {
 			if (!is_save) continue;
 
 			if (!crud.checkValue(document_id)) {
+				
+				// Deprecaite due to async await crud
 				if (name) request_document_id = true;
+				
 				continue;
 			}
 			
@@ -208,15 +213,19 @@ const CoCreateForm = {
 				}});
 			el.dispatchEvent(new_event);  
 		}
+		// depreciated
 		if (request_document_id) {
+			// should awiat
 			this.requestDocumentIdOfForm(form)
 		}
 		
 		document.dispatchEvent(new CustomEvent('savedDocument', {
 			detail: {}
 		}))
+		// fire each callback with an element in the form and send the list of elements to process for saving
 	},
 	
+	// Deprecaite due to async await crud
 	__requestDocumentId: function(element, nameAttr = "name", value = null) {
 		const { collection, name }  = crud.getAttr(element)
 		if (!collection || !name) return 
@@ -250,25 +259,33 @@ const CoCreateForm = {
 				!collections.includes(collection) && 
 				(!self.checkID(el, 'data-document_id') && !self.checkID(el, 'data-pass_document_id'))
 			) {
+				// deprciate
 				const request_id = uuid.generate();
+				
 				collections.push(collection);
 
+				// Deprciate
 				el.setAttribute(this.requestAttr, request_id);
-				//. get Data
-				
+
+				// Depreciate we dont need to get values. we creatDocumentwith empty values
 				let data = utils.getFormData(form, "", collection);
 				
 				/* FixME Create Document request */	
+				
+				// let document_id = await crud.createDocument({
 				crud.createDocument({
 					"collection": collection,
 					"element": request_id,
 					'data': data,
 					"metadata": "",
 				})
+				
+				// el.setDocumentId(form)
 			}
 		}
 	},
-
+	
+	// Deprecaite due to async await crud
 	__setNewIdProcess: function(element, document_id, pass) {
 		if (!element) return;
 		
@@ -295,6 +312,7 @@ const CoCreateForm = {
 
 	},
 	
+	// Deprecaite due to async await crud
 	__receivedDocumentId: function(data) {
 		if (!data['document_id']) {
 			return;

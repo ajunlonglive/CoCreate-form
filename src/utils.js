@@ -53,7 +53,6 @@ const Utils = {
 	},
 
 	checkFormValidate: function(form) {
-		
 		if (typeof CoCreate.unique !== 'undefined') {
 			return CoCreate.unique.checkValidate(form)
 		}
@@ -73,7 +72,8 @@ const Utils = {
 		
 		return false;
 	},
-	
+
+	// Depreciate each component handles there own values
 	getFormData: function(form, document_id, collection) {
 		let data = {};
 		if (!collection) return {}
@@ -91,33 +91,8 @@ const Utils = {
 		})
 		return data;
 	},
-	// getFormData: function(form, selectors) {
-	// 	const self = this; 
-	// 	const elements = form.querySelectorAll(selectors.join(','));
-		
-	// 	let request_document_id = false;
-	// 	let dataList = [];
-		
-		
-	// 	elements.forEach(el => {
-	// 		let collection = el.getAttribute('data-collection')
-	// 		let document_id = el.getAttribute('data-document_id')
-	// 		let name = el.getAttribute('name')
-			
-	// 		if (el.getAttribute('data-save_value') == 'false') {
-	// 			return;
-	// 		}
-			
-	// 		if (!document_id && name) {
-	// 			request_document_id = true;
-	// 			return;
-	// 		}
-			
-	// 		let data = dataList.find(d => d.collection == collection && d.document_id == document_id);
-				
-	// 	})
-	// },
-	
+
+	// Deprecaite due to async await crud.. form is known _id set using await
 	getParents: function(element, selector = "form") {
 		if (!Element.prototype.matches) {
 			Element.prototype.matches =	Element.prototype.matchesSelector || Element.prototype.mozMatchesSelector || Element.prototype.msMatchesSelector ||	Element.prototype.oMatchesSelector ||	Element.prototype.webkitMatchesSelector ||
@@ -135,6 +110,7 @@ const Utils = {
 		return null;
 	},
 	
+	// Deprecaite due to async await crud
 	setDocumentIDOfElement: function(element, document_id) {
 		let old_document_id = element.getAttribute('data-document_id');
 		if (!old_document_id || old_document_id == "" || old_document_id == "pending") {
