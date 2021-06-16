@@ -184,7 +184,7 @@ const CoCreateForm = {
 		const selectors = this.selectors || [];
 		const elements = form.querySelectorAll(selectors.join(','));
 		
-		// Deprecaite due to async await crud
+		// ToDo: Deprecaite due to async await crud
 		let request_document_id = false;
 	
 		for (var i = 0; i < elements.length; i++) {
@@ -195,7 +195,7 @@ const CoCreateForm = {
 
 			if (!crud.checkValue(document_id)) {
 				
-				// Deprecaite due to async await crud
+				// ToDo: Deprecaite due to async await crud
 				if (name) request_document_id = true;
 				
 				continue;
@@ -213,9 +213,9 @@ const CoCreateForm = {
 				}});
 			el.dispatchEvent(new_event);  
 		}
-		// depreciated
+		// ToDo: Depreciate can request requestDocumentIdOfForm directly and await
 		if (request_document_id) {
-			// should awiat
+			// ToDo: this function should awiat before continuing
 			this.requestDocumentIdOfForm(form)
 		}
 		
@@ -225,7 +225,7 @@ const CoCreateForm = {
 		// fire each callback with an element in the form and send the list of elements to process for saving
 	},
 	
-	// Deprecaite due to async await crud
+	// ToDo: Deprecaite due to async await crud
 	__requestDocumentId: function(element, nameAttr = "name", value = null) {
 		const { collection, name }  = crud.getAttr(element)
 		if (!collection || !name) return 
@@ -259,19 +259,18 @@ const CoCreateForm = {
 				!collections.includes(collection) && 
 				(!self.checkID(el, 'data-document_id') && !self.checkID(el, 'data-pass_document_id'))
 			) {
-				// deprciate
+				// ToDo: Deprciate
 				const request_id = uuid.generate();
 				
 				collections.push(collection);
 
-				// Deprciate
+				// ToDo: Deprciate
 				el.setAttribute(this.requestAttr, request_id);
 
-				// Depreciate we dont need to get values. we creatDocumentwith empty values
+				// ToDo: Depreciate we dont need to get values. we creatDocumentwith empty values
 				let data = utils.getFormData(form, "", collection);
 				
 				/* FixME Create Document request */	
-				
 				// let document_id = await crud.createDocument({
 				crud.createDocument({
 					"collection": collection,
@@ -280,12 +279,13 @@ const CoCreateForm = {
 					"metadata": "",
 				})
 				
+				// ToDo: Use setDocument_id function
 				// el.setDocumentId(form)
 			}
 		}
 	},
 	
-	// Deprecaite due to async await crud
+	// ToDo: Deprecaite due to async await crud
 	__setNewIdProcess: function(element, document_id, pass) {
 		if (!element) return;
 		
@@ -312,7 +312,7 @@ const CoCreateForm = {
 
 	},
 	
-	// Deprecaite due to async await crud
+	// ToDo: Deprecaite due to async await crud
 	__receivedDocumentId: function(data) {
 		if (!data['document_id']) {
 			return;

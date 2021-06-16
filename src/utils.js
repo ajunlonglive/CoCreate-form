@@ -73,7 +73,7 @@ const Utils = {
 		return false;
 	},
 
-	// Depreciate each component handles there own values
+	// ToDo: Depreciate each component handles there own values
 	getFormData: function(form, document_id, collection) {
 		let data = {};
 		if (!collection) return {}
@@ -92,7 +92,7 @@ const Utils = {
 		return data;
 	},
 
-	// Deprecaite due to async await crud.. form is known _id set using await
+	// ToDo: Deprecaite due to async await crud.. form is known _id set using await
 	getParents: function(element, selector = "form") {
 		if (!Element.prototype.matches) {
 			Element.prototype.matches =	Element.prototype.matchesSelector || Element.prototype.mozMatchesSelector || Element.prototype.msMatchesSelector ||	Element.prototype.oMatchesSelector ||	Element.prototype.webkitMatchesSelector ||
@@ -110,7 +110,7 @@ const Utils = {
 		return null;
 	},
 	
-	// Deprecaite due to async await crud
+	// ToDo: Deprecaite due to async await crud
 	setDocumentIDOfElement: function(element, document_id) {
 		let old_document_id = element.getAttribute('data-document_id');
 		if (!old_document_id || old_document_id == "" || old_document_id == "pending") {
