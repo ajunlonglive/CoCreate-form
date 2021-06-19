@@ -8,28 +8,31 @@ import uuid from '@cocreate/uuid'
 const CoCreateForm = {
 	
 	requestAttr: "data-document_request",
-	selectors: [],
+	selectors: [], 	// ToDo: Depreciate we will no longer use selector... we will let the callback query selector
 	modules: [],
 
 	init: function({name, selector, callback}) {
 		
 		this.modules.push({
 			name,
-			selector,
+			selector, // ToDo: Depreciate we will no longer use selector... we will let the callback query selector
 			callback
 		});
 		
+		// ToDo: Depreciate we will no longer use selector... we will let the callback query selector
 		if (selector) {
 			this.selectors.push(selector);
 		}
 	},
 	
+	// ToDo: Depreciate we will no longer use selector... we will let the callback query select
 	get: function() {
 		return {
 			selectors: this.selectors
 		}
 	},
 	
+	// ToDO: Depreciate because handeled by setDocumentId
 	checkID: function(element, attr = "data-document_id") {
 		let document_id = element.getAttribute(attr) || "";
 		if (document_id === "" || document_id === "pending" || !ccutils.checkValue(document_id)) {
@@ -38,17 +41,18 @@ const CoCreateForm = {
 		return true;
 	},
 	
-	request: function({form, element, nameAttr, value}) {
+	// ToDO: Depreciate because handeled by requestDocumentIdOfForm
+	request: async function({form, element, nameAttr, value}) {
 		
 		if (!form && element) {
 			form = element.closest('form');
 		}
 		
 		if (form) {
-			this.__requestDocumentIdOfForm(form)
+			await this.__requestDocumentIdOfForm(form)
 		} else if (element) {
 			nameAttr = nameAttr || "name"
-			this.__requestDocumentId(element, nameAttr, value);
+			await this.__requestDocumentId(element, nameAttr, value);
 		}
 		
 	},
@@ -83,20 +87,23 @@ const CoCreateForm = {
 	
 	__initEvent: function() {
 		const self = this;
-		crud.listen('createDocument', function(data) {
-			const {metadata} = data;
-			self.__receivedDocumentId(data);
-			if (metadata == "createDocument-action") {
-				//. dispatch EndAction
-			}
-		})
+		// crud.listen('createDocument', function(data) {
+		// 	const {metadata} = data;
+		// 	self.__receivedDocumentId(data);
+		// 	if (metadata == "createDocument-action") {
+		// 		//. dispatch EndAction
+		// 	}
+		// })
 		
+		// ToDo: Depreciate due to await
 		crud.listen('deleteDocument', function(data) {
 			const {metadata} = data
 			if (metadata === "deleteDocument-action") {
 				//.dispatch End Action
 			}
 		})	
+		
+		// ToDo: Depreciate can request requestDocumentIdOfForm directly and await
 		document.addEventListener('clicked-submitBtn', function(event) {
 			const {element} = event.detail;
 
@@ -110,13 +117,17 @@ const CoCreateForm = {
 
 	__deleteDocumentAction: function(btn) {
 		const { collection, document_id } = crud.getAttr(btn)
+		
+		// ToDo: why do we need to check value 
 		if (ccutils.checkValue(collection) && ccutils.checkValue(document_id)) {
+
 			crud.deleteDocument({ 
 				collection, 
 				document_id, 
 				'metadata': 'deleteDocument-action' 
 			});
 			
+			// ToDo: Depreciate due to await
 			document.dispatchEvent(new CustomEvent('deletedDocument', {
 				detail: {}
 			}))
@@ -173,6 +184,7 @@ const CoCreateForm = {
 		})
 	},
 	
+	// ToDo: will be replace with function below but will maintain the same name
 	__saveDocumentAction: function(btn) {
 		const form = btn.closest("form")
 
@@ -225,22 +237,40 @@ const CoCreateForm = {
 		// fire each callback with an element in the form and send the list of elements to process for saving
 	},
 	
+	__saveDocument: async function(btn) {
+		const form = btn.closest("form")
+
+		if (!utils.checkFormValidate(form)) {
+			alert('Values are not unique');
+			return;
+		}
+		
+		await this.requestDocumentIdOfForm(form);
+
+		self.modules.forEach(({callback}) => {
+			callback.call(null, element);
+		})		
+	},
+	
 	// ToDo: Deprecaite due to async await crud
-	__requestDocumentId: function(element, nameAttr = "name", value = null) {
+	__requestDocumentId: async function(element, nameAttr = "name", value = null) {
 		const { collection, name }  = crud.getAttr(element)
 		if (!collection || !name) return 
 
 		const request_id = uuid.generate();
 		element.setAttribute(this.requestAttr, request_id);
 		
-		crud.createDocument({
+		let response_data = await crud.createDocument({
 			"collection": collection,
 			"element": request_id,
 			"metadata": "",
 		})
+		if (response_data) {
+			this.__receivedDocumentId(response_data)
+		}
 	},
 		
-	__requestDocumentIdOfForm: function (form) {
+	__requestDocumentIdOfForm: async function (form) {
 		
 		let self = this;
 		let elemens = form.querySelectorAll('[name], [data-pass_to]')
@@ -259,30 +289,53 @@ const CoCreateForm = {
 				!collections.includes(collection) && 
 				(!self.checkID(el, 'data-document_id') && !self.checkID(el, 'data-pass_document_id'))
 			) {
-				// ToDo: Deprciate
-				const request_id = uuid.generate();
-				
+
 				collections.push(collection);
 
-				// ToDo: Deprciate
-				el.setAttribute(this.requestAttr, request_id);
-
-				// ToDo: Depreciate we dont need to get values. we creatDocumentwith empty values
-				let data = utils.getFormData(form, "", collection);
-				
 				/* FixME Create Document request */	
 				// let document_id = await crud.createDocument({
-				crud.createDocument({
+				let response_data = await crud.createDocument({
 					"collection": collection,
-					"element": request_id,
-					'data': data,
+					'data': {},
 					"metadata": "",
 				})
 				
-				// ToDo: Use setDocument_id function
-				// el.setDocumentId(form)
+				if (response_data) {
+					this.setDocumentId(form, response_data)
+				}
+				
 			}
 		}
+	},
+	
+	setDocumentId: function(form, data) {
+		// this.__requestDocumentIdOfForm(form)
+		if (!data['document_id']) {
+			return;
+		}
+		let self = this;
+		const collection = data['collection'];
+		const id = data['document_id']
+		
+		if (form && id) {
+			// this is needed
+			const elements = form.querySelectorAll(`[data-collection=${collection}], [data-pass_collection=${collection}]`)
+			
+			// TODO: make line 301 and 302 continue or return
+			elements.forEach(function(el) {
+				if (el.hasAttribute('name') && !this.checkID(el)) {
+					el.setAttribute('data-document_id', id);
+			  	}
+			
+			  	if (el.hasAttribute('data-pass_to') && !this.checkID(el, 'data-pass_document_id')) {
+					el.setAttribute('data-pass_document_id', id);
+
+					if (el.parentNode.classList.contains('submitBtn')) {
+						el.click();
+					}
+			  	}
+			})
+		} 
 	},
 	
 	// ToDo: Deprecaite due to async await crud
@@ -324,15 +377,19 @@ const CoCreateForm = {
 		const form = (element.tagName === "FORM") ? element : utils.getParents(element, 'form');
 		const collection = data['collection'];
 		const id = data['document_id']
+		
 		if (form && id) {
 			form.setAttribute('data-form_id', data['element']);
 			const elements = form.querySelectorAll(`[data-collection=${collection}], [data-pass_collection=${collection}]`)
+			
+			// TODO: Depreciate
 			elements.forEach(function(el) {
 				el.removeAttribute(self.requestAttr);
 				if (el.hasAttribute('name')) self.__setNewIdProcess(el, id);
 				if (el.hasAttribute('data-pass_to')) self.__setNewIdProcess(el, id, true);
 			})
 	  	
+		// TODO: Depreciate
 		} else if (element) {
 			this.__setNewIdProcess(element, id);
 		}
@@ -340,15 +397,13 @@ const CoCreateForm = {
 }
 
 CoCreateForm.__init();
-// core.registerInit(CoCreateForm.initElement, CoCreateForm);
 
 observer.init({ 
 	name: 'CoCreateForm', 
-	observe: ['subtree', 'childList'],
-	include: 'form', 
-	callback: function(mutation) {
+	observe: ['addedNodes'],
+	callback: mutation =>   mutation.target.tagName && mutation.target.tagName === "FORM" &&
 		CoCreateForm.initElement(mutation.target)
-	}
+	
 })
 
 action.init({

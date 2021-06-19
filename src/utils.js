@@ -73,7 +73,7 @@ const Utils = {
 		return false;
 	},
 
-	// ToDo: Depreciate each component handles there own values
+	// ToDo: Depreciate due each component handles there own values
 	getFormData: function(form, document_id, collection) {
 		let data = {};
 		if (!collection) return {}
@@ -118,6 +118,7 @@ const Utils = {
 		}
 	},
 	
+	// ToDo: update to use getAttr() for getting collectiions
 	getCOllections: function(form) {
 		let collections = [];
 		if (!form) return collections;
