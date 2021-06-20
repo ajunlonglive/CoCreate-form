@@ -401,7 +401,7 @@ CoCreateForm.__init();
 observer.init({ 
 	name: 'CoCreateForm', 
 	observe: ['addedNodes'],
-	callback: mutation =>   mutation.target.tagName && mutation.target.tagName === "FORM" &&
+	callback: mutation =>  mutation.target.tagName === "FORM" &&
 		CoCreateForm.initElement(mutation.target)
 	
 })
