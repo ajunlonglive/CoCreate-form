@@ -1,3 +1,10 @@
+## [1.0.17](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.16...v1.0.17) (2021-06-16)
+
+
+### Bug Fixes
+
+* added header for seo ([b0ba80c](https://github.com/CoCreate-app/CoCreate-form/commit/b0ba80c100fbeb12a3bfa7c05087a0c3d4144b0f))
+
 ## [1.0.16](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.15...v1.0.16) (2021-06-06)
 
 
