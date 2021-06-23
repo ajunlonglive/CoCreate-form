@@ -1,5 +1,4 @@
 import observer from '@cocreate/observer'
-import ccutils from '@cocreate/utils'
 import crud from '@cocreate/crud-client'
 import action from '@cocreate/action'
 import utils from "./utils" 
@@ -17,12 +16,11 @@ const CoCreateForm = {
 	},
 	
 
-	// ToDo: Depreciate because handeled by setDocumentId
+	// ToDo: this is the same as crud.checkAttrValue we can probaly replace check id in all places and use crud.checkAttrValue
 	checkID: function(element, attr = "data-document_id") {
 		let document_id = element.getAttribute(attr) || "";
 		
-		// ToDo: why do we need to check value 
-		if (document_id === "" || !ccutils.checkValue(document_id)) {
+		if (document_id === "" || !crud.checkAttrValue(document_id)) {
 			return false;
 		}
 		return true;
@@ -59,7 +57,7 @@ const CoCreateForm = {
 		const { collection, document_id } = crud.getAttr(btn)
 		
 		// ToDo: why do we need to check value 
-		if (ccutils.checkValue(collection) && ccutils.checkValue(document_id)) {
+		if (crud.checkAttrValue(collection) && crud.checkAttrValue(document_id)) {
 
 			crud.deleteDocument({ 
 				collection, 
@@ -67,7 +65,7 @@ const CoCreateForm = {
 				'metadata': 'deleteDocument-action' 
 			});
 			
-			// ToDo: Depreciate due to await
+			// ToDo: replace with custom event
 			document.dispatchEvent(new CustomEvent('deletedDocument', {
 				detail: {}
 			}))
@@ -82,12 +80,12 @@ const CoCreateForm = {
 		const selectedEls = document.querySelectorAll(selector)
 		
 		// ToDo: why do we need to check value
-		if (utils.checkValue(collection)) {
+		if (crud.checkAttrValue(collection)) {
 			selectedEls.forEach((el) => {
 				const document_id =  el.getAttribute('data-document_id');
 				
 				// ToDo: why do we need to check value 
-				if (crud.checkValue(document_id)) {
+				if (crud.checkAttrValue(document_id)) {
 					crud.deleteDocument({
 						'collection': collection,
 						'document_id': document_id,
@@ -115,7 +113,7 @@ const CoCreateForm = {
 			}
 			
 			// ToDo: why do we need to check value 
-			if (ccutils.checkValue(collection)) {
+			if (crud.checkAttrValue(collection)) {
 				crud.createDocument({
 					'collection': collection,
 					'data': data,
