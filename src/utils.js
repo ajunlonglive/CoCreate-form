@@ -73,7 +73,7 @@ const Utils = {
 		return false;
 	},
 
-	// ToDo: Depreciate due each component handles there own values
+	// ToDo: Used by api and renderkey to get all form values
 	getFormData: function(form, document_id, collection) {
 		let data = {};
 		if (!collection) return {}
@@ -92,33 +92,7 @@ const Utils = {
 		return data;
 	},
 
-	// ToDo: Deprecaite due to async await crud.. form is known _id set using await
-	getParents: function(element, selector = "form") {
-		if (!Element.prototype.matches) {
-			Element.prototype.matches =	Element.prototype.matchesSelector || Element.prototype.mozMatchesSelector || Element.prototype.msMatchesSelector ||	Element.prototype.oMatchesSelector ||	Element.prototype.webkitMatchesSelector ||
-			
-			function(s) {
-				var matches = (this.document || this.ownerDocument).querySelectorAll(s), i = matches.length;
-				while (--i >= 0 && matches.item(i) !== this) {}
-				return i > -1;
-			};
-		}
-		
-		for ( ; element && element !== document; element = element.parentNode ) {
-			if ( element.matches( selector ) ) return element;
-		}
-		return null;
-	},
 	
-	// ToDo: Deprecaite due to async await crud
-	setDocumentIDOfElement: function(element, document_id) {
-		let old_document_id = element.getAttribute('data-document_id');
-		if (!old_document_id || old_document_id == "" || old_document_id == "pending") {
-			element.setAttribute('data-document_id', document_id);
-		}
-	},
-	
-	// ToDo: update to use getAttr() for getting collectiions
 	getCOllections: function(form) {
 		let collections = [];
 		if (!form) return collections;
