@@ -1,3 +1,10 @@
+## [1.0.20](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.19...v1.0.20) (2021-06-23)
+
+
+### Bug Fixes
+
+* update checkValue to crud.checkAttrValue ([8f21012](https://github.com/CoCreate-app/CoCreate-form/commit/8f210121996a2aa8d018d90a7672afbd6273bb72))
+
 ## [1.0.19](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.18...v1.0.19) (2021-06-23)
 
 
