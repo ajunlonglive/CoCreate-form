@@ -1,3 +1,10 @@
+## [1.0.18](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.17...v1.0.18) (2021-06-20)
+
+
+### Bug Fixes
+
+* new mutaionObserver init function ([dc139be](https://github.com/CoCreate-app/CoCreate-form/commit/dc139be1f02a57b36145fb3908bc69d75037d432))
+
 ## [1.0.17](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.16...v1.0.17) (2021-06-16)
 
 
