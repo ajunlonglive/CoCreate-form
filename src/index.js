@@ -218,6 +218,17 @@ observer.init({
 	
 })
 
+// ToDo 
+observer.init({ 
+	name: 'CoCreateForm', 
+	observe: ['attributes'],
+	attributeFilter: ['data-collection', 'data-document_id'],
+	callback: mutation =>  mutation.target.tagName === "FORM" &&
+	// mutation.target.hasAttribute('data-collection') &&
+	// mutation.target.hasAttribute('data-document_id') &&
+		CoCreateForm.setAttribute(mutation.target)
+})
+
 action.init({
 	action: "createDocument",
 	endEvent: "createdDocument",
