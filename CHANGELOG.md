@@ -1,3 +1,10 @@
+## [1.0.25](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.24...v1.0.25) (2021-06-29)
+
+
+### Bug Fixes
+
+* add logger utility ([71699b1](https://github.com/CoCreate-app/CoCreate-form/commit/71699b1a2fb49b9357b2b2f264d8918d4b40f4c4))
+
 ## [1.0.24](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.23...v1.0.24) (2021-06-25)
 
 
