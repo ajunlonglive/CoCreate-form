@@ -1,3 +1,10 @@
+## [1.0.26](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.25...v1.0.26) (2021-06-30)
+
+
+### Bug Fixes
+
+* automated and manual workflows ([ff90257](https://github.com/CoCreate-app/CoCreate-form/commit/ff9025712bd4958b24bedc313a7726e1da73a524))
+
 ## [1.0.25](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.24...v1.0.25) (2021-06-29)
 
 
