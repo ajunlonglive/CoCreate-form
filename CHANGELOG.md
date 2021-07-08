@@ -1,3 +1,10 @@
+## [1.0.29](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.28...v1.0.29) (2021-07-08)
+
+
+### Bug Fixes
+
+* update utils.setAttribute ([a624fb0](https://github.com/CoCreate-app/CoCreate-form/commit/a624fb0f70233963e4be26c3e953c084ad6c6a05))
+
 ## [1.0.28](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.27...v1.0.28) (2021-07-07)
 
 
