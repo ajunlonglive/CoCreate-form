@@ -226,7 +226,7 @@ observer.init({
 	callback: mutation =>  mutation.target.tagName === "FORM" &&
 	// mutation.target.hasAttribute('data-collection') &&
 	// mutation.target.hasAttribute('data-document_id') &&
-		CoCreateForm.setAttribute(mutation.target)
+		utils.setAttribute(mutation.target)
 })
 
 action.init({
