@@ -1,3 +1,10 @@
+## [1.0.30](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.29...v1.0.30) (2021-07-09)
+
+
+### Bug Fixes
+
+* function name pointing to depreciated document package ([1fd9c26](https://github.com/CoCreate-app/CoCreate-form/commit/1fd9c2660589ee50dbc829b037f0a686cee934ab))
+
 ## [1.0.29](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.28...v1.0.29) (2021-07-08)
 
 
