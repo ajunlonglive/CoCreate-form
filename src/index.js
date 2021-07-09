@@ -249,7 +249,7 @@ action.init({
 	action: "deleteDocuments",
 	endEvent: "deletedDocuments",
 	callback: (btn, data) => {
-		CoCreateDocument.__deleteDocumentsAction(btn)
+		CoCreateForm.__deleteDocumentsAction(btn)
 	},
 })
 
