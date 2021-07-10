@@ -1,3 +1,10 @@
+## [1.0.31](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.30...v1.0.31) (2021-07-10)
+
+
+### Bug Fixes
+
+* gitignore all logs ([3c5f994](https://github.com/CoCreate-app/CoCreate-form/commit/3c5f9948cac87466e015ada04be007d6051d6484))
+
 ## [1.0.30](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.29...v1.0.30) (2021-07-09)
 
 
