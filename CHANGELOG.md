@@ -1,3 +1,11 @@
+## [1.0.32](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.31...v1.0.32) (2021-07-13)
+
+
+### Bug Fixes
+
+* add yarn lockfile to git ignore ([aa4b89c](https://github.com/CoCreate-app/CoCreate-form/commit/aa4b89c801dc343a5f819a430d49de1b90edcc00))
+* remove yarn.lock ([ad33ae3](https://github.com/CoCreate-app/CoCreate-form/commit/ad33ae32da004ab064660bf49726d81f18c4df6a))
+
 ## [1.0.31](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.30...v1.0.31) (2021-07-10)
 
 
