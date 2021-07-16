@@ -1,6 +1,6 @@
 {
   "name": "@cocreate/form",
-  "version": "1.0.31",
+  "version": "1.0.33",
   "description": "A JavaScript API for adding custom components to a CoCreate form. Components added work in unison and controls CRUD capabilities as a group. Configurable using data-attributes and/or JavaScript API",
   "keywords": [
     "form",
@@ -61,7 +61,7 @@
     "webpack-log": "^3.0.1"
   },
   "dependencies": {
-    "@cocreate/action": "^1.1.13",
+    "@cocreate/action": "^1.1.16",
     "@cocreate/crud-client": "^1.1.12",
     "@cocreate/docs": "^1.1.29",
     "@cocreate/observer": "^1.2.8",
