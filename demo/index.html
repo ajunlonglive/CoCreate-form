@@ -9,7 +9,7 @@
   
     <form data-collection="test" data-form_id="test_form" data-realtime="false">
       
-      <input type="text"  class="floating-label" placeholder="Text" name="name" data-collection="test" data-document_id="">
+      <input type="text"  class="floating-label" placeholder="Text" name="name" data-document_id="">
       <input data-save_value="false"  type="text" class="floating-label" placeholder="Text" name="name1"  data-collection="module_activities" data-document_id="5e4802ce3ed96d38e71fc7e5">
       <input type="text" class="floating-label" placeholder="color" name="color" id="color"  data-document_id="" collection="test3">
       <input type="search" class="floating-label" placeholder="Search" name="search" id="search" data-get_value="text"  data-document_id="5e4802ce3ed96d38e71fc7e5">
@@ -128,14 +128,13 @@
     <script>
       var config = {
         apiKey: 'c2b08663-06e3-440c-ef6f-13978b42883a',
-        organization_Id: '5de0387b12e200ea63204d6c'
+        organization_Id: '5de0387b12e200ea63204d6c',
+        host: 'ws.cocreate.app'
       }
     </script>
-   
-   
-    <!-- CoCreate JS CDN -->
-    <!--<script src="https://cdn.cocreate.app/form/latest/CoCreate-form.min.js" ></script>-->
-    <script src="https://server.cocreate.app/CoCreateJS/dist/CoCreate.js"></script>
+    
+    <!--<script src="../dist/CoCreate-form.js"></script>-->
+    <script src="../../../CoCreateJS/dist/CoCreate.js" ></script>
 
   </body>
 </html>
