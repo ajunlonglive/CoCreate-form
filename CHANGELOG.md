@@ -1,3 +1,11 @@
+## [1.0.34](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.33...v1.0.34) (2021-07-17)
+
+
+### Bug Fixes
+
+* init and update demos scripts ([cbd6928](https://github.com/CoCreate-app/CoCreate-form/commit/cbd6928d93ed468c2619972435d4cb7c866228a9))
+* workflows ([06fa538](https://github.com/CoCreate-app/CoCreate-form/commit/06fa538f24411e57115ff0d2796a73fcb9a7655c))
+
 ## [1.0.33](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.32...v1.0.33) (2021-07-14)
 
 
