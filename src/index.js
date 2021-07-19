@@ -5,7 +5,6 @@ import utils from "./utils"
 
 const CoCreateForm = {
 
-	requestAttr: "data-document_request",
 	modules: [],
 
 	// init: function({name, selector, callback}) {
@@ -41,11 +40,11 @@ const CoCreateForm = {
 	},
 
 
-
-
-
 	__deleteDocumentAction: function(btn) {
-		const { collection, document_id } = crud.getAttr(btn)
+		const {
+			collection,
+			document_id
+		} = crud.getAttr(btn)
 
 		// ToDo: why do we need to check value 
 		if (crud.checkAttrValue(collection) && crud.checkAttrValue(document_id)) {
@@ -63,23 +62,22 @@ const CoCreateForm = {
 		}
 	},
 
+
 	__deleteDocumentsAction: function(btn) {
-		const { collection, document_id } = crud.getAttr(btn)
-		const selector = btn.getAttribute('data-document_target');
-		if (!selector) return;
-
-		const selectedEls = document.querySelectorAll(selector)
-
-		// ToDo: why do we need to check value
+		const collection = btn.getAttribute('data-collection');
 		if (crud.checkAttrValue(collection)) {
+			const dataTemplateid = btn.getAttribute('data-template_id');
+			if (!dataTemplateid) return;
+
+			const selectedEls = document.querySelectorAll(`.selected[templateid="${dataTemplateid}"]`)
+
 			selectedEls.forEach((el) => {
 				const document_id = el.getAttribute('data-document_id');
 
-				// ToDo: why do we need to check value 
 				if (crud.checkAttrValue(document_id)) {
 					crud.deleteDocument({
-						'collection': collection,
-						'document_id': document_id,
+						collection,
+						document_id,
 						'metadata': ''
 					})
 				}
@@ -129,7 +127,9 @@ const CoCreateForm = {
 
 		await this.__requestDocumentId(form);
 
-		this.modules.forEach(({ callback }) => {
+		this.modules.forEach(({
+			callback
+		}) => {
 			callback.call(null, form);
 		})
 	},
@@ -189,9 +189,6 @@ const CoCreateForm = {
 				if (el.hasAttribute('data-pass_to') && !self.checkID(el, 'data-pass_document_id')) {
 					el.setAttribute('data-pass_document_id', id);
 
-					// if (el.parentNode.classList.contains('submitBtn')) {
-					// 	el.click();
-					// }
 				}
 			})
 		}
@@ -210,15 +207,12 @@ observer.init({
 
 })
 
-// ToDo 
 observer.init({
 	name: 'CoCreateForm',
 	observe: ['attributes'],
 	attributeName: ['data-collection', 'data-document_id'],
 	target: 'form',
 	callback: mutation => mutation.target.tagName === "FORM" &&
-		// mutation.target.hasAttribute('data-collection') &&
-		// mutation.target.hasAttribute('data-document_id') &&
 		utils.setAttribute(mutation.target)
 })
 
@@ -253,6 +247,5 @@ action.init({
 		CoCreateForm.__saveDocumentAction(btn)
 	},
 })
-
 
 export default CoCreateForm;
