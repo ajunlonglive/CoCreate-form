@@ -1,3 +1,10 @@
+## [1.0.35](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.34...v1.0.35) (2021-07-19)
+
+
+### Bug Fixes
+
+* deleteDocumentsAction ([a0c79df](https://github.com/CoCreate-app/CoCreate-form/commit/a0c79df9d0eec22763e28551c1210abde83a125a))
+
 ## [1.0.34](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.33...v1.0.34) (2021-07-17)
 
 
