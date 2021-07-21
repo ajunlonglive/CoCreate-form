@@ -7,16 +7,15 @@ const CoCreateForm = {
 
 	modules: [],
 
-	// init: function({name, selector, callback}) {
-	// 	this.modules.push({
-	// 		name,
-	// 		callback
-	// 	});
-	// },
+	init: function(name, selector, callback) {
+		name && callback && this.modules.push({
+			name,
+			callback
+		});
 
-	init: function() {
-		const elements = document.querySelectorAll('form');
+		const elements = document.querySelectorAll( 'form');
 		this.initElements(elements)
+
 	},
 
 	initElements: function(elements) {
@@ -25,6 +24,7 @@ const CoCreateForm = {
 	},
 
 	initElement: function(el) {
+		
 		utils.setAttribute(el)
 		utils.disableAutoFill(el);
 	},
