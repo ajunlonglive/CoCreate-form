@@ -1,3 +1,10 @@
+## [1.0.37](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.36...v1.0.37) (2021-07-24)
+
+
+### Bug Fixes
+
+* replaced form.checkID with crud.checkAttrValue ([908af74](https://github.com/CoCreate-app/CoCreate-form/commit/908af7499da0d8872ed1cc1299da2800cc5141a9))
+
 ## [1.0.36](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.35...v1.0.36) (2021-07-21)
 
 
