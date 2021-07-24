@@ -24,21 +24,9 @@ const CoCreateForm = {
 	},
 
 	initElement: function(el) {
-		
 		utils.setAttribute(el)
 		utils.disableAutoFill(el);
 	},
-
-	// ToDo: this is the same as crud.checkAttrValue we can probaly replace check id in all places and use crud.checkAttrValue
-	checkID: function(element, attr = "data-document_id") {
-		let document_id = element.getAttribute(attr) || "";
-
-		if (document_id === "" || !crud.checkAttrValue(document_id)) {
-			return false;
-		}
-		return true;
-	},
-
 
 	__deleteDocumentAction: function(btn) {
 		const {
@@ -125,7 +113,7 @@ const CoCreateForm = {
 			return;
 		}
 
-		await this.__requestDocumentId(form);
+		this.__requestDocumentId(form);
 
 		this.modules.forEach(({
 			callback
@@ -151,7 +139,7 @@ const CoCreateForm = {
 			if (
 				collection !== "" &&
 				!collections.includes(collection) &&
-				(!self.checkID(el, 'data-document_id') && !self.checkID(el, 'data-pass_document_id'))
+				(!crud.checkAttrValue(el.getAttribute('data-document_id')) && !crud.checkAttrValue(el.getAttribute('data-pass_document_id')))
 			) {
 
 				collections.push(collection);
@@ -169,6 +157,20 @@ const CoCreateForm = {
 			}
 		}
 	},
+	
+	// ToDo: this is the same as crud.checkAttrValue we can probaly replace check id in all places and use crud.checkAttrValue
+	// checkID: function(element, attr) {
+	// 	// let document_id = element.getAttribute(attr) || "";
+		
+	// 	// if (document_id === "" || !crud.checkAttrValue(attr) || document_id == 'pending') {
+	// 	// 	return false;
+	// 	// }
+	// 	// if ( !crud.checkAttrValue(attr) || document_id == 'pending') {
+	// 	// 	return false;
+	// 	// }
+	// 	// return true;
+	// },
+
 
 	setDocumentId: function(form, data) {
 		if (!data['document_id']) {
@@ -182,11 +184,11 @@ const CoCreateForm = {
 			const elements = form.querySelectorAll(`[data-collection=${collection}], [data-pass_collection=${collection}]`)
 
 			elements.forEach(function(el) {
-				if (el.hasAttribute('name') && !self.checkID(el)) {
+				if (el.hasAttribute('name') && !crud.checkAttrValue(el.getAttribute('data-document_id'))) {
 					el.setAttribute('data-document_id', id);
 				}
 
-				if (el.hasAttribute('data-pass_to') && !self.checkID(el, 'data-pass_document_id')) {
+				if (el.hasAttribute('data-pass_to') && !crud.checkAttrValue(el.getAttribute('data-pass_document_id'))) {
 					el.setAttribute('data-pass_document_id', id);
 
 				}
