@@ -15,6 +15,8 @@ const Utils = {
 	setAttribute: function(form) {
 		const { collection, document_id, name } = crud.getAttr(form)
 		
+		// const crud = form.getAttribute('crud');
+		// const crdt = form.getAttribute('crdt');
 		const dataRealTime = form.getAttribute('data-realtime');
 		const is_flat = form.getAttribute('data-flat')
 		let elements = form.querySelectorAll('[name], [data-pass_to]')
@@ -24,11 +26,14 @@ const Utils = {
 			if (el.parentNode.classList.contains('template')) {
 				return;
 			}
+			// if (el.getAttribute('crud') == null && crud) {
+			// 	el.setAttribute('crud', crud);
+			// }
+			// if (el.getAttribute('crdt') == null && crdt) {
+			// 	el.setAttribute('crdt', crdt);
+			// }
 			if (el.getAttribute('data-realtime') == null && dataRealTime) {
-				
-				// if (!['INPUT', 'TEXTAREA'].indexOf(el.tagName)) {
 				el.setAttribute('data-realtime', dataRealTime);
-				// }
 			}
 			if (el.getAttribute('name') && !el.hasAttribute('data-collection') && collection) {
 				el.setAttribute('data-collection', collection);
@@ -89,6 +94,7 @@ const Utils = {
 				data[name] = el.value
 			}
 		})
+		// CoCreate.input.getValues(form, document_id, collection)
 		return data;
 	},
 

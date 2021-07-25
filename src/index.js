@@ -59,7 +59,7 @@ const CoCreateForm = {
 				continue;
 			}
 			const collection = el.getAttribute("data-collection") || el.getAttribute("data-pass_collection") || "";
-
+		
 			if (
 				collection !== "" &&
 				!collections.includes(collection) &&
@@ -82,8 +82,7 @@ const CoCreateForm = {
 				if (response_data) {
 					this.setDocumentId(form, response_data)
 				}
-
-			}
+			} 
 		}
 	},
 
