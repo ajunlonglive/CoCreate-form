@@ -1,3 +1,10 @@
+## [1.0.38](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.37...v1.0.38) (2021-07-25)
+
+
+### Bug Fixes
+
+* component callbacks ([68c0608](https://github.com/CoCreate-app/CoCreate-form/commit/68c0608af1fc4dd3c68c3a568fa2a55bf69eb3d5))
+
 ## [1.0.37](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.36...v1.0.37) (2021-07-24)
 
 
