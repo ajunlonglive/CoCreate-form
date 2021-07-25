@@ -13,10 +13,7 @@ const Utils = {
 	},
 
 	setAttribute: function(form) {
-		const { collection, document_id, name } = crud.getAttr(form)
-		
-		// const crud = form.getAttribute('crud');
-		// const crdt = form.getAttribute('crdt');
+		const { collection, document_id, name, isCrud, isCrdt, isRealtime, isSave, isUpdate, isRead, isListen, isBroadcast, isBroadcastSender } = crud.getAttr(form)
 		const dataRealTime = form.getAttribute('data-realtime');
 		const is_flat = form.getAttribute('data-flat')
 		let elements = form.querySelectorAll('[name], [data-pass_to]')
@@ -26,12 +23,33 @@ const Utils = {
 			if (el.parentNode.classList.contains('template')) {
 				return;
 			}
-			// if (el.getAttribute('crud') == null && crud) {
-			// 	el.setAttribute('crud', crud);
-			// }
-			// if (el.getAttribute('crdt') == null && crdt) {
-			// 	el.setAttribute('crdt', crdt);
-			// }
+			if (el.getAttribute('crud') == null && isCrud) {
+				el.setAttribute('crud', isCrud);
+			}
+			if (el.getAttribute('crdt') == null && isCrdt) {
+				el.setAttribute('crdt', isCrdt);
+			}
+			if (el.getAttribute('realtime') == null && isRealtime) {
+				el.setAttribute('realtime', isRealtime);
+			}
+			if (el.getAttribute('save') == null && isSave) {
+				el.setAttribute('save', isSave);
+			}
+			if (el.getAttribute('update') == null && isUpdate) {
+				el.setAttribute('update', isUpdate);
+			}
+			if (el.getAttribute('read') == null && isRead) {
+				el.setAttribute('read', isRead);
+			}
+			if (el.getAttribute('listen') == null && isListen) {
+				el.setAttribute('listen', isListen);
+			}
+			if (el.getAttribute('broadcast') == null && isBroadcast) {
+				el.setAttribute('broadcast', isBroadcast);
+			}
+			if (el.getAttribute('broadcast-sender') == null && isBroadcast) {
+				el.setAttribute('broadcast-sender', isBroadcast);
+			}
 			if (el.getAttribute('data-realtime') == null && dataRealTime) {
 				el.setAttribute('data-realtime', dataRealTime);
 			}

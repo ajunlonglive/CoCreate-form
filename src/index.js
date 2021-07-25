@@ -58,6 +58,8 @@ const CoCreateForm = {
 			if (el.parentNode.classList.contains('template')) {
 				continue;
 			}
+			const { isCrdt, isCrud, isSave, isUpdate } = crud.getAttr(el)
+			if (isCrdt === "true" || isCrud === "flase" || isSave === "flase") continue;
 			const collection = el.getAttribute("data-collection") || el.getAttribute("data-pass_collection") || "";
 		
 			if (
@@ -68,21 +70,37 @@ const CoCreateForm = {
 
 				collections.push(collection);
 				
-				// ToDo: get values of all registered form.init components
-				let data = utils.getFormData(form, "", collection);
-				if (Object.keys(data).length == 0 && data.constructor === Object) {
-					return;
-				}
-				
-				let response_data = await crud.createDocument({
-					"collection": collection,
-					'data': data,
-				})
+			} else {
+				const { collection, document_id, name } = crud.getAttr(el)
+				if (collection && document_id && name) {
+					if (isUpdate === "false") continue;
+					// ToDo: get value of component using registered form.init
+					console.log(el)
+					// ToDo: crud.save(data)
+					// var data = [{
+					// 	element: el,
+					// 	value: callback,
+					// }];
 
-				if (response_data) {
-					this.setDocumentId(form, response_data)
 				}
-			} 
+			}
+		}
+		for (let collection of collections){
+			
+			// ToDo: get values of all registered form.init components
+			let data = utils.getFormData(form, "", collection);
+			if (Object.keys(data).length == 0 && data.constructor === Object) {
+				return;
+			}
+			
+			let response_data = await crud.createDocument({
+				"collection": collection,
+				'data': data,
+			})
+	
+			if (response_data) {
+				this.setDocumentId(form, response_data)
+			}
 		}
 	},
 
