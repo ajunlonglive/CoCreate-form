@@ -5,10 +5,10 @@ import utils from "./utils"
 
 const CoCreateForm = {
 
-	modules: [],
+	components: [],
 
-	init: function(name, selector, callback) {
-		name && callback && this.modules.push({
+	init: function({name, selector, callback} ={}) {
+		name && callback && this.components.push({
 			name,
 			callback
 		});
@@ -28,52 +28,86 @@ const CoCreateForm = {
 		utils.disableAutoFill(el);
 	},
 
-	__deleteDocumentAction: function(btn) {
-		const {
-			collection,
-			document_id
-		} = crud.getAttr(btn)
+	__saveAction: function(btn) {
+		const form = btn.closest("form")
+		this.save(form);
+	},
+	
+	save: function(form) {
+		if (!utils.checkFormValidate(form)) {
+			alert('Values are not unique');
+			return;
+		}
 
-		// ToDo: why do we need to check value 
-		if (crud.checkAttrValue(collection) && crud.checkAttrValue(document_id)) {
+		this.__requestDocumentId(form);
+		
+		this.components.forEach(({	callback }) => {
+			callback.call(null, form);
+		})
+	},
+	
+	__requestDocumentId: async function(form) {
 
-			crud.deleteDocument({
-				collection,
-				document_id,
-				'metadata': 'deleteDocument-action'
-			});
+		let self = this;
+		let elements = form.querySelectorAll('[data-collection][data-document_id][name], [data-pass_to]')
 
-			// ToDo: replace with custom event
-			document.dispatchEvent(new CustomEvent('deletedDocument', {
-				detail: {}
-			}))
+		let collections = [];
+
+		for (var i = 0; i < elements.length; i++) {
+			let el = elements[i];
+			if (el.parentNode.classList.contains('template')) {
+				continue;
+			}
+			const collection = el.getAttribute("data-collection") || el.getAttribute("data-pass_collection") || "";
+
+			if (
+				collection !== "" &&
+				!collections.includes(collection) &&
+				(!crud.checkAttrValue(el.getAttribute('data-document_id')) && !crud.checkAttrValue(el.getAttribute('data-pass_document_id')))
+			) {
+
+				collections.push(collection);
+				
+				// ToDo: get values of all registered form.init components
+				let data = utils.getFormData(form, "", collection);
+				if (Object.keys(data).length == 0 && data.constructor === Object) {
+					return;
+				}
+				
+				let response_data = await crud.createDocument({
+					"collection": collection,
+					'data': data,
+				})
+
+				if (response_data) {
+					this.setDocumentId(form, response_data)
+				}
+
+			}
 		}
 	},
 
+	setDocumentId: function(form, data) {
+		if (!data['document_id']) {
+			return;
+		}
+		let self = this;
+		const collection = data['collection'];
+		const id = data['document_id']
 
-	__deleteDocumentsAction: function(btn) {
-		const collection = btn.getAttribute('data-collection');
-		if (crud.checkAttrValue(collection)) {
-			const dataTemplateid = btn.getAttribute('data-template_id');
-			if (!dataTemplateid) return;
+		if (form && id) {
+			const elements = form.querySelectorAll(`[data-collection=${collection}], [data-pass_collection=${collection}]`)
 
-			const selectedEls = document.querySelectorAll(`.selected[templateid="${dataTemplateid}"]`)
+			elements.forEach(function(el) {
+				if (el.hasAttribute('name') && !crud.checkAttrValue(el.getAttribute('data-document_id'))) {
+					el.setAttribute('data-document_id', id);
+				}
 
-			selectedEls.forEach((el) => {
-				const document_id = el.getAttribute('data-document_id');
+				if (el.hasAttribute('data-pass_to') && !crud.checkAttrValue(el.getAttribute('data-pass_document_id'))) {
+					el.setAttribute('data-pass_document_id', id);
 
-				if (crud.checkAttrValue(document_id)) {
-					crud.deleteDocument({
-						collection,
-						document_id,
-						'metadata': ''
-					})
 				}
 			})
-
-			document.dispatchEvent(new CustomEvent('deletedDocuments', {
-				detail: {}
-			}))
 		}
 	},
 
@@ -104,95 +138,51 @@ const CoCreateForm = {
 		})
 	},
 
+	__deleteDocumentAction: function(btn) {
+		const {
+			collection,
+			document_id
+		} = crud.getAttr(btn)
 
-	__saveDocumentAction: async function(btn) {
-		const form = btn.closest("form")
+		// ToDo: why do we need to check value 
+		if (crud.checkAttrValue(collection) && crud.checkAttrValue(document_id)) {
 
-		if (!utils.checkFormValidate(form)) {
-			alert('Values are not unique');
-			return;
-		}
+			crud.deleteDocument({
+				collection,
+				document_id,
+				'metadata': 'deleteDocument-action'
+			});
 
-		this.__requestDocumentId(form);
-
-		this.modules.forEach(({
-			callback
-		}) => {
-			callback.call(null, form);
-		})
-	},
-
-	__requestDocumentId: async function(form) {
-
-		let self = this;
-		let elemens = form.querySelectorAll('[name], [data-pass_to]')
-
-		let collections = [];
-
-		for (var i = 0; i < elemens.length; i++) {
-			let el = elemens[i];
-			if (el.parentNode.classList.contains('template')) {
-				continue;
-			}
-			const collection = el.getAttribute("data-collection") || el.getAttribute("data-pass_collection") || "";
-
-			if (
-				collection !== "" &&
-				!collections.includes(collection) &&
-				(!crud.checkAttrValue(el.getAttribute('data-document_id')) && !crud.checkAttrValue(el.getAttribute('data-pass_document_id')))
-			) {
-
-				collections.push(collection);
-
-				let response_data = await crud.createDocument({
-					"collection": collection,
-					'data': {},
-					"metadata": "",
-				})
-
-				if (response_data) {
-					this.setDocumentId(form, response_data)
-				}
-
-			}
+			// ToDo: replace with custom event
+			document.dispatchEvent(new CustomEvent('deletedDocument', {
+				detail: {}
+			}))
 		}
 	},
-	
-	// ToDo: this is the same as crud.checkAttrValue we can probaly replace check id in all places and use crud.checkAttrValue
-	// checkID: function(element, attr) {
-	// 	// let document_id = element.getAttribute(attr) || "";
-		
-	// 	// if (document_id === "" || !crud.checkAttrValue(attr) || document_id == 'pending') {
-	// 	// 	return false;
-	// 	// }
-	// 	// if ( !crud.checkAttrValue(attr) || document_id == 'pending') {
-	// 	// 	return false;
-	// 	// }
-	// 	// return true;
-	// },
 
+	__deleteDocumentsAction: function(btn) {
+		const collection = btn.getAttribute('data-collection');
+		if (crud.checkAttrValue(collection)) {
+			const dataTemplateid = btn.getAttribute('data-template_id');
+			if (!dataTemplateid) return;
 
-	setDocumentId: function(form, data) {
-		if (!data['document_id']) {
-			return;
-		}
-		let self = this;
-		const collection = data['collection'];
-		const id = data['document_id']
+			const selectedEls = document.querySelectorAll(`.selected[templateid="${dataTemplateid}"]`)
 
-		if (form && id) {
-			const elements = form.querySelectorAll(`[data-collection=${collection}], [data-pass_collection=${collection}]`)
+			selectedEls.forEach((el) => {
+				const document_id = el.getAttribute('data-document_id');
 
-			elements.forEach(function(el) {
-				if (el.hasAttribute('name') && !crud.checkAttrValue(el.getAttribute('data-document_id'))) {
-					el.setAttribute('data-document_id', id);
-				}
-
-				if (el.hasAttribute('data-pass_to') && !crud.checkAttrValue(el.getAttribute('data-pass_document_id'))) {
-					el.setAttribute('data-pass_document_id', id);
-
+				if (crud.checkAttrValue(document_id)) {
+					crud.deleteDocument({
+						collection,
+						document_id,
+						'metadata': ''
+					})
 				}
 			})
+
+			document.dispatchEvent(new CustomEvent('deletedDocuments', {
+				detail: {}
+			}))
 		}
 	},
 
@@ -246,7 +236,7 @@ action.init({
 	action: "saveDocument",
 	endEvent: "savedDocument",
 	callback: (btn, data) => {
-		CoCreateForm.__saveDocumentAction(btn)
+		CoCreateForm.__saveAction(btn)
 	},
 })
 
