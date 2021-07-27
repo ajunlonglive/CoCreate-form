@@ -1,3 +1,11 @@
+## [1.0.39](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.38...v1.0.39) (2021-07-27)
+
+
+### Bug Fixes
+
+* refactor callbacks to getValues ([1ed5795](https://github.com/CoCreate-app/CoCreate-form/commit/1ed5795f310b8b8d8d6a77e8ba63c8d340597b0f))
+* refactor requestDocument_id and add additional attributes to utils ([e8e1719](https://github.com/CoCreate-app/CoCreate-form/commit/e8e1719d9f502de176a341842eccb1f4bbb0131a))
+
 ## [1.0.38](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.37...v1.0.38) (2021-07-25)
 
 
