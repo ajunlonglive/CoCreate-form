@@ -7,19 +7,19 @@ const CoCreateForm = {
 
 	components: [],
 
-	init: function({name, selector, callback} ={}) {
+	init: function({ name, selector, callback } = {}) {
 		name && callback && this.components.push({
 			name,
 			callback
 		});
 
-		const elements = document.querySelectorAll( 'form');
+		const elements = document.querySelectorAll('form');
 		this.initElements(elements)
 
 	},
 
 	initElements: function(elements) {
-		for (let el of elements)
+		for(let el of elements)
 			this.initElement(el)
 	},
 
@@ -32,100 +32,141 @@ const CoCreateForm = {
 		const form = btn.closest("form")
 		this.save(form);
 	},
-	
+
 	save: function(form) {
-		if (!utils.checkFormValidate(form)) {
+		if(!utils.checkFormValidate(form)) {
 			alert('Values are not unique');
 			return;
 		}
 
 		this.__requestDocumentId(form);
-		
-		this.components.forEach(({	callback }) => {
-			callback.call(null, form);
-		})
+
 	},
-	
+
 	__requestDocumentId: async function(form) {
 
 		let self = this;
 		let elements = form.querySelectorAll('[data-collection][data-document_id][name], [data-pass_to]')
 
 		let collections = [];
+		let document_ids = [];
 
-		for (var i = 0; i < elements.length; i++) {
+		for(var i = 0; i < elements.length; i++) {
 			let el = elements[i];
-			if (el.parentNode.classList.contains('template')) {
+			if(el.parentNode.classList.contains('template')) {
 				continue;
 			}
 			const { isCrdt, isCrud, isSave, isUpdate } = crud.getAttr(el)
-			if (isCrdt === "true" || isCrud === "flase" || isSave === "flase") continue;
+			if(isCrdt === "true" || isCrud === "flase" || isSave === "flase") continue;
 			const collection = el.getAttribute("data-collection") || el.getAttribute("data-pass_collection") || "";
-		
-			if (
+
+			if(
 				collection !== "" &&
 				!collections.includes(collection) &&
 				(!crud.checkAttrValue(el.getAttribute('data-document_id')) && !crud.checkAttrValue(el.getAttribute('data-pass_document_id')))
 			) {
 
 				collections.push(collection);
-				
-			} else {
-				const { collection, document_id, name } = crud.getAttr(el)
-				if (collection && document_id && name) {
-					if (isUpdate === "false") continue;
-					// ToDo: get value of component using registered form.init
-					console.log(el)
-					// ToDo: crud.save(data)
-					// var data = [{
-					// 	element: el,
-					// 	value: callback,
-					// }];
 
+			}
+			else {
+				const { collection, document_id, name } = crud.getAttr(el)
+				if(collection && document_id && name) {
+					if(isUpdate === "false") continue;
+					document_ids.push(document_id);
 				}
 			}
 		}
-		for (let collection of collections){
-			
-			// ToDo: get values of all registered form.init components
-			let data = utils.getFormData(form, "", collection);
-			if (Object.keys(data).length == 0 && data.constructor === Object) {
-				return;
-			}
-			
-			let response_data = await crud.createDocument({
-				"collection": collection,
-				'data': data,
+		this.createDocuments(form, collections)
+		this.updateDocuments(form, document_ids)
+	},
+
+	createDocuments: function(form, collections) {
+		for(let collection of collections) {
+
+			let data = {};
+			this.components.forEach(({ callback }) => {
+				let result = callback.call(null, form, collection)
+				Object.assign(data,result)
 			})
-	
-			if (response_data) {
-				this.setDocumentId(form, response_data)
-			}
+
+			 this.createDocument(collection, data).then(data => {
+				this.setDocumentId(form, data)
+			})
+
+
+		}
+	},
+
+	updateDocuments: function(form, document_ids) {
+		for(let document_id of document_ids) {
+			let data = {};
+			
+			this.components.forEach(({ callback }) => {
+				let result = callback.call(null, form, document_id)
+				Object.assign(data,result)
+			})
+			
+			// let element = data[element]
+
+			// this.crud.save(element, data).then(data => {
+				// this.setDocumentId(form, data)
+			// })
+
+			// crud.save(document_id)
+		}
+	},
+
+	createDocument: async function(collection, data) {
+		if(crud.checkAttrValue(collection)) {
+			return await crud.createDocument({
+				'collection': collection,
+				'data': data,
+			});
 		}
 	},
 
 	setDocumentId: function(form, data) {
-		if (!data['document_id']) {
+		if(!data['document_id']) {
 			return;
 		}
 		let self = this;
 		const collection = data['collection'];
 		const id = data['document_id']
 
-		if (form && id) {
+		if(form && id) {
 			const elements = form.querySelectorAll(`[data-collection=${collection}], [data-pass_collection=${collection}]`)
 
 			elements.forEach(function(el) {
-				if (el.hasAttribute('name') && !crud.checkAttrValue(el.getAttribute('data-document_id'))) {
+				if(el.hasAttribute('name') && !crud.checkAttrValue(el.getAttribute('data-document_id'))) {
 					el.setAttribute('data-document_id', id);
 				}
 
-				if (el.hasAttribute('data-pass_to') && !crud.checkAttrValue(el.getAttribute('data-pass_document_id'))) {
+				if(el.hasAttribute('data-pass_to') && !crud.checkAttrValue(el.getAttribute('data-pass_document_id'))) {
 					el.setAttribute('data-pass_document_id', id);
 
 				}
 			})
 		}
+	},
+
+	__createAction: function(btn) {
+		const form = btn.closest("form")
+		const self = this;
+		let collections = utils.getCOllections(form)
+
+		collections.forEach((collection) => {
+			let data = utils.getFormData(form, "", collection);
+
+			if(Object.keys(data).length == 0 && data.constructor === Object) {
+				return;
+			}
+			self.createDocument(collection, data)
+		})
+
+		document.dispatchEvent(new CustomEvent('createdDocument', {
+			detail: {}
+		}))
 	},
 
 	__createDocumentAction: function(btn) {
@@ -136,12 +177,12 @@ const CoCreateForm = {
 		collections.forEach((collection) => {
 			let data = utils.getFormData(form, "", collection);
 
-			if (Object.keys(data).length == 0 && data.constructor === Object) {
+			if(Object.keys(data).length == 0 && data.constructor === Object) {
 				return;
 			}
 
 			// ToDo: why do we need to check value 
-			if (crud.checkAttrValue(collection)) {
+			if(crud.checkAttrValue(collection)) {
 				crud.createDocument({
 					'collection': collection,
 					'data': data,
@@ -162,7 +203,7 @@ const CoCreateForm = {
 		} = crud.getAttr(btn)
 
 		// ToDo: why do we need to check value 
-		if (crud.checkAttrValue(collection) && crud.checkAttrValue(document_id)) {
+		if(crud.checkAttrValue(collection) && crud.checkAttrValue(document_id)) {
 
 			crud.deleteDocument({
 				collection,
@@ -179,16 +220,16 @@ const CoCreateForm = {
 
 	__deleteDocumentsAction: function(btn) {
 		const collection = btn.getAttribute('data-collection');
-		if (crud.checkAttrValue(collection)) {
+		if(crud.checkAttrValue(collection)) {
 			const dataTemplateid = btn.getAttribute('data-template_id');
-			if (!dataTemplateid) return;
+			if(!dataTemplateid) return;
 
 			const selectedEls = document.querySelectorAll(`.selected[templateid="${dataTemplateid}"]`)
 
 			selectedEls.forEach((el) => {
 				const document_id = el.getAttribute('data-document_id');
 
-				if (crud.checkAttrValue(document_id)) {
+				if(crud.checkAttrValue(document_id)) {
 					crud.deleteDocument({
 						collection,
 						document_id,
