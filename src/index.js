@@ -46,7 +46,7 @@ const CoCreateForm = {
 	__requestDocumentId: async function(form) {
 
 		let self = this;
-		let elements = form.querySelectorAll('[collection][document_id][name], [data-pass_to]')
+		let elements = form.querySelectorAll('[collection][document_id][name], [pass_to]')
 
 		let collections = [];
 		let document_ids = [];
@@ -58,12 +58,12 @@ const CoCreateForm = {
 			}
 			const { document_id, isCrdt, isCrud, isSave, isUpdate } = crud.getAttr(el)
 			if(isCrdt === "true" && document_id || isCrud === "flase" || isSave === "flase") continue;
-			const collection = el.getAttribute("collection") || el.getAttribute("data-pass_collection") || "";
+			const collection = el.getAttribute("collection") || el.getAttribute("pass-collection") || "";
 
 			if(
 				collection !== "" &&
 				!collections.includes(collection) &&
-				(!crud.checkAttrValue(el.getAttribute('document_id')) && !crud.checkAttrValue(el.getAttribute('data-pass_document_id')))
+				(!crud.checkAttrValue(el.getAttribute('document_id')) && !crud.checkAttrValue(el.getAttribute('pass-document_id')))
 			) {
 
 				collections.push(collection);
@@ -135,15 +135,15 @@ const CoCreateForm = {
 		const id = data['document_id']
 
 		if(form && id) {
-			const elements = form.querySelectorAll(`[collection=${collection}], [data-pass_collection=${collection}]`)
+			const elements = form.querySelectorAll(`[collection=${collection}], [pass-collection=${collection}]`)
 
 			elements.forEach(function(el) {
 				if(el.hasAttribute('name') && !crud.checkAttrValue(el.getAttribute('document_id'))) {
 					el.setAttribute('document_id', id);
 				}
 
-				if(el.hasAttribute('data-pass_to') && !crud.checkAttrValue(el.getAttribute('data-pass_document_id'))) {
-					el.setAttribute('data-pass_document_id', id);
+				if(el.hasAttribute('pass_to') && !crud.checkAttrValue(el.getAttribute('pass-document_id'))) {
+					el.setAttribute('pass-document_id', id);
 
 				}
 			})
@@ -221,7 +221,7 @@ const CoCreateForm = {
 	__deleteDocumentsAction: function(btn) {
 		const collection = btn.getAttribute('collection');
 		if(crud.checkAttrValue(collection)) {
-			const dataTemplateid = btn.getAttribute('data-template_id');
+			const dataTemplateid = btn.getAttribute('template_id');
 			if(!dataTemplateid) return;
 
 			const selectedEls = document.querySelectorAll(`.selected[templateid="${dataTemplateid}"]`)

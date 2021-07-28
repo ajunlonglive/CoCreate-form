@@ -16,7 +16,7 @@ const Utils = {
 		const { collection, document_id, name, isCrud, isCrdt, isRealtime, isSave, isUpdate, isRead, isListen, isBroadcast, isBroadcastSender } = crud.getAttr(form)
 		const dataRealTime = form.getAttribute('realtime');
 		const is_flat = form.getAttribute('data-flat')
-		let elements = form.querySelectorAll('[name], [data-pass_to]')
+		let elements = form.querySelectorAll('[name], [pass_to]')
 		
 					
 		elements.forEach(function(el) {
@@ -57,8 +57,8 @@ const Utils = {
 				el.setAttribute('collection', collection);
 			}
 			
-			if (el.getAttribute('data-pass_to') && !el.hasAttribute('data-pass_collection') &&  collection) {
-				el.setAttribute('data-pass_collection', collection);
+			if (el.getAttribute('pass_to') && !el.hasAttribute('pass-collection') &&  collection) {
+				el.setAttribute('pass-collection', collection);
 			}
 			
 			if (el.getAttribute('name') && !el.getAttribute('document_id') && document_id) {
