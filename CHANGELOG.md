@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/CoCreate-app/CoCreate-form/compare/v1.1.0...v1.1.1) (2021-07-28)
+
+
+### Bug Fixes
+
+* remove data- from fetch, pass and filter ([4386706](https://github.com/CoCreate-app/CoCreate-form/commit/43867065d617ec976d71430c8de458b8a48a37bb))
+
 # [1.1.0](https://github.com/CoCreate-app/CoCreate-form/compare/v1.0.39...v1.1.0) (2021-07-28)
 
 
