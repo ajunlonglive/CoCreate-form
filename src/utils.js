@@ -14,7 +14,7 @@ const Utils = {
 
 	setAttribute: function(form) {
 		const { collection, document_id, name, isCrud, isCrdt, isRealtime, isSave, isUpdate, isRead, isListen, isBroadcast, isBroadcastSender } = crud.getAttr(form)
-		const dataRealTime = form.getAttribute('data-realtime');
+		const dataRealTime = form.getAttribute('realtime');
 		const is_flat = form.getAttribute('data-flat')
 		let elements = form.querySelectorAll('[name], [data-pass_to]')
 		
@@ -50,22 +50,22 @@ const Utils = {
 			if (el.getAttribute('broadcast-sender') == null && isBroadcast) {
 				el.setAttribute('broadcast-sender', isBroadcast);
 			}
-			if (el.getAttribute('data-realtime') == null && dataRealTime) {
-				el.setAttribute('data-realtime', dataRealTime);
+			if (el.getAttribute('realtime') == null && dataRealTime) {
+				el.setAttribute('realtime', dataRealTime);
 			}
-			if (el.getAttribute('name') && !el.hasAttribute('data-collection') && collection) {
-				el.setAttribute('data-collection', collection);
+			if (el.getAttribute('name') && !el.hasAttribute('collection') && collection) {
+				el.setAttribute('collection', collection);
 			}
 			
 			if (el.getAttribute('data-pass_to') && !el.hasAttribute('data-pass_collection') &&  collection) {
 				el.setAttribute('data-pass_collection', collection);
 			}
 			
-			if (el.getAttribute('name') && !el.getAttribute('data-document_id') && document_id) {
-				el.setAttribute('data-document_id', document_id)
+			if (el.getAttribute('name') && !el.getAttribute('document_id') && document_id) {
+				el.setAttribute('document_id', document_id)
 			}
-			if (!el.hasAttribute("data-document_id") && document_id != null) {
-				el.setAttribute('data-document_id', document_id)
+			if (!el.hasAttribute("document_id") && document_id != null) {
+				el.setAttribute('document_id', document_id)
 			}
 			
 			if (!el.hasAttribute('data-flat') && is_flat != null) {
@@ -101,9 +101,9 @@ const Utils = {
 		let data = {};
 		if (!collection) return {}
 		
-		const elements = form.querySelectorAll(`[name][data-collection='${collection}']`)
+		const elements = form.querySelectorAll(`[name][collection='${collection}']`)
 		elements.forEach((el) => {
-			let el_document_id = el.getAttribute('data-document_id') || ""
+			let el_document_id = el.getAttribute('document_id') || ""
 			let name = el.getAttribute('name')
 			let value = el.value || el.getAttribute('value')
 			if (name === "_id") return;
@@ -121,9 +121,9 @@ const Utils = {
 		let collections = [];
 		if (!form) return collections;
 
-		let els = form.querySelectorAll('[name][data-collection]');
+		let els = form.querySelectorAll('[name][collection]');
 		els.forEach((el) => {
-			let tmpCollection = el.getAttribute('data-collection')
+			let tmpCollection = el.getAttribute('collection')
 			if (tmpCollection && !collections.includes(tmpCollection)) {
 				collections.push(tmpCollection)
 			} 

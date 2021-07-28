@@ -46,7 +46,7 @@ const CoCreateForm = {
 	__requestDocumentId: async function(form) {
 
 		let self = this;
-		let elements = form.querySelectorAll('[data-collection][data-document_id][name], [data-pass_to]')
+		let elements = form.querySelectorAll('[collection][document_id][name], [data-pass_to]')
 
 		let collections = [];
 		let document_ids = [];
@@ -56,14 +56,14 @@ const CoCreateForm = {
 			if(el.parentNode.classList.contains('template')) {
 				continue;
 			}
-			const { isCrdt, isCrud, isSave, isUpdate } = crud.getAttr(el)
-			if(isCrdt === "true" || isCrud === "flase" || isSave === "flase") continue;
-			const collection = el.getAttribute("data-collection") || el.getAttribute("data-pass_collection") || "";
+			const { document_id, isCrdt, isCrud, isSave, isUpdate } = crud.getAttr(el)
+			if(isCrdt === "true" && document_id || isCrud === "flase" || isSave === "flase") continue;
+			const collection = el.getAttribute("collection") || el.getAttribute("data-pass_collection") || "";
 
 			if(
 				collection !== "" &&
 				!collections.includes(collection) &&
-				(!crud.checkAttrValue(el.getAttribute('data-document_id')) && !crud.checkAttrValue(el.getAttribute('data-pass_document_id')))
+				(!crud.checkAttrValue(el.getAttribute('document_id')) && !crud.checkAttrValue(el.getAttribute('data-pass_document_id')))
 			) {
 
 				collections.push(collection);
@@ -135,11 +135,11 @@ const CoCreateForm = {
 		const id = data['document_id']
 
 		if(form && id) {
-			const elements = form.querySelectorAll(`[data-collection=${collection}], [data-pass_collection=${collection}]`)
+			const elements = form.querySelectorAll(`[collection=${collection}], [data-pass_collection=${collection}]`)
 
 			elements.forEach(function(el) {
-				if(el.hasAttribute('name') && !crud.checkAttrValue(el.getAttribute('data-document_id'))) {
-					el.setAttribute('data-document_id', id);
+				if(el.hasAttribute('name') && !crud.checkAttrValue(el.getAttribute('document_id'))) {
+					el.setAttribute('document_id', id);
 				}
 
 				if(el.hasAttribute('data-pass_to') && !crud.checkAttrValue(el.getAttribute('data-pass_document_id'))) {
@@ -219,7 +219,7 @@ const CoCreateForm = {
 	},
 
 	__deleteDocumentsAction: function(btn) {
-		const collection = btn.getAttribute('data-collection');
+		const collection = btn.getAttribute('collection');
 		if(crud.checkAttrValue(collection)) {
 			const dataTemplateid = btn.getAttribute('data-template_id');
 			if(!dataTemplateid) return;
@@ -227,7 +227,7 @@ const CoCreateForm = {
 			const selectedEls = document.querySelectorAll(`.selected[templateid="${dataTemplateid}"]`)
 
 			selectedEls.forEach((el) => {
-				const document_id = el.getAttribute('data-document_id');
+				const document_id = el.getAttribute('document_id');
 
 				if(crud.checkAttrValue(document_id)) {
 					crud.deleteDocument({
@@ -260,7 +260,7 @@ observer.init({
 observer.init({
 	name: 'CoCreateForm',
 	observe: ['attributes'],
-	attributeName: ['data-collection', 'data-document_id'],
+	attributeName: ['collection', 'document_id'],
 	target: 'form',
 	callback: mutation => mutation.target.tagName === "FORM" &&
 		utils.setAttribute(mutation.target)

@@ -7,42 +7,42 @@
   </head>
   <body class="padding:20px">
   
-    <form data-collection="test" data-form_id="test_form" data-realtime="false">
+    <form collection="test" data-form_id="test_form" realtime="false">
       
-      <input type="text"  class="floating-label" placeholder="Text" name="name" data-document_id="">
-      <input data-save_value="false"  type="text" class="floating-label" placeholder="Text" name="name1"  data-collection="module_activities" data-document_id="5e4802ce3ed96d38e71fc7e5">
-      <input type="text" class="floating-label" placeholder="color" name="color" id="color"  data-document_id="" collection="test3">
-      <input type="search" class="floating-label" placeholder="Search" name="search" id="search" data-get_value="text"  data-document_id="5e4802ce3ed96d38e71fc7e5">
-      <input type="date" class="floating-label" placeholder="Date" name="date" id="date"  data-document_id="">
-      <input type="time" class="floating-label" placeholder="Time" name="time" id="time"  data-document_id="">
-      <input type="datetime-local" class="floating-label" placeholder="Date Time" name="date-time" id="date-time"  data-document_id="">
-      <textarea class="floating-label"  placeholder="Text Area" name='text_area' id="text_area"  data-document_id=""></textarea>
+      <input type="text"  class="floating-label" placeholder="Text" name="name" document_id="">
+      <input data-save_value="false"  type="text" class="floating-label" placeholder="Text" name="name1"  collection="module_activities" document_id="5e4802ce3ed96d38e71fc7e5">
+      <input type="text" class="floating-label" placeholder="color" name="color" id="color"  document_id="" collection="test3">
+      <input type="search" class="floating-label" placeholder="Search" name="search" id="search" data-get_value="text"  document_id="5e4802ce3ed96d38e71fc7e5">
+      <input type="date" class="floating-label" placeholder="Date" name="date" id="date"  document_id="">
+      <input type="time" class="floating-label" placeholder="Time" name="time" id="time"  document_id="">
+      <input type="datetime-local" class="floating-label" placeholder="Date Time" name="date-time" id="date-time"  document_id="">
+      <textarea class="floating-label"  placeholder="Text Area" name='text_area' id="text_area"  document_id=""></textarea>
   
   
   <!-------------- Multiple Documents -------------->
   
-  <!--    <div data-realtime="true" data-save_value="false" data-collection="test" data-document_id="5e9531b3a762440eed55c2ed"  name="selectField1" class="select--field sortable floating-label" placeholder="Select 1" data-limit_option="3" multiple>-->
+  <!--    <div realtime="true" data-save_value="false" collection="test" document_id="5e9531b3a762440eed55c2ed"  name="selectField1" class="select--field sortable floating-label" placeholder="Select 1" data-limit_option="3" multiple>-->
   <!--      <input class="template-search" placeholder="Search" data-template_id="option1">-->
   <!--        <ul data-fetch_collection="users" data-template_id="option1" data-pass_to="me1234" class="template-wrapper options overflow:overlay">-->
   <!--  				<li class="option template" data-pass_id="me1234">-->
-  <!--  				  <h3 data-collection="users" data-document_id="" name="name" data-pass_id="me1234">First name</h3>-->
-  <!--  				  <h5 data-collection="users" data-document_id="" name="_id" data-pass_id="me1234"></h5>-->
+  <!--  				  <h3 collection="users" document_id="" name="name" data-pass_id="me1234">First name</h3>-->
+  <!--  				  <h5 collection="users" document_id="" name="_id" data-pass_id="me1234"></h5>-->
   <!--  				</li>-->
   <!--      </ul>-->
   <!--    </div>-->
       
-  <!--    <div data-realtime="true" data-save_value="false" data-collection="test" data-document_id="5e9531b3a762440eed55c2ed"  name="selectField1" class="select--field sortable floating-label" placeholder="Select 1" data-limit_option="3" multiple>-->
+  <!--    <div realtime="true" data-save_value="false" collection="test" document_id="5e9531b3a762440eed55c2ed"  name="selectField1" class="select--field sortable floating-label" placeholder="Select 1" data-limit_option="3" multiple>-->
   <!--      <input class="template-search" placeholder="Search" data-template_id="selecttable-jin">-->
   <!--        <ul data-fetch_collection="users" data-template_id="selecttable-jin" data-fetch_value="5f08b722a588c11bf8ead495" data-fetch_value_type="array" data-pass_to="me1234" class="template-wrapper options overflow:overlay">-->
   <!--  				<li class="option template" data-pass_id="me1234">-->
-  <!--  				  <h5 data-collection="users" data-document_id="" name="name" data-pass_id="me1234"></h5>-->
+  <!--  				  <h5 collection="users" document_id="" name="name" data-pass_id="me1234"></h5>-->
   <!--  				</li>-->
   <!--      </ul>-->
   <!--    </div>-->
   <!--5f08b722a588c11bf8ead495-->
   
   <!-------------- Multiple Options -------------->
-  <!--    <div data-realtime="true" data-collection="test" data-document_id="5e9531b3a762440eed55c2ed"  name="selectField2" class="select--field sortable floating-label" placeholder="Select 2" multiple>-->
+  <!--    <div realtime="true" collection="test" document_id="5e9531b3a762440eed55c2ed"  name="selectField2" class="select--field sortable floating-label" placeholder="Select 2" multiple>-->
   <!--      <input class="option-search" placeholder="Search">-->
   <!--      <ul class="options overflow:overlay">-->
   <!--				<li class="option" data-value="value 1">-->
@@ -58,18 +58,18 @@
   <!--    </div>-->
   
   <!-------------- Single  Document -------------->
-  <!--    <div class="select--field sortable floating-label" data-realtime="" data-collection="test" name="selectField3" data-document_id="5e8ff00e8c3af32574df80cb" placeholder="Select 3">-->
+  <!--    <div class="select--field sortable floating-label" realtime="" collection="test" name="selectField3" document_id="5e8ff00e8c3af32574df80cb" placeholder="Select 3">-->
   <!--      <input class="template-search" placeholder="Search">-->
   <!--      <ul data-fetch_collection="users" data-template_id="option3" data-pass_to="me1234" class="template-wrapper options  overflow:overlay">-->
   <!--				<li class="option template" data-value="" data-pass_id="me1234">-->
-  <!--				  <h3 data-document_id="" name="name" data-pass_id="me1234" >First name</h3>-->
-  <!--				  <h5 data-document_id="" name="name" data-pass_id="me1234" ></h5>-->
+  <!--				  <h3 document_id="" name="name" data-pass_id="me1234" >First name</h3>-->
+  <!--				  <h5 document_id="" name="name" data-pass_id="me1234" ></h5>-->
   <!--				</li>-->
   <!--      </ul>-->
   <!--    </div>-->
   
   <!-------------- Single  Options -------------->
-  <!--    <div class="select--field sortable floating-label" name="selectField4" data-collection="test" data-document_id="5e8ff00e8c3af32574df80cb" placeholder="Select 4">-->
+  <!--    <div class="select--field sortable floating-label" name="selectField4" collection="test" document_id="5e8ff00e8c3af32574df80cb" placeholder="Select 4">-->
   <!--      <input class="option-search" placeholder="Search">-->
   <!--      <ul class="options  overflow:overlay">-->
   <!--				<li class="option"  data-value="value 1">-->
@@ -85,7 +85,7 @@
   <!--    </div>-->
   
   <!-------------- Fetch array string -------------->
-  <!--    <div class="select--field sortable floating-label" name="selectField5" data-collection="test" data-document_id="5e8ff00e8c3af32574df80cb"  placeholder="Select 5" data-limit_option="3" multiple>-->
+  <!--    <div class="select--field sortable floating-label" name="selectField5" collection="test" document_id="5e8ff00e8c3af32574df80cb"  placeholder="Select 5" data-limit_option="3" multiple>-->
   <!--      <input class="option-search" placeholder="Search" data-template_id="tempplate5">-->
   <!--      <ul data-fetch_collection="test" data-fetch_document_id="5e8ff00e8c3af32574df80cb" data-fetch_name="selectField2" id="array01"-->
   <!--          data-template_id="template5" data-pass_to="me1234" class="template-wrapper-array options overflow:overlay"-->
@@ -97,20 +97,20 @@
   <!--    </div>-->
   
   <!-------------- Fetch array _id -------------->
-  <!--    <div class="select--field sortable floating-label" name="selectField6" data-collection="test" data-document_id="5e8ff00e8c3af32574df80cb"  placeholder="Select 6" data-limit_option="3" multiple>-->
+  <!--    <div class="select--field sortable floating-label" name="selectField6" collection="test" document_id="5e8ff00e8c3af32574df80cb"  placeholder="Select 6" data-limit_option="3" multiple>-->
   <!--      <input class="option-search" placeholder="Search" data-template_id="tempplate6">-->
   <!--      <ul data-fetch_collection="test" data-fetch_document_id="5e8ff00e8c3af32574df80cb" data-fetch_name="selectField1" id="array02"-->
   <!--        data-template_id="template6" data-pass_to="me1234" class="template-wrapper-array options overflow:overlay"-->
   <!--          >-->
   <!--  			<li class="template option" data-pass_id="me1234">-->
-  <!--  			  <h3 data-collection="users" data-document_id="" name="name" data-pass_id="me1234" >Organization Name</h3>-->
-  <!--  			  <h5 data-collection="users" data-document_id="" name="_id" data-pass_id="me1234" >id</h5>-->
+  <!--  			  <h3 collection="users" document_id="" name="name" data-pass_id="me1234" >Organization Name</h3>-->
+  <!--  			  <h5 collection="users" document_id="" name="_id" data-pass_id="me1234" >id</h5>-->
   <!--  			</li>-->
   <!--      </ul>-->
   <!--    </div>-->
   
   <!-------------- Collection Select -------------->
-  <!--    <div class="select--field sortable floating-label" data-collection="test" data-document_id="5e8ff00e8c3af32574df80cb" name="selectField7" placeholder="Select 7" multiple>-->
+  <!--    <div class="select--field sortable floating-label" collection="test" document_id="5e8ff00e8c3af32574df80cb" name="selectField7" placeholder="Select 7" multiple>-->
   <!--      <input class="option-search" placeholder="Search">-->
   <!--      <ul data-fetch_collection_list="true" data-template_id="collection-list" class="template-wrapper options overflow:overlay" data-pass_to="me1234">-->
   <!--				<li class="option template" data-template_id="collection-list" data-value="" data-pass_id="me1234" >-->
