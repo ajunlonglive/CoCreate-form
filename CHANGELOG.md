@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/CoCreate-app/CoCreate-form/compare/v1.1.2...v1.1.3) (2021-08-02)
+
+
+### Bug Fixes
+
+* filter collections if have {{}} ([99c90c7](https://github.com/CoCreate-app/CoCreate-form/commit/99c90c7229b47244afbaa3d7389a70cf7a5d09f3))
+
 ## [1.1.2](https://github.com/CoCreate-app/CoCreate-form/compare/v1.1.1...v1.1.2) (2021-08-02)
 
 
