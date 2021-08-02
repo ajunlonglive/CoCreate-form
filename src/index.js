@@ -59,11 +59,8 @@ const CoCreateForm = {
 			const { document_id, isCrdt, isCrud, isSave, isUpdate } = crud.getAttr(el)
 			if(isCrdt === "true" && document_id || isCrud === "flase" || isSave === "flase") continue;
 			const collection = el.getAttribute("collection") || el.getAttribute("pass-collection") || "";
-
-			if(
-				collection !== "" &&
-				!collections.includes(collection) &&
-				(!crud.checkAttrValue(el.getAttribute('document_id')) && !crud.checkAttrValue(el.getAttribute('pass-document_id')))
+			if ( collection !== "" && !crud.checkAttrValue(collection) && !collections.includes(collection) &&
+				!crud.checkAttrValue(el.getAttribute('document_id')) && !crud.checkAttrValue(el.getAttribute('pass-document_id'))
 			) {
 
 				collections.push(collection);
@@ -127,15 +124,13 @@ const CoCreateForm = {
 	},
 
 	setDocumentId: function(form, data) {
-		if(!data['document_id']) {
-			return;
-		}
-		let self = this;
+		if(!data) return;
+		// let self = this;
 		const collection = data['collection'];
-		const id = data['document_id']
+		const id = data['document_id'];
 
 		if(form && id) {
-			const elements = form.querySelectorAll(`[collection=${collection}], [pass-collection=${collection}]`)
+			const elements = form.querySelectorAll(`[collection=${collection}], [pass-collection=${collection}]`);
 
 			elements.forEach(function(el) {
 				if(el.hasAttribute('name') && !crud.checkAttrValue(el.getAttribute('document_id'))) {
