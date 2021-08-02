@@ -59,8 +59,10 @@ const CoCreateForm = {
 			const { document_id, isCrdt, isCrud, isSave, isUpdate } = crud.getAttr(el)
 			if(isCrdt === "true" && document_id || isCrud === "flase" || isSave === "flase") continue;
 			const collection = el.getAttribute("collection") || el.getAttribute("pass-collection") || "";
-			if ( collection !== "" && !crud.checkAttrValue(collection) && !collections.includes(collection) &&
-				!crud.checkAttrValue(el.getAttribute('document_id')) && !crud.checkAttrValue(el.getAttribute('pass-document_id'))
+			
+	        if (!crud.checkAttrValue(collection) && !crud.checkAttrValue(document_id)) continue;
+			if (collection !== "" && !collections.includes(collection) &&
+				(!crud.checkAttrValue(document_id) && !crud.checkAttrValue(el.getAttribute('pass-document_id')))
 			) {
 
 				collections.push(collection);
