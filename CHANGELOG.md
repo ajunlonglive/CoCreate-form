@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/CoCreate-app/CoCreate-form/compare/v1.1.3...v1.1.4) (2021-08-10)
+
+
+### Bug Fixes
+
+* utils getAttr ([a7400a5](https://github.com/CoCreate-app/CoCreate-form/commit/a7400a5ec4deda326d83cb3089027b17b307276e))
+
 ## [1.1.3](https://github.com/CoCreate-app/CoCreate-form/compare/v1.1.2...v1.1.3) (2021-08-02)
 
 
