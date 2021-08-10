@@ -71,7 +71,6 @@ const Utils = {
 			if (!el.hasAttribute('data-flat') && is_flat != null) {
 				el.setAttribute('data-flat', is_flat);
 			}
-
 		})
 	},
 
