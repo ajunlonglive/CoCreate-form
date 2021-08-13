@@ -31,6 +31,9 @@ const CoCreateForm = {
 	__saveAction: function(btn) {
 		const form = btn.closest("form")
 		this.save(form);
+		// document.dispatchEvent(new CustomEvent('savedDocument', {
+		// 	detail: {}
+		// }))
 	},
 
 	save: function(form) {
@@ -89,7 +92,7 @@ const CoCreateForm = {
 				Object.assign(data,result)
 			})
 
-			 this.createDocument(collection, data).then(data => {
+			this.createDocument(collection, data).then(data => {
 				this.setDocumentId(form, data)
 			})
 
@@ -145,6 +148,9 @@ const CoCreateForm = {
 				}
 			})
 		}
+		document.dispatchEvent(new CustomEvent('savedDocument', {
+			detail: {}
+		}))
 	},
 
 	__createAction: function(btn) {
