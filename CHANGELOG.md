@@ -1,3 +1,11 @@
+## [1.1.5](https://github.com/CoCreate-app/CoCreate-form/compare/v1.1.4...v1.1.5) (2021-08-13)
+
+
+### Bug Fixes
+
+* dispatchevent for saveDocumentAction ([49d31c7](https://github.com/CoCreate-app/CoCreate-form/commit/49d31c74eba37ec4130229e34708c64efa19b455))
+* update to  docs ([0319cf1](https://github.com/CoCreate-app/CoCreate-form/commit/0319cf10dc6e44f76c1c60462395125344add726))
+
 ## [1.1.4](https://github.com/CoCreate-app/CoCreate-form/compare/v1.1.3...v1.1.4) (2021-08-10)
 
 
