@@ -1,3 +1,10 @@
+## [1.1.6](https://github.com/CoCreate-app/CoCreate-form/compare/v1.1.5...v1.1.6) (2021-08-18)
+
+
+### Bug Fixes
+
+* refactor crud.save() ([6c3f74d](https://github.com/CoCreate-app/CoCreate-form/commit/6c3f74d26e3c02652955d125e3d901c4794e1679))
+
 ## [1.1.5](https://github.com/CoCreate-app/CoCreate-form/compare/v1.1.4...v1.1.5) (2021-08-13)
 
 
