@@ -31,9 +31,6 @@ const CoCreateForm = {
 	__saveAction: function(btn) {
 		const form = btn.closest("form")
 		this.save(form);
-		// document.dispatchEvent(new CustomEvent('savedDocument', {
-		// 	detail: {}
-		// }))
 	},
 
 	save: function(form) {
@@ -41,12 +38,10 @@ const CoCreateForm = {
 			alert('Values are not unique');
 			return;
 		}
-
 		this.__requestDocumentId(form);
-
 	},
 
-	__requestDocumentId: async function(form) {
+	__requestDocumentId: function(form) {
 
 		let self = this;
 		let elements = form.querySelectorAll('[collection][document_id][name], [pass_to]')
@@ -79,58 +74,69 @@ const CoCreateForm = {
 				}
 			}
 		}
-		this.createDocuments(form, collections)
 		this.updateDocuments(form, document_ids)
+		this.createDocuments(form, collections)
 	},
 
-	createDocuments: function(form, collections) {
-		for(let collection of collections) {
-
-			let data = {};
-			this.components.forEach(({ callback }) => {
-				let result = callback.call(null, form, collection)
-				Object.assign(data,result)
-			})
-
-			this.createDocument(collection, data).then(data => {
-				this.setDocumentId(form, data)
-			})
-
-
-		}
-	},
 
 	updateDocuments: function(form, document_ids) {
 		for(let document_id of document_ids) {
-			let data = {};
 			
+			let data = {};
 			this.components.forEach(({ callback }) => {
-				let result = callback.call(null, form, document_id)
-				Object.assign(data,result)
+				let result = callback.call(null, form, null, document_id)
+				Object.assign(data, result)
 			})
 			
-			// let element = data[element]
+			// this.updateDocument(data)
 
-			// this.crud.save(element, data).then(data => {
-				// this.setDocumentId(form, data)
-			// })
-
-			// crud.save(document_id)
 		}
 	},
+	
+	updateDocument: function(data) {
+		let elements = data;
+		for(let element of elements) {
+			let value = element.value;
+			crud.save(element, value)
 
-	createDocument: async function(collection, data) {
+		}
+	},
+	
+	createDocuments: function(form, collections) {
+		if (collections.length > 0) {
+			for(let collection of collections) {
+	
+				let data = {};
+				this.components.forEach(({ callback }) => {
+					let result = callback.call(null, form, collection);
+					Object.assign(data, result);
+				});
+	
+				this.createDocument(form, collection, data);
+			}
+		}
+		else {
+			document.dispatchEvent(new CustomEvent('savedDocument', {
+				detail: {}
+			}));
+		}
+	},
+	
+	createDocument: async function(form, collection, data) {
 		if(crud.checkAttrValue(collection)) {
-			return await crud.createDocument({
+			let response =  await crud.createDocument({
 				'collection': collection,
 				'data': data,
 			});
+			this.setDocumentId(form, response);
+			document.dispatchEvent(new CustomEvent('savedDocument', {
+				detail: {}
+			}));
 		}
 	},
-
+	
 	setDocumentId: function(form, data) {
 		if(!data) return;
-		// let self = this;
 		const collection = data['collection'];
 		const id = data['document_id'];
 
@@ -148,9 +154,6 @@ const CoCreateForm = {
 				}
 			})
 		}
-		document.dispatchEvent(new CustomEvent('savedDocument', {
-			detail: {}
-		}))
 	},
 
 	__createAction: function(btn) {
@@ -164,7 +167,10 @@ const CoCreateForm = {
 			if(Object.keys(data).length == 0 && data.constructor === Object) {
 				return;
 			}
-			self.createDocument(collection, data)
+			crud.createDocument({
+				'collection': collection,
+				'data': data,
+			});
 		})
 
 		document.dispatchEvent(new CustomEvent('createdDocument', {
@@ -184,7 +190,6 @@ const CoCreateForm = {
 				return;
 			}
 
-			// ToDo: why do we need to check value 
 			if(crud.checkAttrValue(collection)) {
 				crud.createDocument({
 					'collection': collection,
@@ -200,12 +205,8 @@ const CoCreateForm = {
 	},
 
 	__deleteDocumentAction: function(btn) {
-		const {
-			collection,
-			document_id
-		} = crud.getAttr(btn)
+		const { collection, document_id } = crud.getAttr(btn)
 
-		// ToDo: why do we need to check value 
 		if(crud.checkAttrValue(collection) && crud.checkAttrValue(document_id)) {
 
 			crud.deleteDocument({
