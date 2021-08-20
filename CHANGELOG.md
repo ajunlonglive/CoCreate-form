@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/CoCreate-app/CoCreate-form/compare/v1.1.6...v1.2.0) (2021-08-20)
+
+
+### Features
+
+* form will handle update document and crdt replaceText for each name:value ([13bd5a6](https://github.com/CoCreate-app/CoCreate-form/commit/13bd5a6a3a26e4d4c25fac240ccd20fc955c9eae))
+
 ## [1.1.6](https://github.com/CoCreate-app/CoCreate-form/compare/v1.1.5...v1.1.6) (2021-08-18)
 
 
