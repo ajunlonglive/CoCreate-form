@@ -1,7 +1,7 @@
-import observer from '@cocreate/observer'
-import crud from '@cocreate/crud-client'
-import action from '@cocreate/action'
-import utils from "./utils"
+import observer from '@cocreate/observer';
+import crud from '@cocreate/crud-client';
+import action from '@cocreate/action';
+import utils from "./utils";
 
 const CoCreateForm = {
 
@@ -14,22 +14,22 @@ const CoCreateForm = {
 		});
 
 		const elements = document.querySelectorAll('form');
-		this.initElements(elements)
+		this.initElements(elements);
 
 	},
 
 	initElements: function(elements) {
 		for(let el of elements)
-			this.initElement(el)
+			this.initElement(el);
 	},
 
 	initElement: function(el) {
-		utils.setAttribute(el)
+		utils.setAttribute(el);
 		utils.disableAutoFill(el);
 	},
 
 	__saveAction: function(btn) {
-		const form = btn.closest("form")
+		const form = btn.closest("form");
 		this.save(form);
 	},
 
@@ -42,9 +42,7 @@ const CoCreateForm = {
 	},
 
 	__requestDocumentId: function(form) {
-
-		let self = this;
-		let elements = form.querySelectorAll('[collection][document_id][name], [pass_to]')
+		let elements = form.querySelectorAll('[collection][document_id][name], [pass_to]');
 
 		let collections = [];
 		let document_ids = [];
@@ -54,12 +52,12 @@ const CoCreateForm = {
 			if(el.parentNode.classList.contains('template')) {
 				continue;
 			}
-			const { document_id, isCrdt, isCrud, isSave, isUpdate } = crud.getAttr(el)
+			const { document_id, isCrdt, isCrud, isSave, isUpdate } = crud.getAttr(el);
 			if(isCrdt === "true" && document_id || isCrud === "flase" || isSave === "flase") continue;
 			const collection = el.getAttribute("collection") || el.getAttribute("pass-collection") || "";
-			
-	        if (!crud.checkAttrValue(collection) && !crud.checkAttrValue(document_id)) continue;
-			if (collection !== "" && !collections.includes(collection) &&
+
+			if(!crud.checkAttrValue(collection) && !crud.checkAttrValue(document_id)) continue;
+			if(collection !== "" && !collections.includes(collection) &&
 				(!crud.checkAttrValue(document_id) && !crud.checkAttrValue(el.getAttribute('pass-document_id')))
 			) {
 
@@ -67,51 +65,77 @@ const CoCreateForm = {
 
 			}
 			else {
-				const { collection, document_id, name } = crud.getAttr(el)
-				if(collection && document_id && name) {
+				const { collection, document_id, name } = crud.getAttr(el);
+				if(collection && document_id && name && !document_ids.includes(document_id)) {
 					if(isUpdate === "false") continue;
-					document_ids.push(document_id);
+					document_ids.push({ document_id: document_id, collection: collection });
 				}
 			}
 		}
-		this.updateDocuments(form, document_ids)
-		this.createDocuments(form, collections)
+		this.updateDocuments(form, document_ids);
+		this.createDocuments(form, collections);
 	},
 
 
 	updateDocuments: function(form, document_ids) {
-		for(let document_id of document_ids) {
-			
-			let data = {};
-			this.components.forEach(({ callback }) => {
-				let result = callback.call(null, form, null, document_id)
-				Object.assign(data, result)
-			})
-			
-			// this.updateDocument(data)
+		if(document_ids.length > 0) {
+			for(let item of document_ids) {
 
+				let data = {};
+				this.components.forEach(({ callback }) => {
+					let result = callback.call(null, form, item.collection, item.document_id);
+					Object.assign(data, result);
+				});
+
+				this.updateDocument(form, item.collection, item.document_id, data);
+
+			}
 		}
 	},
-	
-	updateDocument: function(data) {
-		let elements = data;
-		for(let element of elements) {
-			let value = element.value;
-			crud.save(element, value)
 
+	updateDocument: async function(form, collection, document_id, data) {
+		let { namespace, room, broadcast, broadcast_sender } = crud.getAttr(form);
+		if(crud.checkAttrValue(collection)) {
+			// let response = await crud.updateDocument({
+			crud.updateDocument({
+				namespace,
+				room,
+				collection,
+				document_id,
+				data,
+				upsert: true,
+				broadcast,
+				broadcast_sender,
+				is_flat: true,
+			});
 		}
+		if(window.CoCreate.crdt) {
+			for(const [key, value] of Object.entries(data)) {
+				window.CoCreate.crdt.replaceText({
+					collection,
+					name: `${key}`,
+					document_id,
+					value: `${value}`,
+					crud: false
+				});
+			}
+		}
+		// this.setDocumentId(form, response);
+		document.dispatchEvent(new CustomEvent('savedDocument', {
+			detail: {}
+		}));
 	},
-	
+
 	createDocuments: function(form, collections) {
-		if (collections.length > 0) {
+		if(collections.length > 0) {
 			for(let collection of collections) {
-	
+
 				let data = {};
 				this.components.forEach(({ callback }) => {
 					let result = callback.call(null, form, collection);
 					Object.assign(data, result);
 				});
-	
+				delete data._id;
 				this.createDocument(form, collection, data);
 			}
 		}
@@ -121,12 +145,13 @@ const CoCreateForm = {
 			}));
 		}
 	},
-	
+
 	createDocument: async function(form, collection, data) {
 		if(crud.checkAttrValue(collection)) {
-			let response =  await crud.createDocument({
+			let response = await crud.createDocument({
 				'collection': collection,
 				'data': data,
+				'is_flat': true
 			});
 			this.setDocumentId(form, response);
 			document.dispatchEvent(new CustomEvent('savedDocument', {
@@ -134,7 +159,7 @@ const CoCreateForm = {
 			}));
 		}
 	},
-	
+
 	setDocumentId: function(form, data) {
 		if(!data) return;
 		const collection = data['collection'];
@@ -152,14 +177,13 @@ const CoCreateForm = {
 					el.setAttribute('pass-document_id', id);
 
 				}
-			})
+			});
 		}
 	},
 
 	__createAction: function(btn) {
-		const form = btn.closest("form")
-		const self = this;
-		let collections = utils.getCOllections(form)
+		const form = btn.closest("form");
+		let collections = utils.getCOllections(form);
 
 		collections.forEach((collection) => {
 			let data = utils.getFormData(form, "", collection);
@@ -171,17 +195,16 @@ const CoCreateForm = {
 				'collection': collection,
 				'data': data,
 			});
-		})
+		});
 
 		document.dispatchEvent(new CustomEvent('createdDocument', {
 			detail: {}
-		}))
+		}));
 	},
 
 	__createDocumentAction: function(btn) {
-		const form = btn.closest("form")
-		const self = this;
-		let collections = utils.getCOllections(form)
+		const form = btn.closest("form");
+		let collections = utils.getCOllections(form);
 
 		collections.forEach((collection) => {
 			let data = utils.getFormData(form, "", collection);
@@ -199,13 +222,13 @@ const CoCreateForm = {
 				});
 				document.dispatchEvent(new CustomEvent('createdDocument', {
 					detail: {}
-				}))
+				}));
 			}
-		})
+		});
 	},
 
 	__deleteDocumentAction: function(btn) {
-		const { collection, document_id } = crud.getAttr(btn)
+		const { collection, document_id } = crud.getAttr(btn);
 
 		if(crud.checkAttrValue(collection) && crud.checkAttrValue(document_id)) {
 
@@ -218,7 +241,7 @@ const CoCreateForm = {
 			// ToDo: replace with custom event
 			document.dispatchEvent(new CustomEvent('deletedDocument', {
 				detail: {}
-			}))
+			}));
 		}
 	},
 
@@ -228,7 +251,7 @@ const CoCreateForm = {
 			const dataTemplateid = btn.getAttribute('template_id');
 			if(!dataTemplateid) return;
 
-			const selectedEls = document.querySelectorAll(`.selected[templateid="${dataTemplateid}"]`)
+			const selectedEls = document.querySelectorAll(`.selected[templateid="${dataTemplateid}"]`);
 
 			selectedEls.forEach((el) => {
 				const document_id = el.getAttribute('document_id');
@@ -238,17 +261,17 @@ const CoCreateForm = {
 						collection,
 						document_id,
 						'metadata': ''
-					})
+					});
 				}
-			})
+			});
 
 			document.dispatchEvent(new CustomEvent('deletedDocuments', {
 				detail: {}
-			}))
+			}));
 		}
 	},
 
-}
+};
 
 CoCreateForm.init();
 
@@ -259,7 +282,7 @@ observer.init({
 	callback: mutation => mutation.target.tagName === "FORM" &&
 		CoCreateForm.initElement(mutation.target)
 
-})
+});
 
 observer.init({
 	name: 'CoCreateForm',
@@ -268,38 +291,38 @@ observer.init({
 	target: 'form',
 	callback: mutation => mutation.target.tagName === "FORM" &&
 		utils.setAttribute(mutation.target)
-})
+});
 
 action.init({
 	action: "createDocument",
 	endEvent: "createdDocument",
 	callback: (btn, data) => {
-		CoCreateForm.__createDocumentAction(btn)
-	},
-})
+		CoCreateForm.__createDocumentAction(btn);
+	}
+});
 
 action.init({
 	action: "deleteDocument",
 	endEvent: "deletedDocument",
 	callback: (btn, data) => {
-		CoCreateForm.__deleteDocumentAction(btn)
-	},
-})
+		CoCreateForm.__deleteDocumentAction(btn);
+	}
+});
 
 action.init({
 	action: "deleteDocuments",
 	endEvent: "deletedDocuments",
 	callback: (btn, data) => {
-		CoCreateForm.__deleteDocumentsAction(btn)
-	},
-})
+		CoCreateForm.__deleteDocumentsAction(btn);
+	}
+});
 
 action.init({
 	action: "saveDocument",
 	endEvent: "savedDocument",
 	callback: (btn, data) => {
-		CoCreateForm.__saveAction(btn)
-	},
-})
+		CoCreateForm.__saveAction(btn);
+	}
+});
 
 export default CoCreateForm;
