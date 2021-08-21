@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/CoCreate-app/CoCreate-form/compare/v1.2.0...v1.2.1) (2021-08-21)
+
+
+### Bug Fixes
+
+* if getValues  object empty return ([795f5c5](https://github.com/CoCreate-app/CoCreate-form/commit/795f5c55e5a482c36967679313753cbb81e32b36))
+
 # [1.2.0](https://github.com/CoCreate-app/CoCreate-form/compare/v1.1.6...v1.2.0) (2021-08-20)
 
 
