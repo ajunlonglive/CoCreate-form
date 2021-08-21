@@ -6,13 +6,40 @@
 		<!-- CoCreate Favicon -->
 		<link rel="icon" href="https://cdn.cocreate.app/favicon.ico" type="image/ico" sizes="16x16">
 	</head>
+	<style type="text/css">
+		.collapsed>.menu-items {
+			height: 0px;
+			overflow: hidden
+		}
+
+		.menu-item.active {
+			height: 100%
+		}
+
+		.collapsed>.menu-item-types {
+			height: 0px;
+			overflow: hidden
+		}
+
+		.menu-item-type.active {
+			height: 100%
+		}
+
+		.tab-type[selected] {
+			background: #3790ff;
+		}
+
+		.tab[selected] {
+			background: whitesmoke;
+		}
+	</style>
 
 	<body class="padding:20px">
 
-		<form collection="test" document_id="">
+		<form collection="apples2" document_id="">
 
-			<input type="number" class="floating-label" placeholder="number" name="number">
 			<input type="text" class="floating-label" placeholder="Text" name="name">
+			<input type="number" class="floating-label" placeholder="number" name="number">
 			<input type="text" class="floating-label" placeholder="color" name="color" id="color">
 			<input type="date" class="floating-label" placeholder="Date" name="date" id="date">
 			<input type="time" class="floating-label" placeholder="Time" name="time" id="time">
@@ -27,296 +54,341 @@
 					</cc-option>
 				</cc-options>
 			</cocreate-select>
-					<!--<div class="menu-items">-->
-					<!--	<div class="margin-top:10px display:flex tabs border-bottom:5px_solid_whitesmoke">-->
-					<!--		<div class="padding:10px_21px border-radius:3px_3px_0_0 font-size:16px cursor:pointer background:gainsboro background:silver:hover tab" selected-value="active" selected-target="#navbar-menu" selected-group="menu-items" selected>Navbar</div>-->
-					<!--		<div class="padding:10px_21px border-radius:3px_3px_0_0 font-size:16px cursor:pointer background:gainsboro background:silver:hover tab" selected-value="active" selected-target="#main-menu" selected-group="menu-items">Menu</div>-->
-					<!--		<div class="padding:10px_21px border-radius:3px_3px_0_0 font-size:16px cursor:pointer background:gainsboro background:silver:hover tab" selected-value="active" selected-target="#settings-menu" selected-group="menu-items">Settings</div>-->
-					<!--	</div>-->
-					<!--	<div class="padding:5px background:whitesmoke">-->
-					<!--		<div id='navbar-menu' class="menu-item overflow:hidden height:0px active">-->
-					<!--			<div id="navbar-menu-primary" class="menu-item-type overflow:hidden  height:0px active">-->
-					<!--				<cocreate-select class="floating-label sortable" placeholder="Primary View" name="navbar-menu-primary">-->
-					<!--					<input class="template-search" placeholder="Search" template_id="navbar-menu-primary">-->
-					<!--					<cc-options pass_id="module_id" fetch-collection="files" filter-name="" filter-value="" filter-operator="$eq" template_id="navbar-menu-primary" class="overflow:auto">-->
-					<!--						<cc-option class="template" template_id="navbar-menu-primary" value='{{data._id}}' document_id="{{data._id}}" render-array="data">-->
-					<!--							<h3 collection="{{collection}}" document_id="{{data._id}}" name="name" value="{{data.name}}">View Name</h3>-->
-					<!--							<h5>{{data._id}}</h5>-->
-					<!--						</cc-option>-->
-					<!--					</cc-options>-->
-					<!--				</cocreate-select>-->
-									<!--<input type="text" pass_id="form-fields" name="navbar-menu-primary-href" placeholder="href" class="floating-label" />-->
-					<!--				<div class="display:flex justify-content:space-between">-->
-					<!--					<div class="width:48%">-->
-					<!--						<input type="number" pass_id="form-fields" name="navbar-menu-position" placeholder="Menu Position" class="floating-label" />-->
-					<!--					</div>-->
-					<!--					<div class="width:48%">-->
-					<!--						<input type="color" pass_id="form-fields" name="navbar-modal-primary-color" placeholder="Modal Color" class="floating-label" />-->
-					<!--					</div>-->
-					<!--				</div>-->
-					<!--				<div class="display:flex justify-content:space-between">-->
-					<!--					<div class="width:48%">-->
-					<!--						<input type="text" pass_id="form-fields" name="navbar-modal-primary-width" placeholder="Modal Width" class="floating-label" />-->
-					<!--					</div>-->
-					<!--					<div class="width:48%">-->
-					<!--						<input type="text" pass_id="form-fields" name="navbar-modal-primary-height" placeholder="Modal Height" class="floating-label" />-->
-					<!--					</div>-->
-					<!--				</div>-->
-					<!--				<div class="display:flex justify-content:space-between">-->
-					<!--					<div class="width:48%">-->
-					<!--						<input type="text" pass_id="form-fields" name="navbar-modal-primary-x" placeholder="Modal x" class="floating-label" />-->
-					<!--					</div>-->
-					<!--					<div class="width:48%">-->
-					<!--						<input type="text" pass_id="form-fields" name="navbar-modal-primary-y" placeholder="Modal y" class="floating-label" />-->
-					<!--					</div>-->
-					<!--				</div>-->
-					<!--			</div>-->
-					<!--		</div>-->
-					<!--		<div id='main-menu' class="menu-item overflow:hidden height:0px">-->
-					<!--			<div class="margin-top:10px display:flex tabs">-->
-					<!--				<div class="padding:10px_21px font-size:16px cursor:pointer background:gainsboro grow-hover tab-type" selected-value="active" selected-target="#main-menu-primary" selected-group="main-menu-item" selected>Primary</div>-->
-					<!--				<div class="padding:10px_21px font-size:16px cursor:pointer background:gainsboro grow-hover tab-type" selected-value="active" selected-target="#main-menu-secondary" selected-group="main-menu-item">Secondary</div>-->
-					<!--			</div>-->
-					<!--			<div id="main-menu-primary" class="menu-item-type overflow:hidden  height:0px active">-->
-					<!--				<cocreate-select class="floating-label sortable" placeholder="Primary View" name="main-menu-primary">-->
-					<!--					<input class="template-search" placeholder="Search" template_id="main-menu-primary">-->
-					<!--					<cc-options pass_id="module_id" fetch-collection="files" filter-name="" filter-value="" filter-operator="$eq" template_id="main-menu-primary" class="overflow:auto">-->
-					<!--						<cc-option class="template" template_id="main-menu-primary" value='{{data._id}}' document_id="{{data._id}}" render-array="data">-->
-					<!--							<h3 collection="{{collection}}" document_id="{{data._id}}" name="name" value="{{data.name}}">View Name</h3>-->
-					<!--							<h5>{{data._id}}</h5>-->
-					<!--						</cc-option>-->
-					<!--					</cc-options>-->
-					<!--				</cocreate-select>-->
-					<!--				<div class="display:flex justify-content:space-between">-->
-					<!--					<div class="width:48%">-->
-					<!--						<input type="number" pass_id="form-fields" name="main-menu-position" placeholder="Menu Position" class="floating-label" />-->
-					<!--					</div>-->
-					<!--					<div class="width:48%">-->
-					<!--						<input type="color" pass_id="form-fields" name="main-modal-primary-color" placeholder="Modal Color" class="floating-label" />-->
-					<!--					</div>-->
-					<!--				</div>-->
-					<!--				<div class="display:flex justify-content:space-between">-->
-					<!--					<div class="width:48%">-->
-					<!--						<input type="text" pass_id="form-fields" name="main-modal-primary-width" placeholder="Modal Width" class="floating-label" />-->
-					<!--					</div>-->
-					<!--					<div class="width:48%">-->
-					<!--						<input type="text" pass_id="form-fields" name="main-modal-primary-height" placeholder="Modal Height" class="floating-label" />-->
-					<!--					</div>-->
-					<!--				</div>-->
-					<!--				<div class="display:flex justify-content:space-between">-->
-					<!--					<div class="width:48%">-->
-					<!--						<input type="text" pass_id="form-fields" name="main-modal-primary-x" placeholder="Modal x" class="floating-label" />-->
-					<!--					</div>-->
-					<!--					<div class="width:48%">-->
-					<!--						<input type="text" pass_id="form-fields" name="main-modal-primary-y" placeholder="Modal y" class="floating-label" />-->
-					<!--					</div>-->
-					<!--				</div>-->
-					<!--			</div>-->
-					<!--			<div id="main-menu-secondary" class="menu-item-type overflow:hidden height:0px">-->
-					<!--				<cocreate-select class="floating-label sortable" placeholder="Secondary View" name="main-menu-secondary">-->
-					<!--					<input class="template-search" placeholder="Search" template_id="main-menu-secondary">-->
-					<!--					<cc-options pass_id="module_id" fetch-collection="files" filter-name="" filter-value="" filter-operator="$eq" template_id="main-menu-secondary" class="overflow:auto">-->
-					<!--						<cc-option class="template" template_id="main-menu-secondary" value='{{data._id}}' document_id="{{data._id}}" render-array="data">-->
-					<!--							<h3 collection="{{collection}}" document_id="{{data._id}}" name="name" value="{{data.name}}">View Name</h3>-->
-					<!--							<h5>{{data._id}}</h5>-->
-					<!--						</cc-option>-->
-					<!--					</cc-options>-->
-					<!--				</cocreate-select>-->
-					<!--				<input type="color" pass_id="form-fields" name="main-modal-secondary-color" placeholder="Modal Color" class="floating-label" />-->
-					<!--				<div class="display:flex justify-content:space-between">-->
-					<!--					<div class="width:48%">-->
-					<!--						<input type="text" pass_id="form-fields" name="main-modal-secondary-width" placeholder="Modal Width" class="floating-label" />-->
-					<!--					</div>-->
-					<!--					<div class="width:48%">-->
-					<!--						<input type="text" pass_id="form-fields" name="main-modal-secondary-height" placeholder="Modal Height" class="floating-label" />-->
-					<!--					</div>-->
-					<!--				</div>-->
-					<!--				<div class="display:flex justify-content:space-between">-->
-					<!--					<div class="width:48%">-->
-					<!--						<input type="text" pass_id="form-fields" name="main-modal-secondary-x" placeholder="Modal x" class="floating-label" />-->
-					<!--					</div>-->
-					<!--					<div class="width:48%">-->
-					<!--						<input type="text" pass_id="form-fields" name="main-modal-secondary-y" placeholder="Modal y" class="floating-label" />-->
-					<!--					</div>-->
-					<!--				</div>-->
-					<!--			</div>-->
-					<!--		</div>-->
-					<!--		<div id='settings-menu' class="menu-item overflow:hidden height:0px">-->
-					<!--			<div class="margin-top:10px display:flex tabs">-->
-					<!--				<div class="padding:10px_21px font-size:16px cursor:pointer background:gainsboro grow-hover tab-type" selected-value="active" selected-target="#settings-menu-primary" selected-group="settings-menu-item" selected>Primary</div>-->
-					<!--				<div class="padding:10px_21px font-size:16px cursor:pointer background:gainsboro grow-hover tab-type" selected-value="active" selected-target="#settings-menu-secondary" selected-group="settings-menu-item">Secondary</div>-->
-					<!--			</div>-->
-					<!--			<div id="settings-menu-primary" class="menu-item-type overflow:hidden  height:0px active">-->
-					<!--				<cocreate-select class="floating-label sortable" placeholder="Primary View" name="settings-menu-primary">-->
-					<!--					<input class="template-search" placeholder="Search" template_id="settings-menu-primary">-->
-					<!--					<cc-options pass_id="module_id" fetch-collection="files" filter-name="" filter-value="" filter-operator="$eq" template_id="settings-menu-primary" class="overflow:auto">-->
-					<!--						<cc-option class="template" template_id="settings-menu-primary" value='{{data._id}}' document_id="{{data._id}}" render-array="data">-->
-					<!--							<h3 collection="{{collection}}" document_id="{{data._id}}" name="name" value="{{data.name}}">View Name</h3>-->
-					<!--							<h5>{{data._id}}</h5>-->
-					<!--						</cc-option>-->
-					<!--					</cc-options>-->
-					<!--				</cocreate-select>-->
-					<!--				<div class="display:flex justify-content:space-between">-->
-					<!--					<div class="width:48%">-->
-					<!--						<input type="number" pass_id="form-fields" name="settings-menu-position" placeholder="Menu Position" class="floating-label" />-->
-					<!--					</div>-->
-					<!--					<div class="width:48%">-->
-					<!--						<input type="color" pass_id="form-fields" name="settings-modal-primary-color" placeholder="Modal Color" class="floating-label" />-->
-					<!--					</div>-->
-					<!--				</div>-->
-					<!--				<div class="display:flex justify-content:space-between">-->
-					<!--					<div class="width:48%">-->
-					<!--						<input type="text" pass_id="form-fields" name="settings-modal-primary-width" placeholder="Modal Width" class="floating-label" />-->
-					<!--					</div>-->
-					<!--					<div class="width:48%">-->
-					<!--						<input type="text" pass_id="form-fields" name="settings-modal-primary-height" placeholder="Modal Height" class="floating-label" />-->
-					<!--					</div>-->
-					<!--				</div>-->
-					<!--				<div class="display:flex justify-content:space-between">-->
-					<!--					<div class="width:48%">-->
-					<!--						<input type="text" pass_id="form-fields" name="settings-modal-primary-x" placeholder="Modal x" class="floating-label" />-->
-					<!--					</div>-->
-					<!--					<div class="width:48%">-->
-					<!--						<input type="text" pass_id="form-fields" name="settings-modal-primary-y" placeholder="Modal y" class="floating-label" />-->
-					<!--					</div>-->
-					<!--				</div>-->
-					<!--			</div>-->
-					<!--			<div id="settings-menu-secondary" class="menu-item-type overflow:hidden height:0px">-->
-					<!--				<cocreate-select class="floating-label sortable" placeholder="Secondary View" name="settings-menu-secondary">-->
-					<!--					<input class="template-search" placeholder="Search" template_id="settings-menu-secondary">-->
-					<!--					<cc-options pass_id="module_id" fetch-collection="files" filter-name="" filter-value="" filter-operator="$eq" template_id="settings-menu-secondary" class="overflow:auto">-->
-					<!--						<cc-option class="template" template_id="settings-menu-secondary" value='{{data._id}}' document_id="{{data._id}}" render-array="data">-->
-					<!--							<h3 collection="{{collection}}" document_id="{{data._id}}" name="name" value="{{data.name}}">View Name</h3>-->
-					<!--							<h5>{{data._id}}</h5>-->
-					<!--						</cc-option>-->
-					<!--					</cc-options>-->
-					<!--				</cocreate-select>-->
-					<!--				<input type="color" pass_id="form-fields" name="settings-modal-secondary-color" placeholder="Modal Color" class="floating-label" />-->
-					<!--				<div class="display:flex justify-content:space-between">-->
-					<!--					<div class="width:48%">-->
-					<!--						<input type="text" pass_id="form-fields" name="settings-modal-secondary-width" placeholder="Modal Width" class="floating-label" />-->
-					<!--					</div>-->
-					<!--					<div class="width:48%">-->
-					<!--						<input type="text" pass_id="form-fields" name="settings-modal-secondary-height" placeholder="Modal Height" class="floating-label" />-->
-					<!--					</div>-->
-					<!--				</div>-->
-					<!--				<div class="display:flex justify-content:space-between">-->
-					<!--					<div class="width:48%">-->
-					<!--						<input type="text" pass_id="form-fields" name="settings-modal-secondary-x" placeholder="Modal x" class="floating-label" />-->
-					<!--					</div>-->
-					<!--					<div class="width:48%">-->
-					<!--						<input type="text" pass_id="form-fields" name="settings-modal-secondary-y" placeholder="Modal y" class="floating-label" />-->
-					<!--					</div>-->
-					<!--				</div>-->
-					<!--			</div>-->
-					<!--		</div>-->
-					<!--	</div>-->
-					<!--</div>-->
-			<!-------------- Multiple Documents -------------->
-
-			<!--    <div realtime="true" save="false" collection="test" document_id="5e9531b3a762440eed55c2ed"  name="selectField1" class="select--field sortable floating-label" placeholder="Select 1" data-limit_option="3" multiple>-->
-			<!--      <input class="template-search" placeholder="Search" template_id="option1">-->
-			<!--        <ul fetch-collection="users" template_id="option1" pass_to="me1234" class="template-wrapper options overflow:overlay">-->
-			<!--  				<li class="option template" pass_id="me1234">-->
-			<!--  				  <h3 collection="users" document_id="" name="name" pass_id="me1234">First name</h3>-->
-			<!--  				  <h5 collection="users" document_id="" name="_id" pass_id="me1234"></h5>-->
-			<!--  				</li>-->
-			<!--      </ul>-->
-			<!--    </div>-->
-
-			<!--    <div realtime="true" save="false" collection="test" document_id="5e9531b3a762440eed55c2ed"  name="selectField1" class="select--field sortable floating-label" placeholder="Select 1" data-limit_option="3" multiple>-->
-			<!--      <input class="template-search" placeholder="Search" template_id="selecttable-jin">-->
-			<!--        <ul fetch-collection="users" template_id="selecttable-jin" fetch-value="5f08b722a588c11bf8ead495" fetch-value_type="array" pass_to="me1234" class="template-wrapper options overflow:overlay">-->
-			<!--  				<li class="option template" pass_id="me1234">-->
-			<!--  				  <h5 collection="users" document_id="" name="name" pass_id="me1234"></h5>-->
-			<!--  				</li>-->
-			<!--      </ul>-->
-			<!--    </div>-->
-			<!--5f08b722a588c11bf8ead495-->
-
-			<!-------------- Multiple Options -------------->
-			<!--    <div realtime="true" collection="test" document_id="5e9531b3a762440eed55c2ed"  name="selectField2" class="select--field sortable floating-label" placeholder="Select 2" multiple>-->
-			<!--      <input class="option-search" placeholder="Search">-->
-			<!--      <ul class="options overflow:overlay">-->
-			<!--				<li class="option" data-value="value 1">-->
-			<!--				  <h3 >value 1</h3>-->
-			<!--				</li>-->
-			<!--				<li class="option" data-value="value 2">-->
-			<!--				  <h3 >value 2</h3>-->
-			<!--				</li>-->
-			<!--				<li class="option" data-value="value 3">-->
-			<!--				  <h3 >value 3</h3>-->
-			<!--				</li>-->
-			<!--      </ul>-->
-			<!--    </div>-->
-
-			<!-------------- Single  Document -------------->
-			<!--    <div class="select--field sortable floating-label" realtime="" collection="test" name="selectField3" document_id="5e8ff00e8c3af32574df80cb" placeholder="Select 3">-->
-			<!--      <input class="template-search" placeholder="Search">-->
-			<!--      <ul fetch-collection="users" template_id="option3" pass_to="me1234" class="template-wrapper options  overflow:overlay">-->
-			<!--				<li class="option template" data-value="" pass_id="me1234">-->
-			<!--				  <h3 document_id="" name="name" pass_id="me1234" >First name</h3>-->
-			<!--				  <h5 document_id="" name="name" pass_id="me1234" ></h5>-->
-			<!--				</li>-->
-			<!--      </ul>-->
-			<!--    </div>-->
-
-			<!-------------- Single  Options -------------->
-			<!--    <div class="select--field sortable floating-label" name="selectField4" collection="test" document_id="5e8ff00e8c3af32574df80cb" placeholder="Select 4">-->
-			<!--      <input class="option-search" placeholder="Search">-->
-			<!--      <ul class="options  overflow:overlay">-->
-			<!--				<li class="option"  data-value="value 1">-->
-			<!--				  <h3 >value 1</h3>-->
-			<!--				</li>-->
-			<!--				<li class="option"  data-value="value 2">-->
-			<!--				  <h3 >value 2</h3>-->
-			<!--				</li>-->
-			<!--				<li class="option"  data-value="value 3">-->
-			<!--				  <h3 >value 3</h3>-->
-			<!--				</li>-->
-			<!--      </ul>-->
-			<!--    </div>-->
-
-			<!-------------- Fetch array string -------------->
-			<!--    <div class="select--field sortable floating-label" name="selectField5" collection="test" document_id="5e8ff00e8c3af32574df80cb"  placeholder="Select 5" data-limit_option="3" multiple>-->
-			<!--      <input class="option-search" placeholder="Search" template_id="tempplate5">-->
-			<!--      <ul fetch-collection="test" fetch-document_id="5e8ff00e8c3af32574df80cb" fetch-name="selectField2" id="array01"-->
-			<!--          template_id="template5" pass_to="me1234" class="template-wrapper-array options overflow:overlay"-->
-			<!--          >-->
-			<!--  			<li class="template option" pass_id="me1234">-->
-			<!--  			  <h3 pass_id="me1234" raw>Organization Name</h3>-->
-			<!--  			</li>-->
-			<!--      </ul>-->
-			<!--    </div>-->
-
-			<!-------------- Fetch array _id -------------->
-			<!--    <div class="select--field sortable floating-label" name="selectField6" collection="test" document_id="5e8ff00e8c3af32574df80cb"  placeholder="Select 6" data-limit_option="3" multiple>-->
-			<!--      <input class="option-search" placeholder="Search" template_id="tempplate6">-->
-			<!--      <ul fetch-collection="test" fetch-document_id="5e8ff00e8c3af32574df80cb" fetch-name="selectField1" id="array02"-->
-			<!--        template_id="template6" pass_to="me1234" class="template-wrapper-array options overflow:overlay"-->
-			<!--          >-->
-			<!--  			<li class="template option" pass_id="me1234">-->
-			<!--  			  <h3 collection="users" document_id="" name="name" pass_id="me1234" >Organization Name</h3>-->
-			<!--  			  <h5 collection="users" document_id="" name="_id" pass_id="me1234" >id</h5>-->
-			<!--  			</li>-->
-			<!--      </ul>-->
-			<!--    </div>-->
-
-			<!-------------- Collection Select -------------->
-			<!--    <div class="select--field sortable floating-label" collection="test" document_id="5e8ff00e8c3af32574df80cb" name="selectField7" placeholder="Select 7" multiple>-->
-			<!--      <input class="option-search" placeholder="Search">-->
-			<!--      <ul fetch-collection_list="true" template_id="collection-list" class="template-wrapper options overflow:overlay" pass_to="me1234">-->
-			<!--				<li class="option template" template_id="collection-list" data-value="" pass_id="me1234" >-->
-			<!--				  <a pass_to="document-select" pass-collection="" pass_id="me1234" >-->
-			<!--				    <h5 name="name" pass_id="me1234" raw></h5>-->
-			<!--				  </a>-->
-			<!--				</li>-->
-			<!--      </ul>-->
-			<!--    </div>-->
 
 			<button actions="saveDocument" class="position:fixed bottom:15px right:15px bg-blue grow-hover round"><i class="far fa-save"></i></button>
 
+			<div class="menu-items">
+				<div class="margin-top:10px display:flex tabs border-bottom:5px_solid_whitesmoke">
+					<div class="padding:10px_21px border-radius:3px_3px_0_0 font-size:16px cursor:pointer background:gainsboro background:silver:hover tab" selected-value="active" selected-target="#navbar-menu" selected-group="menu-items" selected>Navbar</div>
+					<div class="padding:10px_21px border-radius:3px_3px_0_0 font-size:16px cursor:pointer background:gainsboro background:silver:hover tab" selected-value="active" selected-target="#main-menu" selected-group="menu-items">Menu</div>
+					<div class="padding:10px_21px border-radius:3px_3px_0_0 font-size:16px cursor:pointer background:gainsboro background:silver:hover tab" selected-value="active" selected-target="#settings-menu" selected-group="menu-items">Settings</div>
+				</div>
+				<div class="padding:5px background:whitesmoke">
+
+					<div id='navbar-menu' class="menu-item overflow:hidden height:0px active">
+						<div id="navbar-menu-primary" class="menu-item-type overflow:hidden  height:0px active">
+							<cocreate-select class="floating-label sortable" placeholder="Primary View" name="navbar-menu-primary">
+								<input class="template-search" placeholder="Search" template_id="navbar-menu-primary">
+								<cc-options pass_id="module_id" fetch-collection="files" filter-name="" filter-value="" filter-operator="$eq" template_id="navbar-menu-primary" class="overflow:auto">
+									<cc-option class="template" template_id="navbar-menu-primary" value='{{data._id}}' document_id="{{data._id}}" render-array="data">
+										<h3 collection="{{collection}}" document_id="{{data._id}}" name="name" value="{{data.name}}">View Name</h3>
+										<h5>{{data._id}}</h5>
+									</cc-option>
+								</cc-options>
+							</cocreate-select>
+							<input type="text" pass_id="form-fields" name="navbar-menu-primary-href" placeholder="href" class="floating-label" />
+							<div class="display:flex justify-content:space-between">
+								<div class="width:48%">
+									<input type="number" pass_id="form-fields" name="navbar-menu-position" placeholder="Menu Position" class="floating-label" />
+								</div>
+								<div class="width:48%">
+									<input type="color" pass_id="form-fields" name="navbar-modal-primary-color" placeholder="Modal Color" class="floating-label" />
+								</div>
+							</div>
+							<div class="display:flex justify-content:space-between">
+								<div class="width:48%">
+									<input type="text" pass_id="form-fields" name="navbar-modal-primary-width" placeholder="Modal Width" class="floating-label" />
+								</div>
+								<div class="width:48%">
+									<input type="text" pass_id="form-fields" name="navbar-modal-primary-height" placeholder="Modal Height" class="floating-label" />
+								</div>
+							</div>
+							<div class="display:flex justify-content:space-between">
+								<div class="width:48%">
+									<input type="text" pass_id="form-fields" name="navbar-modal-primary-x" placeholder="Modal x" class="floating-label" />
+								</div>
+								<div class="width:48%">
+									<input type="text" pass_id="form-fields" name="navbar-modal-primary-y" placeholder="Modal y" class="floating-label" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id='main-menu' class="menu-item overflow:hidden height:0px">
+						<div class="margin-top:10px display:flex tabs">
+							<div class="padding:10px_21px font-size:16px cursor:pointer background:gainsboro grow-hover tab-type" selected-value="active" selected-target="#main-menu-primary" selected-group="main-menu-item" selected>Primary</div>
+							<div class="padding:10px_21px font-size:16px cursor:pointer background:gainsboro grow-hover tab-type" selected-value="active" selected-target="#main-menu-secondary" selected-group="main-menu-item">Secondary</div>
+						</div>
+						<div id="main-menu-primary" class="menu-item-type overflow:hidden  height:0px active">
+							<cocreate-select class="floating-label sortable" placeholder="Primary View" name="main-menu-primary">
+								<input class="template-search" placeholder="Search" template_id="main-menu-primary">
+								<cc-options pass_id="module_id" fetch-collection="files" filter-name="" filter-value="" filter-operator="$eq" template_id="main-menu-primary" class="overflow:auto">
+									<cc-option class="template" template_id="main-menu-primary" value='{{data._id}}' document_id="{{data._id}}" render-array="data">
+										<h3 collection="{{collection}}" document_id="{{data._id}}" name="name" value="{{data.name}}">View Name</h3>
+										<h5>{{data._id}}</h5>
+									</cc-option>
+								</cc-options>
+							</cocreate-select>
+							<div class="display:flex justify-content:space-between">
+								<div class="width:48%">
+									<input type="number" pass_id="form-fields" name="main-menu-position" placeholder="Menu Position" class="floating-label" />
+								</div>
+								<div class="width:48%">
+									<input type="color" pass_id="form-fields" name="main-modal-primary-color" placeholder="Modal Color" class="floating-label" />
+								</div>
+							</div>
+							<div class="display:flex justify-content:space-between">
+								<div class="width:48%">
+									<input type="text" pass_id="form-fields" name="main-modal-primary-width" placeholder="Modal Width" class="floating-label" />
+								</div>
+								<div class="width:48%">
+									<input type="text" pass_id="form-fields" name="main-modal-primary-height" placeholder="Modal Height" class="floating-label" />
+								</div>
+							</div>
+							<div class="display:flex justify-content:space-between">
+								<div class="width:48%">
+									<input type="text" pass_id="form-fields" name="main-modal-primary-x" placeholder="Modal x" class="floating-label" />
+								</div>
+								<div class="width:48%">
+									<input type="text" pass_id="form-fields" name="main-modal-primary-y" placeholder="Modal y" class="floating-label" />
+								</div>
+							</div>
+						</div>
+						<div id="main-menu-secondary" class="menu-item-type overflow:hidden height:0px">
+							<cocreate-select class="floating-label sortable" placeholder="Secondary View" name="main-menu-secondary">
+								<input class="template-search" placeholder="Search" template_id="main-menu-secondary">
+								<cc-options pass_id="module_id" fetch-collection="files" filter-name="" filter-value="" filter-operator="$eq" template_id="main-menu-secondary" class="overflow:auto">
+									<cc-option class="template" template_id="main-menu-secondary" value='{{data._id}}' document_id="{{data._id}}" render-array="data">
+										<h3 collection="{{collection}}" document_id="{{data._id}}" name="name" value="{{data.name}}">View Name</h3>
+										<h5>{{data._id}}</h5>
+									</cc-option>
+								</cc-options>
+							</cocreate-select>
+							<input type="color" pass_id="form-fields" name="main-modal-secondary-color" placeholder="Modal Color" class="floating-label" />
+							<div class="display:flex justify-content:space-between">
+								<div class="width:48%">
+									<input type="text" pass_id="form-fields" name="main-modal-secondary-width" placeholder="Modal Width" class="floating-label" />
+								</div>
+								<div class="width:48%">
+									<input type="text" pass_id="form-fields" name="main-modal-secondary-height" placeholder="Modal Height" class="floating-label" />
+								</div>
+							</div>
+							<div class="display:flex justify-content:space-between">
+								<div class="width:48%">
+									<input type="text" pass_id="form-fields" name="main-modal-secondary-x" placeholder="Modal x" class="floating-label" />
+								</div>
+								<div class="width:48%">
+									<input type="text" pass_id="form-fields" name="main-modal-secondary-y" placeholder="Modal y" class="floating-label" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id='settings-menu' class="menu-item overflow:hidden height:0px">
+						<div class="margin-top:10px display:flex tabs">
+							<div class="padding:10px_21px font-size:16px cursor:pointer background:gainsboro grow-hover tab-type" selected-value="active" selected-target="#settings-menu-primary" selected-group="settings-menu-item" selected>Primary</div>
+							<div class="padding:10px_21px font-size:16px cursor:pointer background:gainsboro grow-hover tab-type" selected-value="active" selected-target="#settings-menu-secondary" selected-group="settings-menu-item">Secondary</div>
+						</div>
+						<div id="settings-menu-primary" class="menu-item-type overflow:hidden  height:0px active">
+							<cocreate-select class="floating-label sortable" placeholder="Primary View" name="settings-menu-primary">
+								<input class="template-search" placeholder="Search" template_id="settings-menu-primary">
+								<cc-options pass_id="module_id" fetch-collection="files" filter-name="" filter-value="" filter-operator="$eq" template_id="settings-menu-primary" class="overflow:auto">
+									<cc-option class="template" template_id="settings-menu-primary" value='{{data._id}}' document_id="{{data._id}}" render-array="data">
+										<h3 collection="{{collection}}" document_id="{{data._id}}" name="name" value="{{data.name}}">View Name</h3>
+										<h5>{{data._id}}</h5>
+									</cc-option>
+								</cc-options>
+							</cocreate-select>
+							<div class="display:flex justify-content:space-between">
+								<div class="width:48%">
+									<input type="number" pass_id="form-fields" name="settings-menu-position" placeholder="Menu Position" class="floating-label" />
+								</div>
+								<div class="width:48%">
+									<input type="color" pass_id="form-fields" name="settings-modal-primary-color" placeholder="Modal Color" class="floating-label" />
+								</div>
+							</div>
+							<div class="display:flex justify-content:space-between">
+								<div class="width:48%">
+									<input type="text" pass_id="form-fields" name="settings-modal-primary-width" placeholder="Modal Width" class="floating-label" />
+								</div>
+								<div class="width:48%">
+									<input type="text" pass_id="form-fields" name="settings-modal-primary-height" placeholder="Modal Height" class="floating-label" />
+								</div>
+							</div>
+							<div class="display:flex justify-content:space-between">
+								<div class="width:48%">
+									<input type="text" pass_id="form-fields" name="settings-modal-primary-x" placeholder="Modal x" class="floating-label" />
+								</div>
+								<div class="width:48%">
+									<input type="text" pass_id="form-fields" name="settings-modal-primary-y" placeholder="Modal y" class="floating-label" />
+								</div>
+							</div>
+						</div>
+						<div id="settings-menu-secondary" class="menu-item-type overflow:hidden height:0px">
+							<cocreate-select class="floating-label sortable" placeholder="Secondary View" name="settings-menu-secondary">
+								<input class="template-search" placeholder="Search" template_id="settings-menu-secondary">
+								<cc-options pass_id="module_id" fetch-collection="files" filter-name="" filter-value="" filter-operator="$eq" template_id="settings-menu-secondary" class="overflow:auto">
+									<cc-option class="template" template_id="settings-menu-secondary" value='{{data._id}}' document_id="{{data._id}}" render-array="data">
+										<h3 collection="{{collection}}" document_id="{{data._id}}" name="name" value="{{data.name}}">View Name</h3>
+										<h5>{{data._id}}</h5>
+									</cc-option>
+								</cc-options>
+							</cocreate-select>
+							<input type="color" pass_id="form-fields" name="settings-modal-secondary-color" placeholder="Modal Color" class="floating-label" />
+							<div class="display:flex justify-content:space-between">
+								<div class="width:48%">
+									<input type="text" pass_id="form-fields" name="settings-modal-secondary-width" placeholder="Modal Width" class="floating-label" />
+								</div>
+								<div class="width:48%">
+									<input type="text" pass_id="form-fields" name="settings-modal-secondary-height" placeholder="Modal Height" class="floating-label" />
+								</div>
+							</div>
+							<div class="display:flex justify-content:space-between">
+								<div class="width:48%">
+									<input type="text" pass_id="form-fields" name="settings-modal-secondary-x" placeholder="Modal x" class="floating-label" />
+								</div>
+								<div class="width:48%">
+									<input type="text" pass_id="form-fields" name="settings-modal-secondary-y" placeholder="Modal y" class="floating-label" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</form>
+
+		<nav class="nav display:flex align-items:center background:whitesmoke left:0 width:100vw margin-top:50px" data-main_content_id="content">
+
+			<!-- Menu Icon Animations -->
+			<a class="menu_icon--Vdots" toggle="active" toggle-sidenav="menuL">
+				<div class="circle"></div>
+				<div class="circle"></div>
+				<div class="circle"></div>
+				<div class="circle"></div>
+				<div class="circle"></div>
+			</a>
+
+			<!-- Horizontal Scroll Nav/Tabs -->
+			<ul class="display:inline-flex direction:rtl overflow:overlay font-size:20px align-items:center list-style-type:none width:100% height:50px">
+
+				<!-- Modal Controls -->
+				<li class="margin-right:15px"><a class="btn-modal-close"><i class="fas fa-times"></i></a></li>
+				<li class="margin-right:15px"><a class="btn-modal-maximize"><i toggle="fa-window-restore, fa-window-maximize" class="far fa-window-maximize"></i></a></li>
+				<li class="margin-right:15px"><a class="btn-modal-minimize"><i class="far fa-window-minimize"></i></a></li>
+
+				<!-- fullscreen toogle and icon transform-->
+				<li class="margin-right:15px"><a fullscreen><i toggle="fa-compress, fa-expand" class="fas fa-expand"></i></a></li>
+
+				<!-- Render Module Form -->
+				<li class="margin-right:15px">
+					<a target="modal" href="../modules/form.html" modal-width="320px">
+                        <i class="fas fa-cog"></i>
+                        <div pass_id="module_id" pass-collection="modules" pass-document_id="" pass_to="form-fields"></div>
+                        <div pass_id="datatable" pass-filter-value="" pass_to="module_id"></div>
+                    </a>
+				</li>
+
+				<!-- Render Code Editor -->
+				<li class="margin-right:15px">
+					<a target="modal" href="../code-editor/index.html">
+                        <i class="fas fa-code"></i>
+                        <div pass_id="render" pass-collection="" pass-document_id="" pass-name="" pass_to="code-editor"></div>
+                    </a>
+				</li>
+
+				<!-- Render Builder -->
+				<li class="margin-right:15px">
+					<a target="modal" href="../builder/index.html">
+                        <i class="fas fa-palette"></i>
+                        <div pass_id="render" pass-collection="" pass-document_id="" pass-name="" pass_to="builder"></div>
+                    </a>
+				</li>
+
+				<!-- Datatable Controls -->
+				<li class="margin-right:15px">
+					<a actions="deleteDocuments" collection="apples2" pass_id="datatable" template_id="datatable"><i class="far fa-trash-alt"></i></a>
+				</li>
+				<li class="margin-right:15px">
+					<a toggle="hidden" toogle-target="#column-visibility"><i class="far fa-eye"></i></a>
+				</li>
+				<li class="margin-right:15px">
+					<a actions="export" export-type="csv" template_id="datatable"><i class="fas fa-file-csv"></i></a>
+				</li>
+				<li class="margin-right:15px">
+					<a actions="export" template_id="datatable"><i class="fas fa-file-download"></i></a>
+				</li>
+				<li class="margin-right:15px">
+					<a actions="import" collection="" pass_id="datatable"><i class="fas fa-file-upload"></i></a>
+				</li>
+				<li class="margin-right:15px">
+					<a actions="copy" copy-target "tbody"><i class="far fa-copy"></i></a>
+				</li>
+				<li class="margin-right:15px">
+					<a actions="print" print-target='tbody[template_id="datatable"]'><i class="fas fa-print"></i></a>
+				</li>
+
+			</ul>
+		</nav>
+
+
+		<!-- Main Content -->
+		<main data-main_content_id="content" class="padding:5px">
+			<table class="width:100% border-collapse:collapse">
+				<tr class="border-bottom:1px_solid_darkgray">
+					<td class="position:sticky top:0 background:white padding-top:0 padding:10px ">
+						<input type="text" class="floating-label" filter-name="name" data-value_type="string" filter-operator="" template_id="datatable" placeholder="Name">
+						<span class="position:absolute bottom:18px right:20px float:right font-size:18px z-index:6">
+							<a order-by="name" toggle-order="asc" template_id="datatable"></a>
+						</span>
+					</td>
+					<td class="position:sticky top:0 background:white padding:10px padding-top:0">
+						<input type="text" class="floating-label" filter-name="_id" data-value_type="string" filter-operator="" template_id="datatable" placeholder="Document_id" />
+						<span class="position:absolute bottom:18px right:20px float:right font-size:18px z-index:6">
+							<a order-by="_id" toggle-order="asc" template_id="datatable"></a>
+						</span>
+					</td>
+				</tr>
+
+				<tbody template_id="datatable" fetch-collection="apples2" order-by="name" order-type="asc" pass_id="datatable">
+
+					<tr class="template background:gainsboro:hover border-bottom:1px_solid_darkgray" template_id="datatable" document_id="{{data._id}}" toggle="selected">
+						<td class="padding:5px display:flex min-width:200px align-items:center">
+							<div class="display:flex justify-content:center">
+								<div class="avatar-wrapper">
+									<a class="avatar round" target="modal" href="./form.html" modal-width="320px" modal-color="#229954">
+					                    <span collection="{{collection}}" document_id="{{data._id}}" name="name" class="avatar-name"></span>
+					                    <span class="avatar-image">
+					                        <img collection="{{collection}}" document_id="{{data._id}}" name="avatar" onerror="this.style.display='none'" width="40px"/>
+					                    </span>
+					                </a>
+									<div class="avatar-status" collection="{{collection}}" document_id="{{data._id}}" user-status='{"name":"status"}'></div>
+								</div>
+							</div>
+							<div class="margin-left:10px">
+								<a target="modal" href="./form.html" modal-width="320px" modal-color="#229954">
+									<h4 collection="{{collection}}" document_id="{{data._id}}" name="name">Name</h4>
+									<div pass-collection="{{collection}}" pass-document_id="{{data._id}}" pass_to="form-fields"></div>
+									<div pass-filter-value="{{data.module_id}}" pass_to="module_id"></div>
+									<div pass_id="form" pass-collection="" pass-document_id="" pass-name="" pass_to="render"></div>
+								</a>
+								<h5 collection="{{collection}}" document_id="{{data._id}}" name="email"></h5>
+							</div>
+						</td>
+						<td class="padding:10px">
+							<a target="modal" href="./form.html" modal-width="320px" modal-color="#229954">
+								<b>{{data._id}}</b>
+								<div pass-collection="{{collection}}" pass-document_id="{{data._id}}" pass_to="form-fields"></div>
+								<div pass-filter-value="{{data.module_id}}" pass_to="module_id"></div>
+								<div pass_id="form" pass-collection="" pass-document_id="" pass-name="" pass_to="render"></div>
+							</a>
+						</td>
+					</tr>
+
+				</tbody>
+			</table>
+
+		</main>
+
+		<!-------------- Collection Select -------------->
+		<!--<div class="select--field sortable floating-label" collection="test" document_id="5e8ff00e8c3af32574df80cb" name="selectField7" placeholder="Select 7" multiple>-->
+		<!--	<input class="option-search" placeholder="Search">-->
+		<!--	<ul fetch-collection_list="true" template_id="collection-list" class="template-wrapper options overflow:overlay" pass_to="me1234">-->
+		<!--		<li class="option template" template_id="collection-list" data-value="" pass_id="me1234">-->
+		<!--			<a pass_to="document-select" pass-collection="" pass_id="me1234">-->
+		<!--				<h5 name="name" pass_id="me1234" raw></h5>-->
+		<!--			</a>-->
+		<!--		</li>-->
+		<!--	</ul>-->
+		<!--</div>-->
+
 
 		<!--<script src="../dist/CoCreate-form.js"></script>-->
 		<script src="../../../CoCreateJS/dist/CoCreate.js"></script>

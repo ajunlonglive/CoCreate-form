@@ -66,7 +66,8 @@ const CoCreateForm = {
 			}
 			else {
 				const { collection, document_id, name } = crud.getAttr(el);
-				if(collection && document_id && name && !document_ids.includes(document_id)) {
+				if(document_ids.includes(document_id)) continue;
+				if(collection && document_id && name) {
 					if(isUpdate === "false") continue;
 					document_ids.push({ document_id: document_id, collection: collection });
 				}
@@ -86,17 +87,21 @@ const CoCreateForm = {
 					let result = callback.call(null, form, item.collection, item.document_id);
 					Object.assign(data, result);
 				});
-
-				this.updateDocument(form, item.collection, item.document_id, data);
-
+				if (!this.isObjectEmpty(data))
+					this.updateDocument(form, item.collection, item.document_id, data);
 			}
 		}
 	},
+	
+	isObjectEmpty:  function(obj) { 
+	   for (var x in obj) { return false; }
+	   return true;
+	},			
+
 
 	updateDocument: async function(form, collection, document_id, data) {
 		let { namespace, room, broadcast, broadcast_sender } = crud.getAttr(form);
 		if(crud.checkAttrValue(collection)) {
-			// let response = await crud.updateDocument({
 			crud.updateDocument({
 				namespace,
 				room,
