@@ -1,3 +1,10 @@
+## [1.2.12](https://github.com/CoCreate-app/CoCreate-form/compare/v1.2.11...v1.2.12) (2021-09-09)
+
+
+### Bug Fixes
+
+* ci docs ([ec5f859](https://github.com/CoCreate-app/CoCreate-form/commit/ec5f859a3a6b95773cdfa6baf5b2c181ad11307e))
+
 ## [1.2.11](https://github.com/CoCreate-app/CoCreate-form/compare/v1.2.10...v1.2.11) (2021-09-09)
 
 
