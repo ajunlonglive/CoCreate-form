@@ -1,3 +1,10 @@
+## [1.2.10](https://github.com/CoCreate-app/CoCreate-form/compare/v1.2.9...v1.2.10) (2021-09-09)
+
+
+### Bug Fixes
+
+* CoCreate.config directory, path, name and  public ([e6f5714](https://github.com/CoCreate-app/CoCreate-form/commit/e6f57149b700b64fbcd5ca881d533aa1e85d8f7e))
+
 ## [1.2.9](https://github.com/CoCreate-app/CoCreate-form/compare/v1.2.8...v1.2.9) (2021-09-08)
 
 
