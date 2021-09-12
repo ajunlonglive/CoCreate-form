@@ -1,3 +1,10 @@
+## [1.2.14](https://github.com/CoCreate-app/CoCreate-form/compare/v1.2.13...v1.2.14) (2021-09-12)
+
+
+### Bug Fixes
+
+* update sidenav to use resize and toggle ([1d62ab8](https://github.com/CoCreate-app/CoCreate-form/commit/1d62ab81b39f6121f083a789937e44a1aa564805))
+
 ## [1.2.13](https://github.com/CoCreate-app/CoCreate-form/compare/v1.2.12...v1.2.13) (2021-09-09)
 
 
