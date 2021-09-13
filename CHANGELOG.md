@@ -1,3 +1,10 @@
+## [1.2.15](https://github.com/CoCreate-app/CoCreate-form/compare/v1.2.14...v1.2.15) (2021-09-13)
+
+
+### Bug Fixes
+
+* document_id pending state ([6da909f](https://github.com/CoCreate-app/CoCreate-form/commit/6da909f4020fba597c2b03bccf6fc201a2db1684))
+
 ## [1.2.14](https://github.com/CoCreate-app/CoCreate-form/compare/v1.2.13...v1.2.14) (2021-09-12)
 
 
