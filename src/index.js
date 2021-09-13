@@ -42,33 +42,29 @@ const CoCreateForm = {
 	},
 
 	__requestDocumentId: function(form) {
-		let elements = form.querySelectorAll('[collection][document_id][name], [pass_to]');
+		let selector = `[collection][document_id][name]`;
+		let selectors = `input${selector}, textarea${selector}, [contenteditable]${selector}:not([contenteditable='false'])`;
+		let elements = form.querySelectorAll(selectors);
 
 		let collections = [];
 		let document_ids = [];
 
-		for(var i = 0; i < elements.length; i++) {
-			let el = elements[i];
-			if(el.parentNode.classList.contains('template')) {
-				continue;
-			}
-			const { document_id, isCrdt, isCrud, isSave, isUpdate } = crud.getAttr(el);
+		for(let el of elements) {
+		// for(var i = 0; i < elements.length; i++) {
+		// 	let el = elements[i];
+			if(el.parentNode.classList.contains('template')) continue;
+			
+			const { collection, document_id, name, isCrdt, isCrud, isSave, isUpdate } = crud.getAttr(el);
 			if(isCrdt === "true" && document_id || isCrud === "flase" || isSave === "flase") continue;
-			const collection = el.getAttribute("collection") || el.getAttribute("pass-collection") || "";
 
 			if(!crud.checkAttrValue(collection) && !crud.checkAttrValue(document_id)) continue;
-			if(collection !== "" && !collections.includes(collection) &&
-				(!crud.checkAttrValue(document_id) && !crud.checkAttrValue(el.getAttribute('pass-document_id')))
-			) {
-
+			if(collection !== "" && !collections.includes(collection) && (document_id == '' || document_id == 'pending')) {
 				collections.push(collection);
-
 			}
 			else {
-				const { collection, document_id, name } = crud.getAttr(el);
+				if(document_id == "" || document_id == "pending" || isUpdate === "false") continue;
 				if(document_ids.includes(document_id)) continue;
 				if(collection && document_id && name) {
-					if(isUpdate === "false") continue;
 					document_ids.push({ document_id: document_id, collection: collection });
 				}
 			}
@@ -100,6 +96,7 @@ const CoCreateForm = {
 
 
 	updateDocument: async function(form, collection, document_id, data) {
+		if(document_id == "pending") return;
 		let { namespace, room, broadcast, broadcast_sender } = crud.getAttr(form);
 		if(crud.checkAttrValue(collection)) {
 			crud.updateDocument({
@@ -152,7 +149,7 @@ const CoCreateForm = {
 	},
 
 	createDocument: async function(form, collection, data) {
-		if(crud.checkAttrValue(collection)) {
+		// if(crud.checkAttrValue(collection)) {
 			let response = await crud.createDocument({
 				'collection': collection,
 				'data': data,
@@ -162,7 +159,7 @@ const CoCreateForm = {
 			document.dispatchEvent(new CustomEvent('savedDocument', {
 				detail: {}
 			}));
-		}
+		// }
 	},
 
 	setDocumentId: function(form, data) {
@@ -174,13 +171,13 @@ const CoCreateForm = {
 			const elements = form.querySelectorAll(`[collection=${collection}], [pass-collection=${collection}]`);
 
 			elements.forEach(function(el) {
-				if(el.hasAttribute('name') && !crud.checkAttrValue(el.getAttribute('document_id'))) {
+				let documentId = el.getAttribute('document_id');
+				if(el.hasAttribute('name') && (documentId == '' || documentId == 'pending')) {
 					el.setAttribute('document_id', id);
 				}
 
-				if(el.hasAttribute('pass_to') && !crud.checkAttrValue(el.getAttribute('pass-document_id'))) {
+				if(!crud.checkAttrValue(el.getAttribute('pass-document_id'))) {
 					el.setAttribute('pass-document_id', id);
-
 				}
 			});
 		}
