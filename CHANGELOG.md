@@ -1,3 +1,10 @@
+## [1.2.22](https://github.com/CoCreate-app/CoCreate-form/compare/v1.2.21...v1.2.22) (2021-10-04)
+
+
+### Bug Fixes
+
+* update dependencies ([daa2422](https://github.com/CoCreate-app/CoCreate-form/commit/daa242265fdd7322991f55bc311b9dcc93631ff5))
+
 ## [1.2.21](https://github.com/CoCreate-app/CoCreate-form/compare/v1.2.20...v1.2.21) (2021-10-01)
 
 
