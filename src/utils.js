@@ -1,11 +1,11 @@
-import crud from '@cocreate/crud-client'
+import crud from '@cocreate/crud-client';
 
 const Utils = {
 
 	disableAutoFill: function(element) {
 		if (element.tagName == "TEXTAREA") {
 			element.value = "";
-			element.setAttribute("autocomplete","off")
+			element.setAttribute("autocomplete","off");
 		}
 		if (!element.hasAttribute("autocomplete")) {
 			element.setAttribute('autocomplete', "off");
@@ -47,8 +47,8 @@ const Utils = {
 			if (el.getAttribute('broadcast') == null && isBroadcast) {
 				el.setAttribute('broadcast', isBroadcast);
 			}
-			if (el.getAttribute('broadcast-sender') == null && isBroadcast) {
-				el.setAttribute('broadcast-sender', isBroadcast);
+			if (el.getAttribute('broadcast-sender') == null && isBroadcastSender) {
+				el.setAttribute('broadcast-sender', isBroadcastSender);
 			}
 			if (el.getAttribute('realtime') == null && dataRealTime) {
 				el.setAttribute('realtime', dataRealTime);
@@ -74,13 +74,6 @@ const Utils = {
 		})
 	},
 
-	// checkFormValidate: function(form) {
-	// 	if (typeof CoCreate.unique !== 'undefined') {
-	// 		return CoCreate.unique.checkValidate(form)
-	// 	}
-	// 	return true;
-	// },
-	
 	isTemplateInput: function (input) {
 		if (input.classList.contains('template')) return true;
 		
