@@ -1,3 +1,10 @@
+## [1.2.27](https://github.com/CoCreate-app/CoCreate-form/compare/v1.2.26...v1.2.27) (2021-10-12)
+
+
+### Bug Fixes
+
+* removed uniqueValue function ([9966e3c](https://github.com/CoCreate-app/CoCreate-form/commit/9966e3ca7c64be476ba75c0eb3cf37096b5c60fb))
+
 ## [1.2.26](https://github.com/CoCreate-app/CoCreate-form/compare/v1.2.25...v1.2.26) (2021-10-12)
 
 
