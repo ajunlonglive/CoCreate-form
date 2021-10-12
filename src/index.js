@@ -34,10 +34,10 @@ const CoCreateForm = {
 	},
 
 	save: function(form) {
-		if(!utils.checkFormValidate(form)) {
-			alert('Values are not unique');
-			return;
-		}
+		// if(!utils.checkFormValidate(form)) {
+		// 	alert('Values are not unique');
+		// 	return;
+		// }
 		this.__requestDocumentId(form);
 	},
 

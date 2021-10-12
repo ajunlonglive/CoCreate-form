@@ -74,12 +74,12 @@ const Utils = {
 		})
 	},
 
-	checkFormValidate: function(form) {
-		if (typeof CoCreate.unique !== 'undefined') {
-			return CoCreate.unique.checkValidate(form)
-		}
-		return true;
-	},
+	// checkFormValidate: function(form) {
+	// 	if (typeof CoCreate.unique !== 'undefined') {
+	// 		return CoCreate.unique.checkValidate(form)
+	// 	}
+	// 	return true;
+	// },
 	
 	isTemplateInput: function (input) {
 		if (input.classList.contains('template')) return true;
