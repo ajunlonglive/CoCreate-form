@@ -1,6 +1,6 @@
 # CoCreate-form
 
-A JavaScript API for adding custom components to a CoCreate form. Components added work in unison and controls CRUD capabilities as a group. Configurable using data-attributes and/or JavaScript API Take it for a spin in our [playground!](https://cocreate.app/docs/form)
+A JavaScript API for adding custom components to a CoCreate form. Components added work in unison and controls CRUD capabilities as a group. Configurable using HTML5 attributes or Javscript api and/or JavaScript API Take it for a spin in our [playground!](https://cocreate.app/docs/form)
 
 ![minified](https://img.badgesize.io/https://cdn.cocreate.app/form/latest/CoCreate-form.min.js?style=flat-square&label=minified&color=orange)
 ![gzip](https://img.badgesize.io/https://cdn.cocreate.app/form/latest/CoCreate-form.min.js?compression=gzip&style=flat-square&label=gzip&color=yellow)
