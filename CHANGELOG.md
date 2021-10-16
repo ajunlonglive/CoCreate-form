@@ -1,3 +1,10 @@
+## [1.2.36](https://github.com/CoCreate-app/CoCreate-form/compare/v1.2.35...v1.2.36) (2021-10-16)
+
+
+### Bug Fixes
+
+* update socket package to fix bug in docs ([3306ea5](https://github.com/CoCreate-app/CoCreate-form/commit/3306ea5909976e055a2cf98becba568c7abc354e))
+
 ## [1.2.35](https://github.com/CoCreate-app/CoCreate-form/compare/v1.2.34...v1.2.35) (2021-10-16)
 
 
