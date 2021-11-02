@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/CoCreate-app/CoCreate-form/compare/v1.2.40...v1.3.0) (2021-11-02)
+
+
+### Features
+
+* form now gets the value directly from the elements using getValue and setValue ([fbf77e7](https://github.com/CoCreate-app/CoCreate-form/commit/fbf77e7e35384c74d4ca59a289cf22b29d6dc2c3))
+
 ## [1.2.40](https://github.com/CoCreate-app/CoCreate-form/compare/v1.2.39...v1.2.40) (2021-11-01)
 
 
