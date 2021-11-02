@@ -5,17 +5,9 @@ import utils from "./utils";
 
 const CoCreateForm = {
 
-	components: [],
-
 	init: function({ name, selector, callback } = {}) {
-		name && callback && this.components.push({
-			name,
-			callback
-		});
-
 		const elements = document.querySelectorAll('form');
 		this.initElements(elements);
-
 	},
 
 	initElements: function(elements) {
@@ -34,10 +26,6 @@ const CoCreateForm = {
 	},
 
 	save: function(form) {
-		// if(!utils.checkFormValidate(form)) {
-		// 	alert('Values are not unique');
-		// 	return;
-		// }
 		this.__requestDocumentId(form);
 	},
 
@@ -77,12 +65,7 @@ const CoCreateForm = {
 	updateDocuments: function(form, document_ids) {
 		if(document_ids.length > 0) {
 			for(let item of document_ids) {
-
-				let data = {};
-				this.components.forEach(({ callback }) => {
-					let result = callback.call(null, form, item.collection, item.document_id);
-					Object.assign(data, result);
-				});
+				let data = this.getValues(form, item.collection, item.document_id);
 				if (!this.isObjectEmpty(data))
 					this.updateDocument(form, item.collection, item.document_id, data);
 			}
@@ -132,11 +115,7 @@ const CoCreateForm = {
 		if(collections.length > 0) {
 			for(let collection of collections) {
 
-				let data = {};
-				this.components.forEach(({ callback }) => {
-					let result = callback.call(null, form, collection);
-					Object.assign(data, result);
-				});
+				let data = this.getValues(form, collection)
 				delete data._id;
 				this.createDocument(form, collection, data);
 			}
@@ -181,6 +160,18 @@ const CoCreateForm = {
 				}
 			});
 		}
+	},
+	
+	getValues: function(form, collection, document_id = '') {
+		let data = {};
+		let selector = `[collection='${collection}'][document_id='${document_id}']`;
+		let inputs = form.querySelectorAll(selector);
+		for (let input of inputs) {
+			let name = input.getAttribute('name');
+			if(name)
+				data[name] = input.getValue(input);
+		}
+		return data;
 	},
 
 	__createAction: function(btn) {

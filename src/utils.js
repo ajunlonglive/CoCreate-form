@@ -88,27 +88,6 @@ const Utils = {
 		return false;
 	},
 
-	// ToDo: Used by api and renderkey to get all form values
-	getFormData: function(form, document_id, collection) {
-		let data = {};
-		if (!collection) return {}
-		
-		const elements = form.querySelectorAll(`[name][collection='${collection}']`)
-		elements.forEach((el) => {
-			let el_document_id = el.getAttribute('document_id') || ""
-			let name = el.getAttribute('name')
-			let value = el.value || el.getAttribute('value')
-			if (name === "_id") return;
-			if (!name || !value) return;
-			if (document_id == el_document_id) {
-				data[name] = el.value
-			}
-		})
-		// CoCreate.input.getValues(form, document_id, collection)
-		return data;
-	},
-
-	
 	getCOllections: function(form) {
 		let collections = [];
 		if (!form) return collections;
