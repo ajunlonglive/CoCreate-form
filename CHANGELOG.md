@@ -1,3 +1,10 @@
+## [1.3.5](https://github.com/CoCreate-app/CoCreate-form/compare/v1.3.4...v1.3.5) (2021-11-07)
+
+
+### Bug Fixes
+
+* add init() directly above export default to fix bug in firefox ([883cf33](https://github.com/CoCreate-app/CoCreate-form/commit/883cf338250ec2dc2f0335b7b98269a7ce8f6458))
+
 ## [1.3.4](https://github.com/CoCreate-app/CoCreate-form/compare/v1.3.3...v1.3.4) (2021-11-06)
 
 
