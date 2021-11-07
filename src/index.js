@@ -266,8 +266,6 @@ const CoCreateForm = {
 
 };
 
-CoCreateForm.init();
-
 observer.init({
 	name: 'CoCreateForm',
 	observe: ['addedNodes'],
@@ -317,5 +315,7 @@ action.init({
 		CoCreateForm.__saveAction(btn);
 	}
 });
+
+CoCreateForm.init();
 
 export default CoCreateForm;
