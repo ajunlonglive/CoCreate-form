@@ -176,11 +176,10 @@ const CoCreateForm = {
 
 	__createAction: function(btn) {
 		const form = btn.closest("form");
-		let collections = utils.getCOllections(form);
+		let collections = this.getCOllections(form);
 
 		collections.forEach((collection) => {
-			let data = utils.getFormData(form, "", collection);
-
+			let data = this.getValues(form, collection);
 			if(Object.keys(data).length == 0 && data.constructor === Object) {
 				return;
 			}
@@ -200,7 +199,7 @@ const CoCreateForm = {
 		let collections = utils.getCOllections(form);
 
 		collections.forEach((collection) => {
-			let data = utils.getFormData(form, "", collection);
+			let data = this.getValues(form, collection);
 
 			if(Object.keys(data).length == 0 && data.constructor === Object) {
 				return;
