@@ -1,3 +1,10 @@
+## [1.3.6](https://github.com/CoCreate-app/CoCreate-form/compare/v1.3.5...v1.3.6) (2021-11-08)
+
+
+### Bug Fixes
+
+* replaced getFormData with getValues ([3977c76](https://github.com/CoCreate-app/CoCreate-form/commit/3977c763fee0c97734b9144baa262f898766885b))
+
 ## [1.3.5](https://github.com/CoCreate-app/CoCreate-form/compare/v1.3.4...v1.3.5) (2021-11-07)
 
 
