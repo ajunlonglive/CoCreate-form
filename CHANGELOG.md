@@ -1,3 +1,10 @@
+## [1.3.10](https://github.com/CoCreate-app/CoCreate-form/compare/v1.3.9...v1.3.10) (2021-11-18)
+
+
+### Bug Fixes
+
+* update dependencies ([43dcd0b](https://github.com/CoCreate-app/CoCreate-form/commit/43dcd0bdcbfccb4615e25bada40d0d1d26862964))
+
 ## [1.3.9](https://github.com/CoCreate-app/CoCreate-form/compare/v1.3.8...v1.3.9) (2021-11-16)
 
 
