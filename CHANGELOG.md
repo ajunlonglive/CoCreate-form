@@ -1,3 +1,10 @@
+## [1.3.14](https://github.com/CoCreate-app/CoCreate-form/compare/v1.3.13...v1.3.14) (2021-11-20)
+
+
+### Bug Fixes
+
+* remove cdn.CoCreate.min.css ([dc6356c](https://github.com/CoCreate-app/CoCreate-form/commit/dc6356cb4845c3e26fb6c329196001def3a2980c))
+
 ## [1.3.13](https://github.com/CoCreate-app/CoCreate-form/compare/v1.3.12...v1.3.13) (2021-11-20)
 
 
