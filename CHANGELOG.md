@@ -1,3 +1,11 @@
+## [1.3.17](https://github.com/CoCreate-app/CoCreate-form/compare/v1.3.16...v1.3.17) (2021-11-26)
+
+
+### Bug Fixes
+
+* docs sidenav width ([3906eee](https://github.com/CoCreate-app/CoCreate-form/commit/3906eee6024e48f55dbe31e8844a84b527d04ba3))
+* updated action dependency to actions ([342d6f4](https://github.com/CoCreate-app/CoCreate-form/commit/342d6f4f5e1e53982c6586c7e87bbe936bf465b5))
+
 ## [1.3.16](https://github.com/CoCreate-app/CoCreate-form/compare/v1.3.15...v1.3.16) (2021-11-26)
 
 
