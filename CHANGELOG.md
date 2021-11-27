@@ -1,3 +1,10 @@
+## [1.3.18](https://github.com/CoCreate-app/CoCreate-form/compare/v1.3.17...v1.3.18) (2021-11-27)
+
+
+### Bug Fixes
+
+* update docs api and cocreateJS script ([7252224](https://github.com/CoCreate-app/CoCreate-form/commit/7252224b173242abf95eb4555c67ba6cc4f29121))
+
 ## [1.3.17](https://github.com/CoCreate-app/CoCreate-form/compare/v1.3.16...v1.3.17) (2021-11-26)
 
 
