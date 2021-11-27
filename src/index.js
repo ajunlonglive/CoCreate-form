@@ -1,6 +1,6 @@
 import observer from '@cocreate/observer';
 import crud from '@cocreate/crud-client';
-import action from '@cocreate/action';
+import action from '@cocreate/actions';
 import utils from "./utils";
 
 const CoCreateForm = {
