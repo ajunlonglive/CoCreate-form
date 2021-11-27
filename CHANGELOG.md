@@ -1,3 +1,11 @@
+## [1.3.20](https://github.com/CoCreate-app/CoCreate-form/compare/v1.3.19...v1.3.20) (2021-11-27)
+
+
+### Bug Fixes
+
+* actions import typo ([fd46499](https://github.com/CoCreate-app/CoCreate-form/commit/fd46499b7eef7f17300bd1974f7e0ab1256de5c8))
+* update dependencies ([fbef6a0](https://github.com/CoCreate-app/CoCreate-form/commit/fbef6a09e1e0c98078950da000bf8645a4753b1d))
+
 ## [1.3.19](https://github.com/CoCreate-app/CoCreate-form/compare/v1.3.18...v1.3.19) (2021-11-27)
 
 
