@@ -154,9 +154,11 @@ const CoCreateForm = {
 				if(el.hasAttribute('name') && (documentId == '' || documentId == 'pending')) {
 					el.setAttribute('document_id', id);
 				}
-
-				if(!crud.checkAttrValue(el.getAttribute('pass-document_id'))) {
-					el.setAttribute('pass-document_id', id);
+				
+				if (el.hasAttribute('pass-document_id')){
+					if(!crud.checkAttrValue(el.getAttribute('pass-document_id'))) {
+						el.setAttribute('pass-document_id', id);
+					}
 				}
 			});
 		}
@@ -172,26 +174,6 @@ const CoCreateForm = {
 				data[name] = input.getValue(input);
 		}
 		return data;
-	},
-
-	__createAction: function(btn) {
-		const form = btn.closest("form");
-		let collections = this.getCOllections(form);
-
-		collections.forEach((collection) => {
-			let data = this.getValues(form, collection);
-			if(Object.keys(data).length == 0 && data.constructor === Object) {
-				return;
-			}
-			crud.createDocument({
-				'collection': collection,
-				'data': data,
-			});
-		});
-
-		document.dispatchEvent(new CustomEvent('createdDocument', {
-			detail: {}
-		}));
 	},
 
 	__createDocumentAction: function(btn) {
