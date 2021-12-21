@@ -1,3 +1,10 @@
+## [1.3.23](https://github.com/CoCreate-app/CoCreate-form/compare/v1.3.22...v1.3.23) (2021-12-21)
+
+
+### Bug Fixes
+
+* only add pass-document_id value if the element has the attribute ([a4e61ae](https://github.com/CoCreate-app/CoCreate-form/commit/a4e61ae07c4a4f0deef601ec0796dca8bfe931e3))
+
 ## [1.3.22](https://github.com/CoCreate-app/CoCreate-form/compare/v1.3.21...v1.3.22) (2021-12-15)
 
 
