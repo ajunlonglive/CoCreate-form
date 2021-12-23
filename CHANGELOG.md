@@ -1,3 +1,15 @@
+# [1.4.0](https://github.com/CoCreate-app/CoCreate-form/compare/v1.3.23...v1.4.0) (2021-12-23)
+
+
+### Bug Fixes
+
+* relocated DeleteDocumentsAction to filter.js ([bb3c8e9](https://github.com/CoCreate-app/CoCreate-form/commit/bb3c8e96a636f5f11bb64406f7dd5bb248fe3b04))
+
+
+### Features
+
+* when setting document_id if pass_id is found set document_id on elements that match pass_id ([6f160b0](https://github.com/CoCreate-app/CoCreate-form/commit/6f160b062b8fe511122f9af5cdbf48a45c4111ee))
+
 ## [1.3.23](https://github.com/CoCreate-app/CoCreate-form/compare/v1.3.22...v1.3.23) (2021-12-21)
 
 
