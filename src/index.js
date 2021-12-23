@@ -59,6 +59,9 @@ const CoCreateForm = {
 			if (el.getAttribute('name') && !el.getAttribute('document_id') && document_id) {
 				el.setAttribute('document_id', document_id);
 			}
+			if (!el.hasAttribute("document_id") && document_id != null) {
+				el.setAttribute('document_id', document_id)
+			}
 			if (!el.hasAttribute('data-flat') && is_flat != null) {
 				el.setAttribute('data-flat', is_flat);
 			}
