@@ -258,32 +258,6 @@ const CoCreateForm = {
 		}
 	},
 
-	__deleteDocumentsAction: function(btn) {
-		const collection = btn.getAttribute('collection');
-		if(crud.checkAttrValue(collection)) {
-			const dataTemplateid = btn.getAttribute('template_id');
-			if(!dataTemplateid) return;
-
-			const selectedEls = document.querySelectorAll(`.selected[templateid="${dataTemplateid}"]`);
-
-			selectedEls.forEach((el) => {
-				const document_id = el.getAttribute('document_id');
-
-				if(crud.checkAttrValue(document_id)) {
-					crud.deleteDocument({
-						collection,
-						document_id,
-						'metadata': ''
-					});
-				}
-			});
-
-			document.dispatchEvent(new CustomEvent('deletedDocuments', {
-				detail: {}
-			}));
-		}
-	},
-
 };
 
 observer.init({
@@ -317,14 +291,6 @@ action.init({
 	endEvent: "deletedDocument",
 	callback: (btn, data) => {
 		CoCreateForm.__deleteDocumentAction(btn);
-	}
-});
-
-action.init({
-	action: "deleteDocuments",
-	endEvent: "deletedDocuments",
-	callback: (btn, data) => {
-		CoCreateForm.__deleteDocumentsAction(btn);
 	}
 });
 
