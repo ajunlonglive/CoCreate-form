@@ -1,3 +1,10 @@
+## [1.4.3](https://github.com/CoCreate-app/CoCreate-form/compare/v1.4.2...v1.4.3) (2021-12-23)
+
+
+### Bug Fixes
+
+* add document_id if it does not exist ([f4d5829](https://github.com/CoCreate-app/CoCreate-form/commit/f4d58294602de9b211081e63a09b18975beb79ea))
+
 ## [1.4.2](https://github.com/CoCreate-app/CoCreate-form/compare/v1.4.1...v1.4.2) (2021-12-23)
 
 
