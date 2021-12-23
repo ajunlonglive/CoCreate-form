@@ -1,3 +1,10 @@
+## [1.4.2](https://github.com/CoCreate-app/CoCreate-form/compare/v1.4.1...v1.4.2) (2021-12-23)
+
+
+### Bug Fixes
+
+* renamed filter-value_type to filter-value-type ([f2b5d45](https://github.com/CoCreate-app/CoCreate-form/commit/f2b5d45b31d38cab0cbf50a818e319d86f5db82a))
+
 ## [1.4.1](https://github.com/CoCreate-app/CoCreate-form/compare/v1.4.0...v1.4.1) (2021-12-23)
 
 
