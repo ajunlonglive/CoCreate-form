@@ -145,7 +145,14 @@ const CoCreateForm = {
 		if(!data) return;
 		const collection = data['collection'];
 		const id = data['document_id'];
-
+		const pass_ids = new Map();
+		
+		let pass_id = form.getAttribute('pass_id');
+		if(pass_id) {
+			if(form.getAttribute('collection') == collection)
+				pass_ids.set(pass_id, '');
+		}
+		
 		if(form && id) {
 			const elements = form.querySelectorAll(`[collection=${collection}], [pass-collection=${collection}]`);
 
@@ -153,14 +160,46 @@ const CoCreateForm = {
 				let documentId = el.getAttribute('document_id');
 				if(el.hasAttribute('name') && (documentId == '' || documentId == 'pending')) {
 					el.setAttribute('document_id', id);
+					let pass_id = el.getAttribute('pass_id');
+					if(pass_id) {
+						pass_ids.set(pass_id, '');
+					}
 				}
 				
 				if (el.hasAttribute('pass-document_id')){
 					if(!crud.checkAttrValue(el.getAttribute('pass-document_id'))) {
 						el.setAttribute('pass-document_id', id);
+						let pass_id = el.getAttribute('pass_id');
+						if(pass_id) {
+							pass_ids.set(pass_id, '');
+						}
 					}
 				}
 			});
+			
+			if (pass_ids.size > 0){
+				for (let key of pass_ids.keys()){
+					let passEls = document.querySelectorAll(`[pass_id="${key}"]`)
+					for (let passEl of passEls){
+						// if (passEl.getAttribute('collection') == collection){
+							if (passEl.getAttribute('document_id') == '') {
+								passEl.setAttribute('document_id', id);
+							}
+						// }
+					}
+				}
+			}
+			// let pass_id = form.getAttribute('pass_id');
+			// if(pass_id) {
+			// 	let passEls = document.querySelectorAll(`[pass_id="${pass_id}"]`)
+			// 	for (let passEl of passEls){
+			// 		if (passEl.getAttribute('collection') == collection){
+			// 			if (passEl.getAttribute('document_id') == '') {
+			// 				passEl.setAttribute('document_id', id);
+			// 			}
+			// 		}
+			// 	}
+			// }
 		}
 	},
 	

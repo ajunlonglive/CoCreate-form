@@ -14,11 +14,9 @@ const Utils = {
 
 	setAttribute: function(form) {
 		const { collection, document_id, name, isCrud, isCrdt, isRealtime, isSave, isUpdate, isRead, isListen, isBroadcast, isBroadcastSender } = crud.getAttr(form)
-		const dataRealTime = form.getAttribute('realtime');
 		const is_flat = form.getAttribute('data-flat')
 		let elements = form.querySelectorAll('[name], [pass_to]')
 		
-					
 		elements.forEach(function(el) {
 			if (el.parentNode.classList.contains('template')) {
 				return;
@@ -50,24 +48,20 @@ const Utils = {
 			if (el.getAttribute('broadcast-sender') == null && isBroadcastSender) {
 				el.setAttribute('broadcast-sender', isBroadcastSender);
 			}
-			if (el.getAttribute('realtime') == null && dataRealTime) {
-				el.setAttribute('realtime', dataRealTime);
-			}
 			if (el.getAttribute('name') && !el.hasAttribute('collection') && collection) {
 				el.setAttribute('collection', collection);
 			}
 			
-			if (el.getAttribute('pass_to') && !el.hasAttribute('pass-collection') &&  collection) {
-				el.setAttribute('pass-collection', collection);
-			}
+			// if (el.getAttribute('pass_to') && !el.hasAttribute('pass-collection') &&  collection) {
+			// 	el.setAttribute('pass-collection', collection);
+			// }
 			
 			if (el.getAttribute('name') && !el.getAttribute('document_id') && document_id) {
 				el.setAttribute('document_id', document_id)
 			}
-			if (!el.hasAttribute("document_id") && document_id != null) {
-				el.setAttribute('document_id', document_id)
-			}
-			
+			// if (!el.hasAttribute("document_id") && document_id != null) {
+			// 	el.setAttribute('document_id', document_id)
+			// }
 			if (!el.hasAttribute('data-flat') && is_flat != null) {
 				el.setAttribute('data-flat', is_flat);
 			}
