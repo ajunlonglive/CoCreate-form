@@ -1,7 +1,6 @@
 import observer from '@cocreate/observer';
 import crud from '@cocreate/crud-client';
 import action from '@cocreate/actions';
-import utils from "./utils";
 
 const CoCreateForm = {
 
@@ -16,8 +15,64 @@ const CoCreateForm = {
 	},
 
 	initElement: function(el) {
-		utils.setAttribute(el);
-		utils.disableAutoFill(el);
+		this.setAttribute(el);
+		this.disableAutoFill(el);
+	},
+	
+	setAttribute: function(form) {
+		const { collection, document_id, isCrud, isCrdt, isRealtime, isSave, isUpdate, isRead, isListen, isBroadcast, isBroadcastSender } = crud.getAttr(form);
+		const is_flat = form.getAttribute('data-flat');
+		let elements = form.querySelectorAll('[name]');
+		
+		elements.forEach(function(el) {
+			if (el.closest('.template')) return;
+			if (el.getAttribute('crud') == null && isCrud) {
+				el.setAttribute('crud', isCrud);
+			}
+			if (el.getAttribute('crdt') == null && isCrdt) {
+				el.setAttribute('crdt', isCrdt);
+			}
+			if (el.getAttribute('realtime') == null && isRealtime) {
+				el.setAttribute('realtime', isRealtime);
+			}
+			if (el.getAttribute('save') == null && isSave) {
+				el.setAttribute('save', isSave);
+			}
+			if (el.getAttribute('update') == null && isUpdate) {
+				el.setAttribute('update', isUpdate);
+			}
+			if (el.getAttribute('read') == null && isRead) {
+				el.setAttribute('read', isRead);
+			}
+			if (el.getAttribute('listen') == null && isListen) {
+				el.setAttribute('listen', isListen);
+			}
+			if (el.getAttribute('broadcast') == null && isBroadcast) {
+				el.setAttribute('broadcast', isBroadcast);
+			}
+			if (el.getAttribute('broadcast-sender') == null && isBroadcastSender) {
+				el.setAttribute('broadcast-sender', isBroadcastSender);
+			}
+			if (el.getAttribute('name') && !el.hasAttribute('collection') && collection) {
+				el.setAttribute('collection', collection);
+			}
+			if (el.getAttribute('name') && !el.getAttribute('document_id') && document_id) {
+				el.setAttribute('document_id', document_id);
+			}
+			if (!el.hasAttribute('data-flat') && is_flat != null) {
+				el.setAttribute('data-flat', is_flat);
+			}
+		});
+	},
+	
+	disableAutoFill: function(element) {
+		if (element.tagName == "TEXTAREA") {
+			element.value = "";
+			element.setAttribute("autocomplete","off");
+		}
+		if (!element.hasAttribute("autocomplete")) {
+			element.setAttribute('autocomplete', "off");
+		}
 	},
 
 	__saveAction: function(btn) {
@@ -214,10 +269,10 @@ const CoCreateForm = {
 		}
 		return data;
 	},
-
+	
 	__createDocumentAction: function(btn) {
 		const form = btn.closest("form");
-		let collections = utils.getCOllections(form);
+		let collections = this.getCollections(form);
 
 		collections.forEach((collection) => {
 			let data = this.getValues(form, collection);
@@ -238,6 +293,20 @@ const CoCreateForm = {
 				}));
 			}
 		});
+	},
+	
+	getCollections: function(form) {
+		let collections = [];
+		if (!form) return collections;
+
+		let els = form.querySelectorAll('[name][collection]');
+		els.forEach((el) => {
+			let tmpCollection = el.getAttribute('collection');
+			if (tmpCollection && !collections.includes(tmpCollection)) {
+				collections.push(tmpCollection);
+			} 
+		});
+		return collections;
 	},
 
 	__deleteDocumentAction: function(btn) {
@@ -275,7 +344,7 @@ observer.init({
 	attributeName: ['collection', 'document_id'],
 	target: 'form',
 	callback: mutation => mutation.target.tagName === "FORM" &&
-		utils.setAttribute(mutation.target)
+		CoCreateForm.setAttribute(mutation.target)
 });
 
 action.init({
