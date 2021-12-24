@@ -289,7 +289,6 @@ const CoCreateForm = {
 					'collection': collection,
 					'data': data,
 					'metadata': 'createDocument-action',
-					'element': 'empty'
 				});
 				document.dispatchEvent(new CustomEvent('createdDocument', {
 					detail: {}
