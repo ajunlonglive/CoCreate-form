@@ -1,3 +1,10 @@
+## [1.4.5](https://github.com/CoCreate-app/CoCreate-form/compare/v1.4.4...v1.4.5) (2022-01-01)
+
+
+### Bug Fixes
+
+* removed data- from attributes ([657db91](https://github.com/CoCreate-app/CoCreate-form/commit/657db91e3363fa3fb828539805a2eee7ac49049d))
+
 ## [1.4.4](https://github.com/CoCreate-app/CoCreate-form/compare/v1.4.3...v1.4.4) (2021-12-24)
 
 
