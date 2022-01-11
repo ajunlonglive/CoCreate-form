@@ -22,6 +22,8 @@ const CoCreateForm = {
 	setAttribute: function(form) {
 		const { collection, document_id, isCrud, isCrdt, isRealtime, isSave, isUpdate, isRead, isListen, isBroadcast, isBroadcastSender } = crud.getAttr(form);
 		const is_flat = form.getAttribute('data-flat');
+		// const isPassRefresh = form.getAttribute('pass-refresh');
+		const isPass_id = form.getAttribute('pass_id');
 		let elements = form.querySelectorAll('[name]');
 		
 		elements.forEach(function(el) {
@@ -64,6 +66,9 @@ const CoCreateForm = {
 			}
 			if (!el.hasAttribute('data-flat') && is_flat != null) {
 				el.setAttribute('data-flat', is_flat);
+			}
+			if (el.getAttribute('pass_id') == null && isPass_id) {
+				el.setAttribute('pass_id', isPass_id);
 			}
 		});
 	},
