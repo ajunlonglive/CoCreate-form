@@ -1,3 +1,11 @@
+# [1.5.0](https://github.com/CoCreate-app/CoCreate-form/compare/v1.4.6...v1.5.0) (2022-01-11)
+
+
+### Features
+
+* add pass_id to form children ([eeaf7ef](https://github.com/CoCreate-app/CoCreate-form/commit/eeaf7eff4dcfc7dffab077fed29272c70d3bfc93))
+* reset form action ([a36f30f](https://github.com/CoCreate-app/CoCreate-form/commit/a36f30f7d390708b472d8c93f9b270f92dbf440b))
+
 ## [1.4.6](https://github.com/CoCreate-app/CoCreate-form/compare/v1.4.5...v1.4.6) (2022-01-01)
 
 
