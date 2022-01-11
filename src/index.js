@@ -328,7 +328,18 @@ const CoCreateForm = {
 			}));
 		}
 	},
-
+	
+	__resetForm: function(btn) {
+		const form = btn.closest("form");
+		let elements = form.querySelectorAll('[document_id]');
+		for (let element of elements){
+			element.setAttribute('document_id', '');
+		}
+		form.reset();
+		document.dispatchEvent(new CustomEvent('reset', {
+			detail: {}
+		}));
+	}
 };
 
 observer.init({
@@ -370,6 +381,14 @@ action.init({
 	endEvent: "savedDocument",
 	callback: (btn, data) => {
 		CoCreateForm.__saveAction(btn);
+	}
+});
+
+action.init({
+	action: "reset",
+	endEvent: "reset",
+	callback: (btn, data) => {
+		CoCreateForm.__resetForm(btn);
 	}
 });
 
