@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/CoCreate-app/CoCreate-form/compare/v1.5.0...v1.5.1) (2022-01-12)
+
+
+### Bug Fixes
+
+* if crdt=true and element has a valid document_id continue ([9d58ebb](https://github.com/CoCreate-app/CoCreate-form/commit/9d58ebb591e2df0322cf059706af6899ade1f18c))
+
 # [1.5.0](https://github.com/CoCreate-app/CoCreate-form/compare/v1.4.6...v1.5.0) (2022-01-11)
 
 
