@@ -106,7 +106,7 @@ const CoCreateForm = {
 			if(el.parentNode.classList.contains('template')) continue;
 			
 			const { collection, document_id, name, isCrdt, isCrud, isSave, isUpdate } = crud.getAttr(el);
-			if(isCrdt === "true" && document_id || isCrud === "flase" || isSave === "flase") continue;
+			if(isCrdt === "true" && document_id.match(/^[0-9a-fA-F]{24}$/) || isCrud === "flase" || isSave === "flase") continue;
 
 			if(!crud.checkAttrValue(collection) && !crud.checkAttrValue(document_id)) continue;
 			if(collection !== "" && !collections.includes(collection) && (document_id == '' || document_id == 'pending')) {
