@@ -267,8 +267,11 @@ const CoCreateForm = {
 	},
 	
 	getValues: function(form, collection, document_id = '') {
-		let data = {};
-		let selector = `[collection='${collection}'][document_id='${document_id}']`;
+		let data = {}, selector;
+		if (document_id)
+			selector = `[collection='${collection}'][document_id='${document_id}']`;
+		else
+			selector = `[collection='${collection}'][document_id]`;
 		let inputs = form.querySelectorAll(selector);
 		for (let input of inputs) {
 			let name = input.getAttribute('name');
