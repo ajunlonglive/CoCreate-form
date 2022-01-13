@@ -1,3 +1,10 @@
+## [1.5.2](https://github.com/CoCreate-app/CoCreate-form/compare/v1.5.1...v1.5.2) (2022-01-13)
+
+
+### Bug Fixes
+
+* getvalues selector if document_id exist ([a4e3c00](https://github.com/CoCreate-app/CoCreate-form/commit/a4e3c00fcc3a868c1efb7d785d1db347255d3e90))
+
 ## [1.5.1](https://github.com/CoCreate-app/CoCreate-form/compare/v1.5.0...v1.5.1) (2022-01-12)
 
 
