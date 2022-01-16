@@ -169,7 +169,7 @@ const CoCreateForm = {
 			}
 		}
 		// this.setDocumentId(form, response);
-		document.dispatchEvent(new CustomEvent('savedDocument', {
+		document.dispatchEvent(new CustomEvent('saved', {
 			detail: {}
 		}));
 	},
@@ -184,7 +184,7 @@ const CoCreateForm = {
 			}
 		}
 		else {
-			document.dispatchEvent(new CustomEvent('savedDocument', {
+			document.dispatchEvent(new CustomEvent('saved', {
 				detail: {}
 			}));
 		}
@@ -198,7 +198,7 @@ const CoCreateForm = {
 				'is_flat': true
 			});
 			this.setDocumentId(form, response);
-			document.dispatchEvent(new CustomEvent('savedDocument', {
+			document.dispatchEvent(new CustomEvent('saved', {
 				detail: {}
 			}));
 		// }
@@ -252,17 +252,6 @@ const CoCreateForm = {
 					}
 				}
 			}
-			// let pass_id = form.getAttribute('pass_id');
-			// if(pass_id) {
-			// 	let passEls = document.querySelectorAll(`[pass_id="${pass_id}"]`)
-			// 	for (let passEl of passEls){
-			// 		if (passEl.getAttribute('collection') == collection){
-			// 			if (passEl.getAttribute('document_id') == '') {
-			// 				passEl.setAttribute('document_id', id);
-			// 			}
-			// 		}
-			// 	}
-			// }
 		}
 	},
 	
@@ -287,30 +276,6 @@ const CoCreateForm = {
 			}
 		}
 		return data;
-	},
-	
-	__createDocumentAction: function(btn) {
-		const form = btn.closest("form");
-		let collections = this.getCollections(form);
-
-		collections.forEach((collection) => {
-			let data = this.getValues(form, collection);
-
-			if(Object.keys(data).length == 0 && data.constructor === Object) {
-				return;
-			}
-
-			if(crud.checkAttrValue(collection)) {
-				crud.createDocument({
-					'collection': collection,
-					'data': data,
-					'metadata': 'createDocument-action',
-				});
-				document.dispatchEvent(new CustomEvent('createdDocument', {
-					detail: {}
-				}));
-			}
-		});
 	},
 	
 	getCollections: function(form) {
@@ -377,14 +342,6 @@ observer.init({
 });
 
 action.init({
-	action: "createDocument",
-	endEvent: "createdDocument",
-	callback: (btn, data) => {
-		CoCreateForm.__createDocumentAction(btn);
-	}
-});
-
-action.init({
 	action: "deleteDocument",
 	endEvent: "deletedDocument",
 	callback: (btn, data) => {
@@ -393,8 +350,8 @@ action.init({
 });
 
 action.init({
-	action: "saveDocument",
-	endEvent: "savedDocument",
+	action: "save",
+	endEvent: "saved",
 	callback: (btn, data) => {
 		CoCreateForm.__saveAction(btn);
 	}
