@@ -1,3 +1,10 @@
+## [1.5.5](https://github.com/CoCreate-app/CoCreate-form/compare/v1.5.4...v1.5.5) (2022-01-16)
+
+
+### Bug Fixes
+
+* updated saveDocument to save and createDocument replaced with save, reset ([ed2ae9d](https://github.com/CoCreate-app/CoCreate-form/commit/ed2ae9d858ee01949f0303e9ef486eb55ac12980))
+
 ## [1.5.4](https://github.com/CoCreate-app/CoCreate-form/compare/v1.5.3...v1.5.4) (2022-01-16)
 
 
