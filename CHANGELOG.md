@@ -1,3 +1,10 @@
+## [1.5.4](https://github.com/CoCreate-app/CoCreate-form/compare/v1.5.3...v1.5.4) (2022-01-16)
+
+
+### Bug Fixes
+
+* if input.getValue get inputs value ([ea7d487](https://github.com/CoCreate-app/CoCreate-form/commit/ea7d487e05695c6c0e5f3db4b4e923fe74b3c3f9))
+
 ## [1.5.3](https://github.com/CoCreate-app/CoCreate-form/compare/v1.5.2...v1.5.3) (2022-01-16)
 
 
