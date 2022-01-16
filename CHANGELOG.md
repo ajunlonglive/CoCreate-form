@@ -1,3 +1,10 @@
+## [1.5.3](https://github.com/CoCreate-app/CoCreate-form/compare/v1.5.2...v1.5.3) (2022-01-16)
+
+
+### Bug Fixes
+
+* document_id stayed in pending state if no document_id is created. if if data does not have atleast 1 value document_id does not generate ([7314677](https://github.com/CoCreate-app/CoCreate-form/commit/73146771a163df82dfba462550651c69d69dd7bf))
+
 ## [1.5.2](https://github.com/CoCreate-app/CoCreate-form/compare/v1.5.1...v1.5.2) (2022-01-13)
 
 
