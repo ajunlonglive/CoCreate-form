@@ -1,3 +1,10 @@
+## [1.5.8](https://github.com/CoCreate-app/CoCreate-form/compare/v1.5.7...v1.5.8) (2022-02-07)
+
+
+### Bug Fixes
+
+* bump dependency versions ([401526b](https://github.com/CoCreate-app/CoCreate-form/commit/401526b7f976a4ed13378643637f8abd58a14112))
+
 ## [1.5.7](https://github.com/CoCreate-app/CoCreate-form/compare/v1.5.6...v1.5.7) (2022-02-03)
 
 
