@@ -1,3 +1,10 @@
+## [1.5.10](https://github.com/CoCreate-app/CoCreate-form/compare/v1.5.9...v1.5.10) (2022-02-16)
+
+
+### Bug Fixes
+
+* update action param to name ([2471033](https://github.com/CoCreate-app/CoCreate-form/commit/2471033c1bce3148aa0d846a1ac6ab2befbb57dd))
+
 ## [1.5.9](https://github.com/CoCreate-app/CoCreate-form/compare/v1.5.8...v1.5.9) (2022-02-10)
 
 
