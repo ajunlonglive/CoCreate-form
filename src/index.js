@@ -342,7 +342,7 @@ observer.init({
 });
 
 action.init({
-	action: "deleteDocument",
+	name: "deleteDocument",
 	endEvent: "deletedDocument",
 	callback: (btn, data) => {
 		CoCreateForm.__deleteDocumentAction(btn);
@@ -350,7 +350,7 @@ action.init({
 });
 
 action.init({
-	action: "save",
+	name: "save",
 	endEvent: "saved",
 	callback: (btn, data) => {
 		CoCreateForm.__saveAction(btn);
@@ -358,7 +358,7 @@ action.init({
 });
 
 action.init({
-	action: "reset",
+	name: "reset",
 	endEvent: "reset",
 	callback: (btn, data) => {
 		CoCreateForm.__resetForm(btn);
