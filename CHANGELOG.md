@@ -1,3 +1,11 @@
+## [1.5.12](https://github.com/CoCreate-app/CoCreate-form/compare/v1.5.11...v1.5.12) (2022-02-24)
+
+
+### Bug Fixes
+
+* CoCreate.config replace CoCreate.app with * ([11f3900](https://github.com/CoCreate-app/CoCreate-form/commit/11f3900b8ca3b0d7f19aeea363907c181bd72963))
+* update param is_flat to isFlat ([743e863](https://github.com/CoCreate-app/CoCreate-form/commit/743e863effecdaaa712d3e8299647689be04c387))
+
 ## [1.5.11](https://github.com/CoCreate-app/CoCreate-form/compare/v1.5.10...v1.5.11) (2022-02-16)
 
 
