@@ -1,3 +1,10 @@
+## [1.5.13](https://github.com/CoCreate-app/CoCreate-form/compare/v1.5.12...v1.5.13) (2022-03-21)
+
+
+### Bug Fixes
+
+* update class sortable to attribute sortable ([4325509](https://github.com/CoCreate-app/CoCreate-form/commit/4325509e7a740c8f4baef3b6fc0562eb83f6283b))
+
 ## [1.5.12](https://github.com/CoCreate-app/CoCreate-form/compare/v1.5.11...v1.5.12) (2022-02-24)
 
 
