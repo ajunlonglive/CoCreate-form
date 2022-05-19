@@ -1,3 +1,10 @@
+## [1.5.15](https://github.com/CoCreate-app/CoCreate-form/compare/v1.5.14...v1.5.15) (2022-05-19)
+
+
+### Bug Fixes
+
+* update document_id on link index.css ([b54b5ec](https://github.com/CoCreate-app/CoCreate-form/commit/b54b5ecad5ddeaddbc323b9f48550a89154c5c1d))
+
 ## [1.5.14](https://github.com/CoCreate-app/CoCreate-form/compare/v1.5.13...v1.5.14) (2022-05-06)
 
 
