@@ -1,3 +1,10 @@
+## [1.5.17](https://github.com/CoCreate-app/CoCreate-form/compare/v1.5.16...v1.5.17) (2022-06-02)
+
+
+### Bug Fixes
+
+* update padding of datables td element ([fb97c85](https://github.com/CoCreate-app/CoCreate-form/commit/fb97c85610e23daf0b247f22cb54c255cd10ddde))
+
 ## [1.5.16](https://github.com/CoCreate-app/CoCreate-form/compare/v1.5.15...v1.5.16) (2022-05-23)
 
 
