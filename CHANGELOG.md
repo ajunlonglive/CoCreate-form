@@ -1,3 +1,10 @@
+## [1.5.20](https://github.com/CoCreate-app/CoCreate-form/compare/v1.5.19...v1.5.20) (2022-06-19)
+
+
+### Bug Fixes
+
+* update templates to use placeholder ([6d2a21d](https://github.com/CoCreate-app/CoCreate-form/commit/6d2a21d45aac6a189f4d138073c2238d6ae2701d))
+
 ## [1.5.19](https://github.com/CoCreate-app/CoCreate-form/compare/v1.5.18...v1.5.19) (2022-06-18)
 
 
