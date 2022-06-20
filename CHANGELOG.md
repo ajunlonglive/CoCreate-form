@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/CoCreate-app/CoCreate-form/compare/v1.5.20...v1.6.0) (2022-06-20)
+
+
+### Features
+
+* attribute value-tye=object || Json will convert string to object ([65cc5c2](https://github.com/CoCreate-app/CoCreate-form/commit/65cc5c2e411cebc25ee4b73bfdfcecc001fb7aa6))
+
 ## [1.5.20](https://github.com/CoCreate-app/CoCreate-form/compare/v1.5.19...v1.5.20) (2022-06-19)
 
 
