@@ -265,13 +265,13 @@ const CoCreateForm = {
 		for (let input of inputs) {
 			let name = input.getAttribute('name');
 			if(name && name != '_id'){
-				if (input.getValue) {
-					let value = input.getValue(input);
+				if (input.getValue || input.value) {
+					let value = input.getValue(input) || input.value;
+					let valueType = input.getAttribute('value-type');
+					if(value && valueType == 'object' || value && valueType == 'json')
+						value = JSON.parse(value)
 					if (value)
 						data[name] = value;
-					else if (data[name] == undefined){
-						data[name] = value;
-					}
 				}
 			}
 		}
