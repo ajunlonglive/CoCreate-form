@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/CoCreate-app/CoCreate-form/compare/v1.6.0...v1.6.1) (2022-07-25)
+
+
+### Bug Fixes
+
+* removed isFlat ([91f649f](https://github.com/CoCreate-app/CoCreate-form/commit/91f649f66cffec834120e0f08f91cf8d0d5bf720))
+
 # [1.6.0](https://github.com/CoCreate-app/CoCreate-form/compare/v1.5.20...v1.6.0) (2022-06-20)
 
 
