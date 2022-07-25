@@ -21,7 +21,6 @@ const CoCreateForm = {
 	
 	setAttribute: function(form) {
 		const { collection, document_id, isCrud, isCrdt, isRealtime, isSave, isUpdate, isRead, isListen, isBroadcast, isBroadcastSender } = crud.getAttr(form);
-		const isFlat = form.getAttribute('data-flat');
 		// const isPassRefresh = form.getAttribute('pass-refresh');
 		const isPass_id = form.getAttribute('pass_id');
 		let elements = form.querySelectorAll('[name]');
@@ -63,9 +62,6 @@ const CoCreateForm = {
 			}
 			if (!el.hasAttribute("document_id") && document_id != null) {
 				el.setAttribute('document_id', document_id)
-			}
-			if (!el.hasAttribute('data-flat') && isFlat != null) {
-				el.setAttribute('data-flat', isFlat);
 			}
 			if (el.getAttribute('pass_id') == null && isPass_id) {
 				el.setAttribute('pass_id', isPass_id);
@@ -153,8 +149,7 @@ const CoCreateForm = {
 				data,
 				upsert: true,
 				broadcast,
-				broadcast_sender,
-				isFlat: true,
+				broadcast_sender
 			});
 		}
 		if(window.CoCreate.crdt) {
@@ -195,7 +190,6 @@ const CoCreateForm = {
 			let response = await crud.createDocument({
 				'collection': collection,
 				'data': data,
-				'isFlat': true
 			});
 			this.setDocumentId(form, response);
 			document.dispatchEvent(new CustomEvent('saved', {
