@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>collection action | CoCreateJS</title>
+    <link rel="icon" href="https://cdn.cocreate.app/favicon.ico" type="image/ico" sizes="16x16">
+  </head>
+  <body>
+
+    <form fetch-collection>
+      <input name="collection" value="testing">
+      <input name="target" value="newcollection">
+      
+      <br>
+    
+      <a actions="createCollection">
+        create collection from form
+      </a>
+      <br>
+      <a actions="updateCollection">
+        update collection from form
+      </a>
+      <br>
+      <a actions="deleteCollection">
+        delete collection from form
+      </a>
+    </form>
+
+    <a actions="createCollection" collection="testing">
+      create collection
+    </a>
+    <br>
+    <a actions="updateCollection" collection="testing" target="newcollection">
+      update collection
+    </a>
+    <br>
+    <a actions="deleteCollection" collection="newcollection">
+      delete collection
+    </a>
+
+    <!--<script src="../dist/CoCreate-elements.js"></script>-->
+    <script src="../../../CoCreateJS/dist/CoCreate.js" ></script>
+
+  </body>
+</html>

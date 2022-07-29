@@ -1,6 +1,7 @@
 import observer from '@cocreate/observer';
 import crud from '@cocreate/crud-client';
 import action from '@cocreate/actions';
+import CoCreateElements from '@cocreate/elements';
 
 const CoCreateForm = {
 
@@ -314,7 +315,37 @@ const CoCreateForm = {
 		document.dispatchEvent(new CustomEvent('reset', {
 			detail: {}
 		}));
+	},
+
+	collectionAction: function(btn, action) {
+		let collection = btn.getAttribute('collection');
+		let form = btn.closest("form")
+		if (!collection && form) {
+			let input = form.querySelector('[name="collection"]')
+			if (input)
+				collection = CoCreateElements.getValue(input)
+		}
+		let target = "";
+		if (action == 'updateCollection') {
+			target = btn.getAttribute('target')
+			if (!target && form) {
+				let input = form.querySelector('[name="target"]')
+				if (input)
+					target = CoCreateElements.getValue(input)
+			}    
+			if(!crud.checkAttrValue(target)) 
+				return
+		}
+		if(crud.checkAttrValue(collection)) {
+			crud[action]({collection, target});
+	
+			// ToDo: replace with custom event
+			document.dispatchEvent(new CustomEvent(action, {
+				detail: {}
+			}));
+		}
 	}
+	
 };
 
 observer.init({
@@ -358,6 +389,31 @@ action.init({
 		CoCreateForm.__resetForm(btn);
 	}
 });
+
+action.init({
+	name: "createCollection",
+	endEvent: "createCollection",
+	callback: (btn, data) => {
+        CoCreateForm.collectionAction(btn, "createCollection")
+	}
+});
+
+action.init({
+	name: "updateCollection",
+	endEvent: "updateCollection",
+	callback: (btn, data) => {
+        CoCreateForm.collectionAction(btn, "updateCollection")
+	}
+});
+
+action.init({
+	name: "deleteCollection",
+	endEvent: "deleteCollection",
+	callback: (btn, data) => {
+        CoCreateForm.collectionAction(btn, "deleteCollection")
+	}
+});
+
 
 CoCreateForm.init();
 
