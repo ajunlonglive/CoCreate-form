@@ -1,3 +1,15 @@
+# [1.7.0](https://github.com/CoCreate-app/CoCreate-form/compare/v1.6.1...v1.7.0) (2022-07-29)
+
+
+### Bug Fixes
+
+* add @cocreate/elements ([2d73e05](https://github.com/CoCreate-app/CoCreate-form/commit/2d73e0585640e5934eb0279ffa783a7b9a442a8e))
+
+
+### Features
+
+* actions for collection crud ([86a70a0](https://github.com/CoCreate-app/CoCreate-form/commit/86a70a0430078ab40e3e87def20d5f61267bcd69))
+
 ## [1.6.1](https://github.com/CoCreate-app/CoCreate-form/compare/v1.6.0...v1.6.1) (2022-07-25)
 
 
