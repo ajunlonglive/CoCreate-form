@@ -21,7 +21,7 @@ const CoCreateForm = {
 	},
 	
 	setAttribute: function(form) {
-		const { collection, document_id, isCrud, isCrdt, isRealtime, isSave, isUpdate, isRead, isListen, isBroadcast, isBroadcastSender } = crud.getAttr(form);
+		const { collection, document_id, isCrud, isCrdt, isRealtime, isSave, isUpdate, isRead, isListen, broadcast, broadcastSender } = crud.getAttr(form);
 		// const isPassRefresh = form.getAttribute('pass-refresh');
 		const isPass_id = form.getAttribute('pass_id');
 		let elements = form.querySelectorAll('[name]');
@@ -49,11 +49,11 @@ const CoCreateForm = {
 			if (el.getAttribute('listen') == null && isListen) {
 				el.setAttribute('listen', isListen);
 			}
-			if (el.getAttribute('broadcast') == null && isBroadcast) {
-				el.setAttribute('broadcast', isBroadcast);
+			if (el.getAttribute('broadcast') == null && broadcast) {
+				el.setAttribute('broadcast', broadcast);
 			}
-			if (el.getAttribute('broadcast-sender') == null && isBroadcastSender) {
-				el.setAttribute('broadcast-sender', isBroadcastSender);
+			if (el.getAttribute('broadcast-sender') == null && broadcastSender) {
+				el.setAttribute('broadcast-sender', broadcastSender);
 			}
 			if (el.getAttribute('name') && !el.hasAttribute('collection') && collection) {
 				el.setAttribute('collection', collection);
@@ -125,9 +125,9 @@ const CoCreateForm = {
 	updateDocuments: function(form, document_ids) {
 		if(document_ids.length > 0) {
 			for(let item of document_ids) {
-				let data = this.getValues(form, item.collection, item.document_id);
+				let {data, updateName, deleteName} = this.getValues(form, item.collection, item.document_id);
 				if (!this.isObjectEmpty(data))
-					this.updateDocument(form, item.collection, item.document_id, data);
+					this.updateDocument(form, item.collection, item.document_id, data, updateName, deleteName);
 			}
 		}
 	},
@@ -138,9 +138,9 @@ const CoCreateForm = {
 	},			
 
 
-	updateDocument: async function(form, collection, document_id, data) {
+	updateDocument: async function(form, collection, document_id, data, updateName, deleteName) {
 		if(document_id == "pending") return;
-		let { namespace, room, broadcast, broadcast_sender } = crud.getAttr(form);
+		let { namespace, room, broadcast, broadcastSender } = crud.getAttr(form);
 		if(crud.checkAttrValue(collection)) {
 			crud.updateDocument({
 				namespace,
@@ -150,10 +150,12 @@ const CoCreateForm = {
 				data,
 				upsert: true,
 				broadcast,
-				broadcast_sender
+				broadcastSender,
+				updateName,
+				deleteName
 			});
 		}
-		if(window.CoCreate.crdt) {
+		if(!updateName && !deleteName && window.CoCreate.crdt) {
 			for(const [key, value] of Object.entries(data)) {
 				window.CoCreate.crdt.replaceText({
 					collection,
@@ -174,7 +176,7 @@ const CoCreateForm = {
 		if(collections.length > 0) {
 			for(let collection of collections) {
 
-				let data = this.getValues(form, collection)
+				let {data} = this.getValues(form, collection)
 				delete data._id;
 				this.createDocument(form, collection, data);
 			}
@@ -251,7 +253,7 @@ const CoCreateForm = {
 	},
 	
 	getValues: function(form, collection, document_id = '') {
-		let data = {}, selector;
+		let selector, data = {}, updateName = {}, deleteName = {};
 		if (document_id)
 			selector = `[collection='${collection}'][document_id='${document_id}']`;
 		else
@@ -269,8 +271,22 @@ const CoCreateForm = {
 						data[name] = value;
 				}
 			}
+
+			let $updateName = input.getAttribute('updateName');
+			if($updateName && !['_id', 'organization_id',].includes($updateName)){
+				if (input.getValue || input.value) {
+					let value = input.getValue(input) || input.value;
+					if(value)
+					updateName[$updateName] = value;
+				}
+			}
+
+			let $deleteName = input.getAttribute('deleteName');
+			if($deleteName && !['_id', 'organization_id',].includes($deleteName)){
+				deleteName[$deleteName] = '';
+			}
 		}
-		return data;
+		return {data, deleteName, updateName};
 	},
 	
 	getCollections: function(form) {
@@ -300,6 +316,51 @@ const CoCreateForm = {
 
 			// ToDo: replace with custom event
 			document.dispatchEvent(new CustomEvent('deletedDocument', {
+				detail: {}
+			}));
+		}
+	},
+
+	updateNameAction: function(btn) {
+		const { collection, document_id, updateName, namespace, room, broadcast, broadcastSender } = crud.getAttr(btn);
+
+		if(updateName && crud.checkAttrValue(collection) && crud.checkAttrValue(document_id)) {
+			let value = btn.getValue(btn) ||  btn.value
+			if (value) {
+				let updateName = {[updateName]: value}
+				
+				crud.updateDocument({
+					namespace,
+					room,
+					collection,
+					document_id,
+					updateName,
+					broadcast,
+					broadcastSender
+				});			
+				// ToDo: replace with custom event
+				document.dispatchEvent(new CustomEvent('updateName', {
+					detail: {}
+				}));
+			}
+		}
+	},
+
+	deleteNameAction: function(btn) {
+		const { collection, document_id, deleteName, namespace, room, broadcast, broadcastSender } = crud.getAttr(btn);
+
+		if(deleteName && crud.checkAttrValue(collection) && crud.checkAttrValue(document_id)) {
+			crud.updateDocument({
+				namespace,
+				room,
+				collection,
+				document_id,
+				deleteName: {[deleteName]: ''},
+				broadcast,
+				broadcastSender
+			});			
+			// ToDo: replace with custom event
+			document.dispatchEvent(new CustomEvent('deleteName', {
 				detail: {}
 			}));
 		}
@@ -387,6 +448,22 @@ action.init({
 	endEvent: "reset",
 	callback: (btn, data) => {
 		CoCreateForm.__resetForm(btn);
+	}
+});
+
+action.init({
+	name: "updateName",
+	endEvent: "updateName",
+	callback: (btn, data) => {
+        CoCreateForm.updateNameAction(btn, "updateName")
+	}
+});
+
+action.init({
+	name: "deleteName",
+	endEvent: "deleteName",
+	callback: (btn, data) => {
+        CoCreateForm.deleteNameAction(btn, "deleteName")
 	}
 });
 
