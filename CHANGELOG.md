@@ -1,3 +1,15 @@
+# [1.8.0](https://github.com/CoCreate-app/CoCreate-form/compare/v1.7.1...v1.8.0) (2022-08-31)
+
+
+### Bug Fixes
+
+* getValue and setValue using HTMLElement.prototype ([f5e4299](https://github.com/CoCreate-app/CoCreate-form/commit/f5e4299bc516f0d5ea4b483316f17b1a3d7d5dce))
+
+
+### Features
+
+* update and deleteName to update and delete keys from db. Renamed variables isBroadcast to broadcast and broadcastSender ([98d28e8](https://github.com/CoCreate-app/CoCreate-form/commit/98d28e8687d212c3cde6eb348e418ecc9dfb43a7))
+
 ## [1.7.1](https://github.com/CoCreate-app/CoCreate-form/compare/v1.7.0...v1.7.1) (2022-08-19)
 
 
