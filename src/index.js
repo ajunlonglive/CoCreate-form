@@ -263,7 +263,7 @@ const CoCreateForm = {
 			let name = input.getAttribute('name');
 			if(name && name != '_id'){
 				if (input.getValue || input.value) {
-					let value = input.getValue(input) || input.value;
+					let value = input.getValue();
 					let valueType = input.getAttribute('value-type');
 					if(value && valueType == 'object' || value && valueType == 'json')
 						value = JSON.parse(value)
@@ -275,7 +275,7 @@ const CoCreateForm = {
 			let $updateName = input.getAttribute('updateName');
 			if($updateName && !['_id', 'organization_id',].includes($updateName)){
 				if (input.getValue || input.value) {
-					let value = input.getValue(input) || input.value;
+					let value = input.getValue();
 					if(value)
 					updateName[$updateName] = value;
 				}
@@ -325,7 +325,7 @@ const CoCreateForm = {
 		const { collection, document_id, updateName, namespace, room, broadcast, broadcastSender } = crud.getAttr(btn);
 
 		if(updateName && crud.checkAttrValue(collection) && crud.checkAttrValue(document_id)) {
-			let value = btn.getValue(btn) ||  btn.value
+			let value = btn.getValue()
 			if (value) {
 				let updateName = {[updateName]: value}
 				
@@ -384,7 +384,7 @@ const CoCreateForm = {
 		if (!collection && form) {
 			let input = form.querySelector('[name="collection"]')
 			if (input)
-				collection = CoCreateElements.getValue(input)
+				collection = input.getValue()
 		}
 		let target = "";
 		if (action == 'updateCollection') {
@@ -392,7 +392,7 @@ const CoCreateForm = {
 			if (!target && form) {
 				let input = form.querySelector('[name="target"]')
 				if (input)
-					target = CoCreateElements.getValue(input)
+					target = input.getValue()
 			}    
 			if(!crud.checkAttrValue(target)) 
 				return
