@@ -1,6 +1,6 @@
 {
   "name": "@cocreate/form",
-  "version": "1.8.2",
+  "version": "1.8.3",
   "description": "A JavaScript API for adding custom components to a CoCreate form. Components added work in unison and controls CRUD capabilities as a group. Configurable using HTML5 attributes or Javscript api and/or JavaScript API",
   "keywords": [
     "form",
