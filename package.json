@@ -1,6 +1,6 @@
 {
   "name": "@cocreate/form",
-  "version": "1.8.6",
+  "version": "1.8.7",
   "description": "A JavaScript API for adding custom components to a CoCreate form. Components added work in unison and controls CRUD capabilities as a group. Configurable using HTML5 attributes or Javscript api and/or JavaScript API",
   "keywords": [
     "form",
@@ -20,7 +20,9 @@
     "html5-framework",
     "javascript-framework"
   ],
-  "publishConfig": { "access": "public" },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "start": "npx webpack --config webpack.config.js",
     "build": "NODE_ENV=production npx webpack --config webpack.config.js",
@@ -34,7 +36,9 @@
   },
   "author": "CoCreate LLC",
   "license": "MIT",
-  "bugs": { "url": "https://github.com/CoCreate-app/CoCreate-form/issues" },
+  "bugs": {
+    "url": "https://github.com/CoCreate-app/CoCreate-form/issues"
+  },
   "homepage": "https://cocreate.app/docs/form",
   "funding": {
     "type": "GitHub Sponsors ❤",
