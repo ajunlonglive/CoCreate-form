@@ -1,3 +1,10 @@
+## [1.8.9](https://github.com/CoCreate-app/CoCreate-form/compare/v1.8.8...v1.8.9) (2022-10-02)
+
+
+### Bug Fixes
+
+* bump @cocreate/hosting and @cocreate/socket-client ([9f67f9c](https://github.com/CoCreate-app/CoCreate-form/commit/9f67f9c75fba12befa080cbbf4ba6d476f44dd2c))
+
 ## [1.8.8](https://github.com/CoCreate-app/CoCreate-form/compare/v1.8.7...v1.8.8) (2022-10-01)
 
 
